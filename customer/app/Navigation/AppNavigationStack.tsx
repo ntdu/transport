@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 // AuthStack Screen
 import SplashScreen from '@/Containers/SplashScreen';
-// import { SignInScreen } from '@/Containers/SignInScreen'
+import { SignInScreen } from '@/Containers/SignInScreen'
 // import { SignUpScreen } from '@/Containers/SignUpScreen'
 // import { OTPScreen } from '@/Containers/OTPScreen'
 import { AuthScreen } from '@/Containers/AuthScreen'
@@ -52,13 +52,16 @@ export const AuthStack = () => {
   return (
     <Auth.Navigator
       initialRouteName={AuthScreens.SplashScreen}
-      // headerMode={'none'}
+      screenOptions={{
+        headerShown: false
+      }}
     >
       <Auth.Screen name={AuthScreens.SplashScreen} component={SplashScreen} />
       <Auth.Screen name={AuthScreens.AuthScreen} component={AuthScreen} />
-      {/* <Auth.Screen name={AuthScreens.SignInScreen} component={SignInScreen} />
 
-      <Auth.Screen name={AuthScreens.SignUpScreen} component={SignUpScreen} />
+      <Auth.Screen name={AuthScreens.SignInScreen} component={SignInScreen} />
+
+      {/* <Auth.Screen name={AuthScreens.SignUpScreen} component={SignUpScreen} />
       <Auth.Screen name={AuthScreens.OTPScreen} component={OTPScreen} /> */}
     </Auth.Navigator>
   )

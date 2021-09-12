@@ -13,6 +13,7 @@ import { BButton } from '@/Components'
 // Styles
 import styles from './Styles/AuthScreenStyles'
 import { Images } from '@/Themes'
+import { Metrics, Normalize, Colors } from '@/Themes'
 
 // Language
 // import { translate } from '@/Language'
@@ -21,7 +22,9 @@ type AuthScreenNavigationProps = StackNavigationProp<
   AuthStackParams,
   AuthScreens.AuthScreen
 >
-
+// type AuthScreenNavigationProps = StackNavigationProp<
+//   AuthStackParams
+// >
 const AuthScreen = () => {
   const navigation = useNavigation<AuthScreenNavigationProps>()
 
@@ -32,7 +35,7 @@ const AuthScreen = () => {
   return (
     <ImageBackground source={Images.rider} style={styles.background}>
       <BButton
-        content={'signIn'.toUpperCase()}
+        content={'sign In'.toUpperCase()}
         buttonStyle={styles.signInButton}
         textStyle={styles.signInText}
         onPressButton={navigateToSignIn}
@@ -43,7 +46,7 @@ const AuthScreen = () => {
         activeOpacity={0.8}
       >
         <Text style={styles.signUpText}>
-          {'signUp'.toUpperCase()}
+          {'sign Up'.toUpperCase()}
         </Text>
       </TouchableOpacity>
     </ImageBackground>

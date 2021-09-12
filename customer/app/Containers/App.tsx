@@ -17,7 +17,6 @@ import RootContainer from './RootContainer';
 export const store = createStore()
 
 const App = () => {
-  
   return (
     <Provider store={store}>
       <RootContainer />

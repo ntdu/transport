@@ -6,7 +6,8 @@ import { Metrics, Normalize, Colors } from '@/Themes'
 export default StyleSheet.create({
   background: {
     width: Metrics.screenWidth,
-    height: Metrics.screenHeight
+    // height: Metrics.screenHeight
+    height: '100%'
   },
   signInButton: {
     position: 'absolute',

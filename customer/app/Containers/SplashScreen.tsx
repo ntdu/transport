@@ -79,7 +79,7 @@ const SplashScreen = () => {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <Text style={styles.text}>CUSTOMER</Text>
-      {/* <ActivityIndicator color={Colors.screaminGreen} /> */}
+      <ActivityIndicator color={Colors.screaminGreen} />
     </SafeAreaView>
   )
 }

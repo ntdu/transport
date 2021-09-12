@@ -14,6 +14,8 @@ target 'customer' do
 
   pod 'react-native-appearance', :path => '../node_modules/react-native-appearance'
 
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   target 'customerTests' do
     inherit! :complete
     # Pods for testing

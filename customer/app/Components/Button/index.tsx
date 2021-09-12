@@ -1,6 +1,5 @@
 import BButton from './BButton'
-// import BNextButton from './BNextButton'
-// import BBackButton from './BBackButton'
+import BNextButton from './BNextButton'
+import BBackButton from './BBackButton'
 
-// export { BButton, BNextButton, BBackButton }
-export { BButton }
+export { BButton, BNextButton, BBackButton }

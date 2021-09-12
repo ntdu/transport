@@ -60,7 +60,6 @@ const AppNavigation = () => {
         </NavigationContainer>
       </AppearanceProvider> */}
 
-      <AppearanceProvider>
         <NavigationContainer
             theme={MyTheme}
             // onStateChange={screenTracking}
@@ -68,12 +67,14 @@ const AppNavigation = () => {
             <Stack.Navigator
               initialRouteName={AppStacks.AuthStack}
               // headerMode={'none'}
+              screenOptions={{
+                headerShown: false
+              }}
             >
               <Stack.Screen name={AppStacks.AuthStack} component={AuthStack} />
               {/* <Stack.Screen name={AppStacks.MainStack} component={MainStack} /> */}
             </Stack.Navigator>
-          </NavigationContainer>
-      </AppearanceProvider>
+        </NavigationContainer>
       
     </SafeAreaProvider>
   )
