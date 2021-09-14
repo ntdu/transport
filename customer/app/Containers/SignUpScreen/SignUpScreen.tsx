@@ -23,7 +23,6 @@ import { confirmAlert } from '@/Functions/AlertFunctions'
 // Constants
 import { errorAuthSignUp } from '@/Constants/ErrorNetworkConstants'
 import { translate } from '@/Language'
-
 let isSignUp = false
 
 type SignUpScreenNavigationProps = StackNavigationProp<
@@ -43,7 +42,6 @@ type Values = {
 }
 
 const SignUpScreen = () => {
-  console.log("SignUpScreen")
   const dispatch = useDispatch()
 
   const navigation = useNavigation<SignUpScreenNavigationProps>()
