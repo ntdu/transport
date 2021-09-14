@@ -1,7 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import R from 'ramda'
+
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
-// import { createLogger } from 'redux-logger';
+import { createLogger } from 'redux-logger';
+
+import rootSaga from '@/Sagas'
 
 export const rootReducer = combineReducers({
     app: require('./AppRedux').reducer,
@@ -18,25 +22,25 @@ export default () => {
 
     const middleware = []
     // Add Redux Logger
-    // const USE_LOGGING = __DEV__
-    // const loggingBlacklist = [
-    //   'EFFECT_TRIGGERED',
-    //   'EFFECT_RESOLVED',
-    //   'EFFECT_REJECTED',
-    //   'persist/REHYDRATE'
-    // ]
-    // const reduxLogger = createLogger({
-    //   predicate: (getState, { type }) =>
-    //     USE_LOGGING && R.not(R.contains(type, loggingBlacklist)),
-    //   duration: true,
-    //   colors: {
-    //     title: () => 'red',
-    //     prevState: () => 'green',
-    //     action: () => 'blue',
-    //     nextState: () => 'orange'
-    //   }
-    // })
-    // middleware.push(reduxLogger)
+    const USE_LOGGING = __DEV__
+    const loggingBlacklist = [
+      'EFFECT_TRIGGERED',
+      'EFFECT_RESOLVED',
+      'EFFECT_REJECTED',
+      'persist/REHYDRATE'
+    ]
+    const reduxLogger = createLogger({
+      predicate: (getState, { type }) =>
+        USE_LOGGING && R.not(R.contains(type, loggingBlacklist)),
+      duration: true,
+      colors: {
+        title: () => 'red',
+        prevState: () => 'green',
+        action: () => 'blue',
+        nextState: () => 'orange'
+      }
+    })
+    middleware.push(reduxLogger)
   
     // Add Saga Middleware
     const sagaMiddleware = createSagaMiddleware()
@@ -51,7 +55,7 @@ export default () => {
     )
   
     // kick off root saga
-    //sagaMiddleware.run(rootSaga)
+    sagaMiddleware.run(rootSaga)
   
     return store
   }

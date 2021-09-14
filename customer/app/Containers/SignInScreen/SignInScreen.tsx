@@ -11,12 +11,19 @@ import {
 } from 'react-native'
 import { Formik } from 'formik'
 
+// Navigation type
+import { RootStackParams } from '@/Navigation/AppNavigationType';
+
 // Navigation
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 
 import { AuthStackParams } from '@/Navigation/AppNavigationType'
-import { AuthScreens } from '@/Constants/AppNavigationConstants'
+import {
+  AppStacks,
+  AuthScreens,
+  MainScreens
+} from '@/Constants/AppNavigationConstants'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -52,9 +59,13 @@ type Value = {
   password: string
 }
 
+type NavigationProp = StackNavigationProp<RootStackParams, AppStacks.AuthStack>
+
 let isSignIn = false
 const SignInScreen = () => {
-  const navigation = useNavigation<SignInScreenNavigationProp>()
+  console.log("SignInScreen")
+  const navigation = useNavigation<NavigationProp>()
+
   const dispatch = useDispatch()
 
   const [tempUserName, setTempUserName] = useState('') // Hook
@@ -76,10 +87,25 @@ const SignInScreen = () => {
     isSignIn = true
   }
 
-  const navigateToOTPScreen = () =>
-    navigation.navigate(AuthScreens.OTPScreen, {
-      userName: tempUserName
-    })
+  // const navigateToOTPScreen = () =>
+  //   navigation.navigate(AuthScreens.OTPScreen, {
+  //     userName: tempUserName
+  //   })
+
+
+
+  // const navigateToHomeScreen = () =>
+  //   navigation.reset({
+  //     index: 0,
+  //     routes: [
+  //       {
+  //         name: AppStacks.MainStack,
+  //         params: { screen: MainScreens.HomeScreen }
+  //       }
+  //     ]
+  //   })
+
+  const navigateToHomeScreen = () => { console.log("navigateToHomeScreen") }
 
   const navigateToForgotPassword = () => {}
   // navigation.navigate(AuthScreens.ForgotPasswordScreen)
@@ -94,7 +120,7 @@ const SignInScreen = () => {
           onPressOK: () => {}
         })
       }
-      navigateToOTPScreen()
+      navigateToHomeScreen()
     }
   }, [isSignIn, fetchingSignInRequest, errorSignIn])
 
@@ -108,22 +134,23 @@ const SignInScreen = () => {
       >
         <ScrollView showsVerticalScrollIndicator={false}>
           <BBackButton wrapperStyle={styles.bBackButton} />
-          <Text style={styles.signInText}>{translate('signIn')}</Text>
-          {/* <Text style={styles.signInText}>signIn</Text> */}
+          {/* <Text style={styles.signInText}>{translate('signIn')}</Text> */}
+          <Text style={styles.signInText}>signIn</Text>
           <Formik
             initialValues={{
               userName: '0919696141',
               password: 'Kaaa@m11e23f58Z!AV44!!'
             }}
             onSubmit={(values) => onPressSignInButton(values)}
+            // onSubmit={values => console.log(values)}
             // validationSchema={ValidateSignIn}
           >
             {({ handleChange, handleSubmit, values, errors }) => (
               <>
                 <BLabelTextInput
                   value={values.userName}
-                  label={translate('userName')}
-                  // label={'userName'}
+                  // label={translate('userName')}
+                  label={'userName'}
                   wrapperStyle={styles.textInput}
                   errorMessage={errors.userName}
                   isRequired
@@ -135,8 +162,8 @@ const SignInScreen = () => {
                 <BLabelTextInput
                   ref={passwordRef}
                   value={values.password}
-                  label={translate('password')}
-                  // label={'password'}
+                  // label={translate('password')}
+                  label={'password'}
                   wrapperStyle={styles.textInput}
                   errorMessage={errors.password}
                   isRequired
@@ -145,8 +172,8 @@ const SignInScreen = () => {
                   onChangeText={handleChange('password')}
                 />
                 <BButton
-                  content={translate('SignIn')}
-                  // content={'SignIn'}
+                  // content={translate('SignIn')}
+                  content={'SignIn'}
                   buttonStyle={styles.buttonStyle}
                   onPressButton={handleSubmit}
                 />
@@ -155,8 +182,8 @@ const SignInScreen = () => {
                   style={styles.forgotPasswordButton}
                 >
                   <Text style={styles.forgotPassword}>
-                    {translate('forgotPassword').toUpperCase()}
-                    {/* forgotPassword */}
+                    {/* {translate('forgotPassword').toUpperCase()} */}
+                    forgotPassword
                   </Text>
                 </TouchableOpacity>
               </>
@@ -164,7 +191,7 @@ const SignInScreen = () => {
           </Formik>
         </ScrollView>
       </KeyboardAvoidingView>
-      {fetchingSignInRequest && <BActivityIndicator />}
+      {fetchingSignInRequest && <BActivityIndicator/>}
     </SafeAreaView>
   )
 }

@@ -1,12 +1,12 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 // import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
 // AuthStack Screen
 import SplashScreen from '@/Containers/SplashScreen';
 import { SignInScreen } from '@/Containers/SignInScreen'
-// import { SignUpScreen } from '@/Containers/SignUpScreen'
+import { SignUpScreen } from '@/Containers/SignUpScreen'
 // import { OTPScreen } from '@/Containers/OTPScreen'
 import { AuthScreen } from '@/Containers/AuthScreen'
 
@@ -37,14 +37,17 @@ import { AuthScreen } from '@/Containers/AuthScreen'
 //   HistoryStackParams
 // } from './AppNavigationType'
 import {
-  AuthStackParams
+  AuthStackParams,
+  MainStackParams,
+  HomeStackParams,
+  TabParams,
 } from './AppNavigationType'
 // Navigation Screen
 import { AuthScreens, MainScreens } from '@/Constants/AppNavigationConstants'
 
-// // Components
-// import { TabIcon, HeaderTab } from '@/Components'
-// import { Colors, Images } from '@/Themes'
+// Components
+import { TabIcon, HeaderTab } from '@/Components'
+import { Colors, Images } from '@/Themes'
 // import { translate } from '@/Language'
 
 const Auth = createStackNavigator<AuthStackParams>()
@@ -61,8 +64,8 @@ export const AuthStack = () => {
 
       <Auth.Screen name={AuthScreens.SignInScreen} component={SignInScreen} />
 
-      {/* <Auth.Screen name={AuthScreens.SignUpScreen} component={SignUpScreen} />
-      <Auth.Screen name={AuthScreens.OTPScreen} component={OTPScreen} /> */}
+      <Auth.Screen name={AuthScreens.SignUpScreen} component={SignUpScreen} />
+      {/* <Auth.Screen name={AuthScreens.OTPScreen} component={OTPScreen} /> */}
     </Auth.Navigator>
   )
 }
@@ -128,50 +131,55 @@ export const AuthStack = () => {
 // }
 
 // // ---------------- Account Stack ----------------
-// const Home = createStackNavigator<HomeStackParams>()
+const Home = createStackNavigator<HomeStackParams>()
 
-// export const HomeStack = () => {
-//   return (
-//     <Home.Navigator initialRouteName={'HomeScreen'} headerMode={'none'}>
-//       <Home.Screen name={'HomeScreen'} component={HomeScreen} />
-//     </Home.Navigator>
-//   )
-// }
+export const HomeStack = () => {
+  return (
+    <Home.Navigator initialRouteName={'HomeScreen'}
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      {/* <Home.Screen name={'HomeScreen'} component={HomeScreen} /> */}
+    </Home.Navigator>
+  )
+}
 
 // // ---------------- Tab ----------------
 
-// const renderTabIcon = (name: string, color: string) => {
-//   switch (name) {
-//     case 'History':
-//       return <TabIcon source={Images.history} color={color} />
-//     case 'Home':
-//       return <TabIcon source={Images.home} color={color} />
-//     case 'Account':
-//       return <TabIcon source={Images.profile} color={color} />
-//   }
-// }
+const renderTabIcon = (name: string, color: string) => {
+  switch (name) {
+    case 'History':
+      return <TabIcon source={Images.history} color={color} />
+    case 'Home':
+      return <TabIcon source={Images.home} color={color} />
+    case 'Account':
+      return <TabIcon source={Images.profile} color={color} />
+  }
+}
 
-// const Tab = createBottomTabNavigator<TabParams>()
-// export const MainTab = () => {
-//   return (
-//     <Tab.Navigator
-//       initialRouteName={'History'}
-//       screenOptions={({ route }) => ({
-//         tabBarIcon: ({ color }) => {
-//           return <>{renderTabIcon(route.name, color)}</>
-//         }
-//       })}
-//       tabBarOptions={{
-//         activeTintColor: Colors.bahamaBlue,
-//         inactiveTintColor: Colors.nobel
-//       }}
-//     >
-//       <Tab.Screen name={'Home'} component={HomeStack} />
-//       <Tab.Screen name={'History'} component={History} />
-//       <Tab.Screen name={'Account'} component={AccountStack} />
-//     </Tab.Navigator>
-//   )
-// }
+const Tab = createBottomTabNavigator<TabParams>()
+export const MainTab = () => {
+  return (
+    <Tab.Navigator
+      // initialRouteName={'History'}
+      initialRouteName={'Home'}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color }) => {
+          return <>{renderTabIcon(route.name, color)}</>
+        }
+      })}
+      // tabBarOptions={{
+      //   activeTintColor: Colors.bahamaBlue,
+      //   inactiveTintColor: Colors.nobel
+      // }}
+    >
+      <Tab.Screen name={'Home'} component={HomeStack} />
+      {/* <Tab.Screen name={'History'} component={History} /> */}
+      {/* <Tab.Screen name={'Account'} component={AccountStack} /> */}
+    </Tab.Navigator>
+  )
+}
 
 // // ---------------- Main ----------------
 
@@ -191,3 +199,24 @@ export const AuthStack = () => {
 //     </Main.Navigator>
 //   )
 // }
+const Main = createStackNavigator<MainStackParams>()
+export const MainStack = () => {
+  console.log("------------------------------------------------------------------")
+  console.log("MainStack")
+  return (
+    <Main.Navigator 
+      initialRouteName={'TabScreen'} 
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Main.Screen name={'TabScreen'} component={MainTab} />
+      {/* <Main.Screen name={MainScreens.RideScreen} component={RideScreen} />
+      <Main.Screen
+        name={MainScreens.PhaseRideScreen}
+        component={PhaseRideScreen}
+      />
+      <Main.Screen name={'PayScreen'} component={PayScreen} /> */}
+    </Main.Navigator>
+  )
+}

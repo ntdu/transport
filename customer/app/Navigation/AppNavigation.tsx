@@ -12,8 +12,7 @@ import { Appearance, AppearanceProvider, useColorScheme } from 'react-native-app
 import { AppStacks } from '@/Constants/AppNavigationConstants';
 
 // Navigation Stack
-// import { AuthStack, MainStack } from './AppNavigationStack'
-import { AuthStack } from './AppNavigationStack'
+import { AuthStack, MainStack } from './AppNavigationStack'
 
 // NavigationActions
 // import { screenTracking } from './NavigationActions'
@@ -72,7 +71,7 @@ const AppNavigation = () => {
               }}
             >
               <Stack.Screen name={AppStacks.AuthStack} component={AuthStack} />
-              {/* <Stack.Screen name={AppStacks.MainStack} component={MainStack} /> */}
+              <Stack.Screen name={AppStacks.MainStack} component={MainStack} />
             </Stack.Navigator>
         </NavigationContainer>
       

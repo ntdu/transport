@@ -5,7 +5,7 @@ import i18n from 'i18n-js'
 
 // English language is the main language for fall back
 const translationGetters = {
-  en: () => require('./Languages/english.json'),
+  en: () => require('./Languages/en.json'),
   vi: () => require('./Languages/vi.json')
 }
 
@@ -13,6 +13,8 @@ export const translate = memoize(
   (key, config?) => i18n.t(key, config),
   (key, config) => (config ? key + JSON.stringify(config) : key)
 )
+
+console.log(translate('password'))
 
 export const setI18nConfig = () => {
   // fallback if no available language fits

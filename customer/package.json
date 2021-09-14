@@ -11,9 +11,13 @@
     "react-devtools": "react-devtools"
   },
   "dependencies": {
+    "@react-native-picker/picker": "^2.1.0",
+    "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
     "@types/react-redux": "^7.1.18",
+    "apisauce": "^2.1.1",
+    "escape-string-regexp": "^5.0.0",
     "formik": "^2.2.9",
     "i18n-js": "^3.8.0",
     "lodash": "^4.17.21",
@@ -21,6 +25,8 @@
     "react": "17.0.2",
     "react-native": "0.65.1",
     "react-native-appearance": "^0.3.4",
+    "react-native-date-picker": "^4.0.0",
+    "react-native-fast-image": "^8.3.7",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-localization": "^2.1.7",
     "react-native-localize": "^2.1.4",
@@ -32,9 +38,11 @@
     "react-native-svg": "^12.1.1",
     "react-redux": "^7.2.5",
     "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
     "reduxsauce": "^1.2.1",
-    "seamless-immutable": "^7.1.4"
+    "seamless-immutable": "^7.1.4",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
@@ -47,6 +55,7 @@
     "@types/react": "^17.0.20",
     "@types/react-native": "^0.65.0",
     "@types/react-test-renderer": "^17.0.1",
+    "@types/redux-logger": "^3.0.9",
     "@types/seamless-immutable": "^7.1.16",
     "babel-jest": "^27.1.1",
     "eslint": "^7.32.0",

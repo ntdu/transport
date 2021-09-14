@@ -5,7 +5,7 @@ import Colors from './Colors'
 import Images from './Images'
 import Metrics from './Metrics'
 // import Fonts from './Fonts'
-// import ApplicationStyles from './ApplicationStyles'
+import ApplicationStyles from './ApplicationStyles'
 
 export {
   DefaultTheme,
@@ -15,5 +15,5 @@ export {
   Images,
   Metrics,
   // Fonts,
-  // ApplicationStyles
+  ApplicationStyles
 }

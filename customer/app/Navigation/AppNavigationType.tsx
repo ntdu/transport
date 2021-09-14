@@ -12,9 +12,9 @@ export type AuthStackParams = {
 }
 
 // // ---------------- Home Stack ----------------
-// export type HomeStackParams = {
-//   HomeScreen: undefined
-// }
+export type HomeStackParams = {
+  HomeScreen: undefined
+}
 
 // // ---------------- Account Stack ----------------
 // export type AccountStackParams = {
@@ -37,7 +37,9 @@ export type AuthStackParams = {
 //   History: HistoryMeterialTabParams
 //   Account: AccountStackParams
 // }
-
+export type TabParams = {
+  Home: HomeStackParams
+}
 // // ---------------- Main Stack----------------
 
 // export type MainStackParams = {
@@ -47,7 +49,12 @@ export type AuthStackParams = {
 //   PayScreen: undefined
 // }
 
+export type MainStackParams = {
+  TabScreen: TabParams
+  RideScreen: undefined
+}
+
 export type RootStackParams = {
   AuthStack: AuthStackParams
-  // MainStack: MainStackParams
+  MainStack: MainStackParams
 }
