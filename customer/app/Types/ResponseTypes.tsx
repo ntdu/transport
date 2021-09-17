@@ -4,9 +4,9 @@ import { ApiResponse, ApiErrorResponse } from 'apisauce'
 export type ResponseTypes<T> = ApiResponse<T, ApiErrorResponse<any>>
 
 export type AuthenticateRes = {
-  accessToken: string | null
-  refreshToken: string | null
-  otpToken: string | null
+  // accessToken: string | null
+  // refreshToken: string | null
+  token: string | null
 }
 
 // export type RefreshDataRes = {

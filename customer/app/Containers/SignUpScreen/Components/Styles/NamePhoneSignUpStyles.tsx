@@ -38,5 +38,13 @@ export default StyleSheet.create({
   },
   blankView: {
     flex: 1
-  }
+  },
+
+  nameView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  wrapperStyle: {
+    width: '45%'
+  },
 })

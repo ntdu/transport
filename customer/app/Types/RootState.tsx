@@ -9,6 +9,7 @@ export type AuthState = {
     errorSignUp: fetchingErrorType
 
     otpToken: string
+    token: string
 
     fetchingVerifyRequest: boolean
     errorVerify: fetchingErrorType

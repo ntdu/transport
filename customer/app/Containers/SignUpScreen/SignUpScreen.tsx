@@ -53,7 +53,7 @@ const SignUpScreen = () => {
   const [phone_number, setPhoneNumber] = useState('')
   const [phase, setPhase] = useState(0)
 
-  const dateOfBirth = new Date('1999-08-30').toISOString().substr(0, 10)
+  const dateOfBirth = new Date('1998-11-24').toISOString().substr(0, 10)
 
   const increasePhase = () => setPhase(phase + 1)
 
@@ -114,7 +114,7 @@ const SignUpScreen = () => {
         setPhase(0)
         return
       }
-      navigateToOtpScreen()
+      // navigateToOtpScreen()
       isSignUp = false
     }
   }, [fetchingSignUpRequest, errorSignUp, isSignUp])
@@ -124,13 +124,13 @@ const SignUpScreen = () => {
       <Formik
         initialValues={{
           email: 'ntdu198@gmail.com',
-          lastName: '',
-          firstName: '',
+          lastName: 'Nguyen',
+          firstName: 'Du',
           password: 'Kaaa@m11e23f58Z!AV44!!',
           gender: false,
           dateOfBirth,
           address: '123 Tran Hung Dao',
-          phoneNumber: '0919696141'
+          phoneNumber: '0354471333'
         }}
         validationSchema={ValidateSchema}
         onSubmit={(values) => {

@@ -4,9 +4,11 @@ import {
   Text,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
   View,
   TextInput
 } from 'react-native'
+import { Picker } from '@react-native-picker/picker'
 import { useFormikContext } from 'formik'
 
 // Components
@@ -24,26 +26,35 @@ import { translate } from '@/Language'
 type NameSignUp = {
   firstName: string
   lastName: string
+  gender: boolean
+  address: string
 }
 
 const NameSignUp = ({ ...childProps }) => {
   const { increasePhase, decreasePhase } = childProps
 
-  const { values, errors, handleChange } = useFormikContext<NameSignUp>()
+  const { values, errors, handleChange, setFieldValue } = useFormikContext<NameSignUp>()
 
   const FirstNameRef = useRef<TextInput>(null)
   const LastNameRef = useRef<TextInput>(null)
+  const AddressRef = useRef<TextInput>(null)
 
   const onFirstNameSubmitEditing = () => refTextInputFocus(LastNameRef)
-  const onLastNameSubmitEditing = () => navigateFunc()
+  // const onLastNameSubmitEditing = () => navigateFunc()
+  const onLastNameSubmitEditing = () => refTextInputFocus(LastNameRef)
+  const onAdressSubmitEditing = () => Keyboard.dismiss()
 
   const validateFunction = () => {
-    const { firstName, lastName } = values
+    const { firstName, lastName, gender, address } = values
     if (
       !!errors.firstName ||
       !!errors.lastName ||
+      !!errors.gender ||
+      !!errors.address ||
       isEmpty(lastName) ||
-      isEmpty(firstName)
+      isEmpty(firstName) ||
+      isEmpty(gender) ||
+      isEmpty(address)
     ) {
       return false
     }
@@ -58,6 +69,9 @@ const NameSignUp = ({ ...childProps }) => {
     increasePhase()
   }
 
+  const onValueChange = (itemValue: boolean | null) =>
+    setFieldValue('gender', itemValue)
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <BBackButton backFunc={decreasePhase} />
@@ -67,12 +81,16 @@ const NameSignUp = ({ ...childProps }) => {
         keyboardVerticalOffset={0}
         enabled={Platform.OS === 'ios'}
       >
-        <View style={styles.titleView}>
+        {/* <View style={styles.titleView}>
           <Text style={styles.name}>{translate('name?')}</Text>
           {!validateFunction() && (
             <Text style={styles.error}>{translate('nameRequired')}</Text>
           )}
-        </View>
+        </View> */}
+        <Text style={styles.signUpText}>{translate('SignUp')}</Text>
+        <Text style={styles.enterInforText}>
+          {translate('pleaseEnterInforBelow')}
+        </Text>
         <View style={styles.nameView}>
           <BLabelTextInput
             value={values.firstName}
@@ -97,6 +115,33 @@ const NameSignUp = ({ ...childProps }) => {
             onSubmitEditing={onLastNameSubmitEditing}
           />
         </View>
+
+        <BLabelTextInput
+          value={values.address}
+          label={translate('address')}
+          placeholder={translate('exampleAddress')}
+          wrapperStyle={styles.address}
+          ref={AddressRef}
+          returnKeyType={'done'}
+          isRequired
+          onChangeText={handleChange('address')}
+          onSubmitEditing={onAdressSubmitEditing}
+          errorMessage={errors.address}
+        />
+
+        <Text style={styles.genderText}>
+          {translate('gender')}<Text style={styles.start}>*</Text>
+        </Text>
+        
+        <Picker
+          selectedValue={values.gender}
+          style={styles.picker}
+          onValueChange={onValueChange}
+        >
+          <Picker.Item label={translate('man')} value={true} />
+          <Picker.Item label={translate('woman')} value={false} />
+        </Picker>
+        
       </KeyboardAvoidingView>
       <BNextButton
         navigateFunc={navigateFunc}

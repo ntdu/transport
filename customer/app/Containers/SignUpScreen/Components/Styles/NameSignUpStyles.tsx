@@ -10,7 +10,7 @@ export default StyleSheet.create({
   contentWrapper: {
     flex: 1,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    justifyContent: 'center'
+    justifyContent: 'flex-start'
   },
   wrapperStyle: {
     width: '45%'
@@ -33,5 +33,29 @@ export default StyleSheet.create({
   },
   nextButton: {
     marginLeft: Normalize(20)
+  },
+  picker: {
+    height: Normalize(50),
+    width: (Metrics.screenWidth * 1) / 2 
+  },
+  signUpText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: Normalize(10),
+    fontFamily: 'LucidaGrandeBold'
+  },
+  enterInforText: {
+    marginBottom: Normalize(20),
+    fontSize: Normalize(18),
+    fontFamily: 'LucidaGrande'
+  },
+  genderText: {
+    marginTop: Normalize(20)
+  },
+  address: {
+    marginTop: Normalize(20)
+  },
+  start: {
+    color: Colors.red
   }
 })

@@ -19,10 +19,11 @@ const BirthdaySignUp = ({ ...childProps }) => {
 
   const [date, setDate] = useState(new Date())
 
-  const { values, setFieldValue } = useFormikContext<BirthdaySignUp>()
+  const { values, setFieldValue, handleSubmit } = useFormikContext<BirthdaySignUp>()
 
   const navigateFunc = () => {
-    increasePhase()
+    // increasePhase()
+    handleSubmit()
   }
 
   const onDateChange = (date: Date) => {

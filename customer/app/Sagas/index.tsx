@@ -10,7 +10,7 @@ import { AuthTypes } from '@/Redux/AuthRedux'
 // import { startup } from './StartupSagas'
 import {
   signInSaga,
-  // signUpSaga,
+  signUpSaga,
   // verifySaga,
   // refreshTokenSaga
 } from './AuthSagas'
@@ -29,7 +29,7 @@ export default function* root() {
 
     // Auth
     takeLatest(AuthTypes.SIGN_IN_REQUEST, signInSaga),
-    // takeLatest(AuthTypes.SIGN_UP_REQUEST, signUpSaga),
+    takeLatest(AuthTypes.SIGN_UP_REQUEST, signUpSaga),
     // takeLatest(AuthTypes.VERIFY_REQUEST, verifySaga),
     // takeLatest(AuthTypes.REFRESH_TOKEN_REQUEST, refreshTokenSaga),
 

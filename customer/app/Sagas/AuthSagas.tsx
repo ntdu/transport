@@ -14,6 +14,8 @@ const AuthAPI = AuthApi.create()
 
 export function* signInSaga(signInPayload: any) {
   try {
+    console.log("signInSaga")
+    console.log("-------------------------------------------------")
     const { userName, password } = signInPayload
     const response: ResponseTypes<AuthenticateRes> = yield call<any>(
       AuthAPI.signInRequest,
@@ -21,34 +23,39 @@ export function* signInSaga(signInPayload: any) {
       password
     )
     console.log(response.ok);
-    if (response.ok && response.status === 200) {
-      yield put(AuthAction.signInSuccess(response.data?.otpToken))
-    } else {
-      yield put(AuthAction.signInFailure(response.data))
-    }
+    console.log(response.data);
+    // if (response.ok && response.status === 200) {
+    //   yield put(AuthAction.signInSuccess(response.data?.token))
+    // } else {
+    //   yield put(AuthAction.signInFailure(response.data))
+    // }
   } catch (error) {
     console.log(error)
   }
 }
 
-// export function* signUpSaga(signUpPayload: any) {
-//   try {
-//     const { registerDetail } = signUpPayload
-//     const response: ResponseTypes<AuthenticateRes> = yield call<any>(
-//       AuthAPI.signUpRequest,
-//       registerDetail
-//     )
-
-//     if (response.ok && response.status === 200) {
-//       yield put(AuthAction.signUpSuccess(response.data?.otpToken))
-//     } else {
-//       yield put(AuthAction.signUpFailure(response.data))
-//     }
-//   } catch (error) {
-//     console.log('error', error)
-//     yield put(AuthAction.signUpFailure('Sign up Fail'))
-//   }
-// }
+export function* signUpSaga(signUpPayload: any) {
+  try {
+    console.log("signUpSaga")
+    console.log("-------------------------------------------------")
+    const { registerDetail } = signUpPayload
+    const response: ResponseTypes<AuthenticateRes> = yield call<any>(
+      AuthAPI.signUpRequest,
+      registerDetail
+    )
+    console.log(response.ok)
+    console.log(response.status)
+    console.log(response.data)
+    // if (response.ok && response.status === 200) {
+    //   yield put(AuthAction.signUpSuccess(response.data?.otpToken))
+    // } else {
+    //   yield put(AuthAction.signUpFailure(response.data))
+    // }
+  } catch (error) {
+    console.log('error', error)
+    yield put(AuthAction.signUpFailure('Sign up Fail'))
+  }
+}
 
 // export function* verifySaga(verifyPayload: any) {
 //   try {

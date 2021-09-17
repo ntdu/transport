@@ -12,7 +12,7 @@ const create = (baseURL = AuthConfig.baseURL) => {
   })
 
   const signInRequest = (userName: string, password: string) => {
-    return api.post('/authenticate', {
+    return api.post('user/login', {
       username: userName,
       password
     })
@@ -29,10 +29,11 @@ const create = (baseURL = AuthConfig.baseURL) => {
       dateOfBirth,
       address
     } = registerDetail
-    return api.post('register', {
+
+    return api.post('user/register', {
       firstName,
       lastName,
-      female: gender,
+      gender,
       phoneNumber,
       dateOfBirth,
       address,

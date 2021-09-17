@@ -12,6 +12,7 @@ export const INITIAL_STATE: Immutable.ImmutableObject<AuthState> = Immutable({
     fetchingSignUpRequest: false,
     errorSignUp: null,
     otpToken: '',
+    token: '',
   
     fetchingVerifyRequest: false,
     errorVerify: null,
@@ -51,9 +52,9 @@ export default Creators
 export const signInRequest = (state = INITIAL_STATE) =>
   state.merge({ fetchingSignInRequest: true, errorSignIn: null })
 
-export const signInSuccess = (state = INITIAL_STATE, { otpToken }: any) =>
+export const signInSuccess = (state = INITIAL_STATE, { token }: any) =>
   state.merge({
-    otpToken,
+    token,
     fetchingSignInRequest: false,
     errorSignIn: null
   })
@@ -64,15 +65,32 @@ export const signInFailure = (state = INITIAL_STATE, { errorSignIn }: any) =>
     errorSignIn: errorSignIn.message
   })
 
+// Sign Up
+export const signUpRequest = (state = INITIAL_STATE) =>
+  state.merge({ fetchingSignUpRequest: true, errorSignUp: null })
+
+export const signUpSuccess = (state = INITIAL_STATE, { otpToken }: any) =>
+  state.merge({
+    otpToken,
+    fetchingSignUpRequest: false,
+    errorSignUp: null
+  })
+
+export const signUpFailure = (state = INITIAL_STATE, { errorSignUp }: any) =>
+  state.merge({
+    fetchingSignUpRequest: false,
+    errorSignUp: errorSignUp.message
+  })
+
   /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
     [Types.SIGN_IN_REQUEST]: signInRequest,
     [Types.SIGN_IN_SUCCESS]: signInSuccess,
     [Types.SIGN_IN_FAILURE]: signInFailure,
   
-    // [Types.SIGN_UP_REQUEST]: signUpRequest,
-    // [Types.SIGN_UP_SUCCESS]: signUpSuccess,
-    // [Types.SIGN_UP_FAILURE]: signUpFailure,
+    [Types.SIGN_UP_REQUEST]: signUpRequest,
+    [Types.SIGN_UP_SUCCESS]: signUpSuccess,
+    [Types.SIGN_UP_FAILURE]: signUpFailure,
   
     // [Types.VERIFY_REQUEST]: verifyRequest,
     // [Types.VERIFY_SUCCESS]: verifySuccess,
