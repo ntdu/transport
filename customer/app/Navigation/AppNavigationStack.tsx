@@ -11,7 +11,7 @@ import { SignUpScreen } from '@/Containers/SignUpScreen'
 import { AuthScreen } from '@/Containers/AuthScreen'
 
 // // MainStack Screen
-// import { HomeScreen } from '@/Containers/HomeScreen'
+import { HomeScreen } from '@/Containers/HomeScreen'
 // import { RideScreen } from '@/Containers/RideScreen'
 // import { PhaseRideScreen } from '@/Containers/PhaseRideScreen'
 // import { PayScreen } from '@/Containers/PayScreen'
@@ -140,7 +140,7 @@ export const HomeStack = () => {
         headerShown: false
       }}
     >
-      {/* <Home.Screen name={'HomeScreen'} component={HomeScreen} /> */}
+      <Home.Screen name={'HomeScreen'} component={HomeScreen} />
     </Home.Navigator>
   )
 }

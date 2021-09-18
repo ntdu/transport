@@ -11,6 +11,8 @@
     "react-devtools": "react-devtools"
   },
   "dependencies": {
+    "@dooboo-ui/native": "^0.7.0",
+    "@dooboo-ui/native-switch-toggle": "^0.7.0",
     "@react-native-picker/picker": "^2.1.0",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",

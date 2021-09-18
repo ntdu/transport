@@ -40,11 +40,16 @@ import {
 
 // Functions
 import { refTextInputFocus } from '@/Functions/RefFunctions'
+import { setAsyncStorage } from '@/Functions/AsyncStorageFunctions'
+
 // import ValidateSignIn from '@/Functions/Validates/ValidateSignIn'
 import { confirmAlert } from '@/Functions/AlertFunctions'
 
 // Styles
 import styles from './Styles/SignInScreenStyles'
+
+// Constants
+import { USER_NAME } from '@/Constants/AsyncStorageKey'
 
 // Language
 import { translate } from '@/Language'
@@ -105,7 +110,17 @@ const SignInScreen = () => {
   //     ]
   //   })
 
-  const navigateToHomeScreen = () => { console.log("navigateToHomeScreen") }
+  const navigateToHomeScreen = () =>
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'MainStack',
+          params: { screen: MainScreens.HomeScreen }
+        }
+      ]
+    })
+
 
   const navigateToForgotPassword = () => {}
   // navigation.navigate(AuthScreens.ForgotPasswordScreen)
@@ -116,10 +131,11 @@ const SignInScreen = () => {
       if (errorSignIn) {
         return confirmAlert({
           title: 'Error Sign In',
-          content: 'Your username and password is ront',
+          content: 'Your username and password is wrong!',
           onPressOK: () => {}
         })
       }
+      setAsyncStorage(USER_NAME, tempUserName)
       navigateToHomeScreen()
     }
   }, [isSignIn, fetchingSignInRequest, errorSignIn])
