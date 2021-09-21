@@ -14,21 +14,18 @@ const AuthAPI = AuthApi.create()
 
 export function* signInSaga(signInPayload: any) {
   try {
-    console.log("signInSaga")
-    console.log("-------------------------------------------------")
     const { userName, password } = signInPayload
     const response: ResponseTypes<AuthenticateRes> = yield call<any>(
       AuthAPI.signInRequest,
       userName,
       password
     )
-    console.log(response.ok);
     console.log(response.data);
-    // if (response.ok && response.status === 200) {
-    //   yield put(AuthAction.signInSuccess(response.data?.token))
-    // } else {
-    //   yield put(AuthAction.signInFailure(response.data))
-    // }
+    if (response.ok && response.status === 200) {
+      yield put(AuthAction.signInSuccess(response.data?.token))
+    } else {
+      yield put(AuthAction.signInFailure(response.data))
+    }
   } catch (error) {
     console.log(error)
   }
@@ -36,16 +33,11 @@ export function* signInSaga(signInPayload: any) {
 
 export function* signUpSaga(signUpPayload: any) {
   try {
-    console.log("signUpSaga")
-    console.log("-------------------------------------------------")
     const { registerDetail } = signUpPayload
     const response: ResponseTypes<AuthenticateRes> = yield call<any>(
       AuthAPI.signUpRequest,
       registerDetail
     )
-    console.log(response.ok)
-    console.log(response.status)
-    console.log(response.data)
     // if (response.ok && response.status === 200) {
     //   yield put(AuthAction.signUpSuccess(response.data?.otpToken))
     // } else {

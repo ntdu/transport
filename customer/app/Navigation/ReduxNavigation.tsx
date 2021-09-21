@@ -3,19 +3,17 @@ import { BackHandler, ToastAndroid, Platform } from 'react-native'
 import AppNavigation from './AppNavigation'
 
 // Language
-// import { translate } from '@/Language'
+import { translate } from '@/Language'
 
 let backPressed: number = 0
 const ReduxNavigation = () => {
-  console.log("ReduxNavigation");
   const onBackPress = () => {
     if (backPressed > 0) {
       BackHandler.exitApp()
       backPressed = 0
     } else {
       backPressed += 1
-      // ToastAndroid.show(translate('pressAgainToExit'), ToastAndroid.SHORT)
-      ToastAndroid.show('pressAgainToExit', ToastAndroid.SHORT)
+      ToastAndroid.show(translate('pressAgainToExit'), ToastAndroid.SHORT)
       const timeout = setTimeout(() => {
         backPressed = 0
         clearTimeout(timeout)

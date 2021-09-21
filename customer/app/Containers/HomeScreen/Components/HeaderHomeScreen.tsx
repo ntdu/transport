@@ -60,7 +60,7 @@ const HeaderHomeScreen = () => {
         style={[styles.powerButton, !isPower && styles.powerOn]}
         onPress={tooglePower}
       >
-        <Power width={20} height={20} />
+        {/* <Power width={20} height={20} /> */}
       </TouchableOpacity>
 
       <SwitchToggle

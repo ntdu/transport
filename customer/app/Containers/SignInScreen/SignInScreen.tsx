@@ -97,20 +97,7 @@ const SignInScreen = () => {
   //     userName: tempUserName
   //   })
 
-
-
-  // const navigateToHomeScreen = () =>
-  //   navigation.reset({
-  //     index: 0,
-  //     routes: [
-  //       {
-  //         name: AppStacks.MainStack,
-  //         params: { screen: MainScreens.HomeScreen }
-  //       }
-  //     ]
-  //   })
-
-  const navigateToHomeScreen = () =>
+  const navigateToHomeScreen = () => 
     navigation.reset({
       index: 0,
       routes: [

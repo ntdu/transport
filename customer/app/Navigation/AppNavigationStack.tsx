@@ -134,6 +134,7 @@ export const AuthStack = () => {
 const Home = createStackNavigator<HomeStackParams>()
 
 export const HomeStack = () => {
+  console.log("HomeStack")
   return (
     <Home.Navigator initialRouteName={'HomeScreen'}
       screenOptions={{
@@ -167,7 +168,8 @@ export const MainTab = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           return <>{renderTabIcon(route.name, color)}</>
-        }
+        },
+        headerShown: false
       })}
       // tabBarOptions={{
       //   activeTintColor: Colors.bahamaBlue,

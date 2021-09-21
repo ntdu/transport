@@ -21,12 +21,12 @@ const RootContainer = () => {
   return (
    
     <>
-      <StatusBar translucent barStyle={'dark-content'} />
-      {/* <StatusBar
+      {/* <StatusBar translucent barStyle={'dark-content'} /> */}
+      <StatusBar
         translucent
         barStyle={'dark-content'}
         backgroundColor={'transparent'}
-      /> */}
+      />
       {/* <Text>ABc</Text> */}
       <ReduxNavigation />
    

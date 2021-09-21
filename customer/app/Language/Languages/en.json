@@ -69,5 +69,7 @@
   "payment": "Payment",
   "static": "Static",
   "rides": "Rides",
-  "id": "ID"
+  "id": "ID",
+  "requestLocationTitle": "Location",
+  "requestLocationPermissionContent": "For a better experience, turn on device location."
 }

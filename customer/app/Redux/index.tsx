@@ -11,8 +11,8 @@ export const rootReducer = combineReducers({
     app: require('./AppRedux').reducer,
     auth: require('./AuthRedux').reducer,
     // auth: require('./AuthRedux').reducer,
-    // phaseRider: require('./PhaseRiderRedux').reducer,
-    // socket: require('./SocketRedux').reducer,
+    phaseRider: require('./PhaseRiderRedux').reducer,
+    socket: require('./SocketRedux').reducer,
     // history: require('./HistoryRedux').reducer,
     // user: require('./UserRedux').reducer
 })

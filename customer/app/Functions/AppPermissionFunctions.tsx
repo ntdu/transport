@@ -20,10 +20,12 @@ export const openAppSettings = () => {
 export const checkDeviceLocationPermissionAndroid = () => {
   let permissionLocationAndroid = [
     PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-    PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION
+    // PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION
   ]
 
   checkMultiple(permissionLocationAndroid).then((statuses) => {
+    console.log(statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION])
+
     switch (statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]) {
       case RESULTS.UNAVAILABLE:
         console.log(
@@ -31,6 +33,7 @@ export const checkDeviceLocationPermissionAndroid = () => {
         )
         break
       case RESULTS.DENIED:
+        console.log("Request")
         requestMultiple(permissionLocationAndroid)
           .then()
           .catch((err) => console.log('Request denied again', err))
@@ -54,35 +57,35 @@ export const checkDeviceLocationPermissionAndroid = () => {
         break
     }
 
-    switch (statuses[PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION]) {
-      case RESULTS.UNAVAILABLE:
-        console.log(
-          'This feature is not available (on this device / in this context)'
-        )
-        break
-      case RESULTS.DENIED:
-        console.log(
-          'This feature is not available (on this device / in this context)'
-        )
-        break
-      case RESULTS.LIMITED:
-        break
-      case RESULTS.GRANTED:
-        enableLocationService
-        break
-      case RESULTS.BLOCKED:
-        RAlert({
-          title: translate('requestLocationTitle'),
-          content: translate('requestLocationPermissionContent'),
-          onPressOK: openAppSettings
-        })
-        break
-      default:
-        console.log(
-          'This feature is not available (on this device / in this context)'
-        )
-        break
-    }
+    // switch (statuses[PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION]) {
+    //   case RESULTS.UNAVAILABLE:
+    //     console.log(
+    //       'This feature is not available (on this device / in this context)'
+    //     )
+    //     break
+    //   case RESULTS.DENIED:
+    //     console.log(
+    //       'This feature is not available (on this device / in this context)'
+    //     )
+    //     break
+    //   case RESULTS.LIMITED:
+    //     break
+    //   case RESULTS.GRANTED:
+    //     enableLocationService
+    //     break
+    //   case RESULTS.BLOCKED:
+    //     RAlert({
+    //       title: translate('requestLocationTitle'),
+    //       content: translate('requestLocationPermissionContent'),
+    //       onPressOK: openAppSettings
+    //     })
+    //     break
+    //   default:
+    //     console.log(
+    //       'This feature is not available (on this device / in this context)'
+    //     )
+    //     break
+    // }
   })
 }
 
