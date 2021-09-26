@@ -17,7 +17,8 @@ import { REFRESH_TOKEN } from '@/Constants/AsyncStorageKey'
 
 const { Types, Creators } = createActions({
   signInRequest: ['userName', 'password'],
-  signInSuccess: ['otpToken'],
+  signInSuccess: ['token'],
+  // signInSuccess: ['otpToken'],
   signInFailure: ['errorSignIn'],
 
   signUpRequest: ['registerDetail'],

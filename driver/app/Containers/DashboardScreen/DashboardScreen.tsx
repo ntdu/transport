@@ -195,6 +195,24 @@ const DashboardScreen = () => {
     dispatch(PhaseActions.findRideAfterQuitRequest())
   }, [])
 
+  // var WebSocketClient  = require('websocket').client;
+  
+  useEffect(() => {
+    console.log("Web socket")
+    
+
+    // var client = new WebSocketClient();
+    // client.connect('wss://transport-server.herokuapp.com/chat/abc/', 'echo-protocol');
+
+    // client.onopen = () => {
+    //   console.log('WebSocket Client Connected');
+    // };
+
+    // client.onopen = function() {
+    //   console.log('WebSocket Client Connected');
+    // };
+  }, [])
+
   // useEffect(() => {
   //   if (!fetchingRequestFindBikerAfterQuit) {
   //     if (!!errorRequestFindBikerAfterQuit) {
@@ -205,7 +223,7 @@ const DashboardScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <BMap />
+      {/* <BMap /> */}
       <StatusBar hidden />
 
       {phase !== PhaseBookingBeforeRide.CHOOSE_SERVICE ? (

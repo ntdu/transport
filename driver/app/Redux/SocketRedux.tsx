@@ -19,7 +19,7 @@ const { Types, Creators } = createActions({
   emitBookingError: ['error'],
 
   emitDeliveryRequest: [
-    'accessToken',
+    'token',
     'addressAndCoordinates',
     'receiverInfor',
     'packageInfor'

@@ -28,8 +28,9 @@ type ChooseLocationProps = {
 const ChooseLocation = (props: ChooseLocationProps) => {
   const { phase } = useSelector((state: RootState) => state.phase)
 
-  const accessToken = useSelector((state: RootState) => state.auth.accessToken)
-
+  const token = useSelector((state: RootState) => state.auth.token)
+  console.log("ChooseLocation--------------")
+  console.log(token)
   const { onPress } = props
 
   const dispatch = useDispatch()
@@ -60,9 +61,11 @@ const ChooseLocation = (props: ChooseLocationProps) => {
         weight,
         category
       } = packageInformation
+      console.log("emitDeliveryRequest")
+      console.log(token)
       dispatch(
         SocketActions.emitDeliveryRequest(
-          accessToken,
+          token,
           addressAndCoordinates,
           receiverInfor,
           {
@@ -73,10 +76,13 @@ const ChooseLocation = (props: ChooseLocationProps) => {
         )
       )
     } else {
-      dispatch(
-        SocketActions.emitBookingRequest(accessToken, addressAndCoordinates)
-      )
+      console.log("emitBookingRequest")
+
+      // dispatch(
+      //   SocketActions.emitBookingRequest(accessToken, addressAndCoordinates)
+      // )
     }
+    console.log("GET_BIKER")
     dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.GET_BIKER))
   }
 
