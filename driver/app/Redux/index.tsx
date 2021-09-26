@@ -15,7 +15,7 @@ export const rootReducer = combineReducers({
   package: require('./PackageInfor').reducer,
   map: require('./MapRedux').reducer,
   // ride: require('./RideInforRedux').reducer,
-  // socket: require('./SocketRedux').reducer,
+  socket: require('./SocketRedux').reducer,
   // notification: require('./NotificationRedux').reducer,
   // user: require('./UserRedux').reducer
 })

@@ -85,6 +85,7 @@ export default (
           },
           address: {
             origin: addressOriginalLocation,
+            // origin: '19/9 Trần Bình Trọng, Phường 5, Quận Bình Thạnh, TP Hồ Chí Minh',
             destination:
               '268 Lý Thường Kiệt, Phường 10, Quận Tân Bình, TP Hồ Chí Minh'
           },

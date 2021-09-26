@@ -84,6 +84,7 @@ export function* emitDelivery({
       packageInfor,
       userAgent
     )
+    yield put(SocketActions.emitDeliverySuccess())
   } catch (error) {
     console.log(error)
   }

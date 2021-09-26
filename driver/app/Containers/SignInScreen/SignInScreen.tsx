@@ -163,7 +163,7 @@ const SignInScreen = () => {
           <Text style={styles.signInText}>{translate('signIn')}</Text>
           <Formik
             initialValues={{
-              userName: '0919696141',
+              userName: '0354471333',
               password: 'Kaaa@m11e23f58Z!AV44!!'
             }}
             onSubmit={(values) => onPressSignInButton(values)}
