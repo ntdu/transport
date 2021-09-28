@@ -50,6 +50,7 @@
     "reduxsauce": "^1.2.1",
     "seamless-immutable": "^7.1.4",
     "socket.io-client": "^4.2.0",
+    "websocket": "^1.0.34",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -65,6 +66,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@types/redux-logger": "^3.0.9",
     "@types/seamless-immutable": "^7.1.16",
+    "@types/websocket": "^1.0.4",
     "babel-jest": "^27.1.1",
     "eslint": "^7.32.0",
     "jest": "^27.1.1",

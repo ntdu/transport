@@ -5,6 +5,7 @@ import { store } from '@/Containers/App'
 import SocketActions from '@/Redux/SocketRedux'
 import PhaseRiderActions from '@/Redux/PhaseRiderRedux'
 import AuthActions from '@/Redux/AuthRedux'
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 // Functions
 import { requestUserPermissionAndGetToken } from '@/Functions/FCMToken'
@@ -75,10 +76,13 @@ export const getRideHash = () => {
 // }
 
 export const getSocket = () => {
-  if (!isInitSocketIo) {
-    throw 'Socket is not ready'
-  }
-  return socketIo
+  const client = new W3CWebSocket('wss://transport-server.herokuapp.com/ws/chat/abc/');
+  return client
+
+  // if (!isInitSocketIo) {
+  //   throw 'Socket is not ready'
+  // }
+  // return socketIo
 }
 
 export const getAccessToken = () => {
@@ -88,12 +92,17 @@ export const getAccessToken = () => {
   return token
 }
 
+export const getToken = () => {
+  const state: any = store.getState()
+  return state.auth.token
+}
+
 export const wrapperEmitSocket = (EmitFunction: () => void) => {
   console.log("wrapperEmitSocket")
   console.log("------------------------------")
   // let socketIo = getSocket()
   // let isRetrying = false
-  // EmitFunction()
+  EmitFunction()
   // const state: any = store.getState()
 
   // socketIo.onAny(async (event, __) => {

@@ -15,7 +15,7 @@ import {
   // refreshTokenSaga
 } from './AuthSagas'
 // import { InitSocket, emitBooking, emitChooseBiker } from './SocketSagas'
-import { InitSocket } from './SocketSagas'
+import { InitSocket, emitHeartBeat } from './SocketSagas'
 // import { refreshDataWithRideHashSaga } from './NotificationSagas'
 
 // import { getUserDetailSaga } from './UserSagas'
@@ -35,6 +35,7 @@ export default function* root() {
     // takeLatest(AuthTypes.REFRESH_TOKEN_REQUEST, refreshTokenSaga),
 
     // Sockets
+    takeLatest(SocketTypes.EMIT_HEART_BEAT, emitHeartBeat),
     takeLatest(SocketTypes.INIT_SOCKET, InitSocket),
     // takeLatest(SocketTypes.EMIT_BOOKING_REQUEST, emitBooking),
     // takeLatest(SocketTypes.EMIT_CHOOSE_BIKER_REQUEST, emitChooseBiker),

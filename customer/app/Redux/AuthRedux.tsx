@@ -28,7 +28,7 @@ export const INITIAL_STATE: Immutable.ImmutableObject<AuthState> = Immutable({
 
 const { Types, Creators } = createActions({
     signInRequest: ['userName', 'password'],
-    signInSuccess: ['otpToken'],
+    signInSuccess: ['token'],
     signInFailure: ['errorSignIn'],
   
     signUpRequest: ['registerDetail'],

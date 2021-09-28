@@ -64,7 +64,7 @@ const HomeScreen = () => {
         const { longitude, latitude } = position.coords
         console.log(longitude);
         console.log(latitude);
-        // dispatch(SocketActions.emitHeartBeat(longitude, latitude))
+        dispatch(SocketActions.emitHeartBeat(longitude, latitude))
       },
       () => {
         console.log("RAlert")
@@ -99,7 +99,7 @@ const HomeScreen = () => {
       console.log("isPower && isReady");
       console.log("--------------------------------");
       findCoordinates()
-      findEver30Seconds = setInterval(findCoordinates, 10000)
+      // findEver30Seconds = setInterval(findCoordinates, 10000)
     }
     return () => clearInterval(findEver30Seconds)
   }, [isPower, isReady])
