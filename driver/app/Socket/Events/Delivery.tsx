@@ -6,6 +6,11 @@ import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 // Constants
 import { DELIVERY_BOOKING } from '@/Constants/SocketEventConstants'
+import { mapBikerFoundResultToFrontEnd } from '@/Functions/MapDataToFrontendFunctions'
+// Redux
+import { store } from '@/Containers/App'
+
+import PhaseActions from '@/Redux/PhaseRedux'
 
 export default (
   token: string,
@@ -14,9 +19,9 @@ export default (
   packageInfor: any,
   userAgent: string
 ) => {
-  console.log('test')
+  console.log('-------------------------------------------------------------')
   const Socket = getSocket()
-  
+
   const { address, coordinates } = addressAndCoordinates
 
   const { addressDestination, addressOriginalLocation } = address
@@ -31,42 +36,7 @@ export default (
 
   const { senderProof, weight, category } = packageInfor
 
-  // Socket.emit(DELIVERY_BOOKING, {
-  //   payload: {
-  //     token: accessToken,
-  //     UID: userAgent,
-  //     data: {
-  //       coordinates: {
-  //         origin: {
-  //           lng: originalLng,
-  //           lat: originalLat
-  //         },
-  //         destination: {
-  //           lng: 106.6253054,
-  //           lat: 10.7531708
-  //         }
-  //       },
-  //       address: {
-  //         origin: addressOriginalLocation,
-  //         destination:
-  //           '268 Lý Thường Kiệt, Phường 10, Quận Tân Bình, TP Hồ Chí Minh'
-  //       },
-  //       receiver: {
-  //         phone: phoneNumber,
-  //         name: name
-  //       },
-  //       package: {
-  //         senderProof: `data:image/jpeg;base64,${senderProof}`,
-  //         weight: weight,
-  //         category: category
-  //       }
-  //     }
-  //   }
-  // })
-
   Socket.onopen = () => {
-    console.log('WebSocket Client Connected');
-    console.log(token);
     Socket.send(JSON.stringify({
       'type': 'DELIVERY_BOOKING',
       'message': {
@@ -101,13 +71,24 @@ export default (
         }
       }
     }));
-    
   };
+  
+  // Socket.onmessage = function(e: any) {
+  //   if (typeof e.data === 'string') {
+  //     const message = JSON.parse(e.data)['message']
 
-  Socket.onmessage = function(e) {
-    console.log(e)
-    // if (typeof e.data === 'string') {
-    //     console.log("Received: '" + e.data + "'");
-    // }
-  };
+  //     if (typeof message == 'object' && 'driverList' in message) {
+  //       console.log(typeof message['driverList'])
+  //       const driverList = message['driverList']
+  //       const rideHash = '123'
+  //       const dataBikers = driverList.map((biker: any) => 
+  //         mapBikerFoundResultToFrontEnd(biker)
+  //       )
+  //       console.log(dataBikers)
+  //       console.log("mapBikerFoundResultToFrontEnd OK")
+  //       store.dispatch(PhaseActions.eventFoundBikerResult(dataBikers, rideHash))
+  //     }
+
+  //   }
+  // };
 }

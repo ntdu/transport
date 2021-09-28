@@ -1,7 +1,11 @@
 // import { io, Socket } from 'socket.io-client'
 // import { getUniqueId } from 'react-native-device-info'
 import { w3cwebsocket as W3CWebSocket } from "websocket";
+import { mapBikerFoundResultToFrontEnd } from '@/Functions/MapDataToFrontendFunctions'
+import PhaseActions from '@/Redux/PhaseRedux'
 
+// Redux
+import { store } from '@/Containers/App'
 // // Redux
 // import { store } from '@/Containers/App'
 // import SocketActions from '@/Redux/SocketRedux'
@@ -54,50 +58,88 @@ import { w3cwebsocket as W3CWebSocket } from "websocket";
 //     }
 //   }
 // }
+let client: any
+// let isInitSocketIo = false
+
+export const initSocket = async () => {
+  client = new W3CWebSocket('wss://transport-server.herokuapp.com/ws/chat/abc/');
+  startListening()
+}
 
 export const getSocket = () => {
-  const client = new W3CWebSocket('wss://transport-server.herokuapp.com/ws/chat/abc/');
-  // client.onopen = () => {
-    //   console.log('WebSocket Client Connected');
-    // };
-//   if (!isInitSocketIo) {
-//     throw 'Socket is not ready'
-//   }
   return client
 }
 
-// export const wrapperEmitSocket = (EmitFunction: () => void) => {
-//   let socketIo = getSocket()
-//   let isRetrying = false
+export const wrapperEmitSocket = (EmitFunction: () => void) => {
+  // let socketIo = getSocket()
+  // let isRetrying = false
 
-//   EmitFunction()
-//   const state: any = store.getState()
+  EmitFunction()
+  // const state: any = store.getState()
 
-//   socketIo.onAny(async (event, __) => {
-//     if (isRetrying) {
-//       return
-//     }
-//     switch (event) {
-//       case TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER_ERROR:
-//         store.dispatch(
-//           AuthActions.refreshTokenFailure(
-//             TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER_ERROR
-//           )
-//         )
-//         return
-//       case TOKEN_EXPIRED_ERROR:
-//         const userName = state.auth.userName
-//         const refreshToken = state.auth.refreshToken
-//         store.dispatch(AuthActions.refreshTokenRequest(userName, refreshToken))
-//         break
-//       default:
-//         return
-//     }
-//     EmitFunction()
-//     isRetrying = true
-//   })
-// }
+  // socketIo.onAny(async (event, __) => {
+  //   if (isRetrying) {
+  //     return
+  //   }
+  //   switch (event) {
+  //     case TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER_ERROR:
+  //       store.dispatch(
+  //         AuthActions.refreshTokenFailure(
+  //           TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER_ERROR
+  //         )
+  //       )
+  //       return
+  //     case TOKEN_EXPIRED_ERROR:
+  //       const userName = state.auth.userName
+  //       const refreshToken = state.auth.refreshToken
+  //       store.dispatch(AuthActions.refreshTokenRequest(userName, refreshToken))
+  //       break
+  //     default:
+  //       return
+  //   }
+  //   EmitFunction()
+  //   isRetrying = true
+  // })
+}
+export const startListening = () => {
+  const Socket = getSocket()
 
+  Socket.onmessage = function(e: any) {
+    if (typeof e.data === 'string') {
+      const type = JSON.parse(e.data)['message']['type']
+      const data = JSON.parse(e.data)['message']['data']
+
+      if (type == 'DELIVERY_BOOKING') {
+        
+      }
+      switch (type) {
+        case 'ready':
+          console.log('ready')
+          break
+        
+        case 'DELIVERY_BOOKING':
+          // const driverList = data['driverList']
+          const rideHash = '123'
+          const dataBikers = data.map((biker: any) => 
+            mapBikerFoundResultToFrontEnd(biker)
+          )
+          store.dispatch(PhaseActions.eventFoundBikerResult(dataBikers, rideHash))
+
+          break
+        
+        case 'DELIVERY_BIKER_CHOSEN_EVENT':
+          // const driverList = data['driverList']
+          
+          console.log('DELIVERY_BIKER_CHOSEN_EVENT')
+          console.log(data)
+          break
+        
+        default:
+          console.log("don't match")
+      }
+    }
+  };
+}
 // export const startListening = () => {
 //   const socketIo = getSocket()
 

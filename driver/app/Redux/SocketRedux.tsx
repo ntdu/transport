@@ -28,7 +28,7 @@ const { Types, Creators } = createActions({
   emitDeliveryError: ['error'],
 
   emitChooseBikerDeliveryRequest: [
-    'accessToken',
+    'token',
     'phoneNumber',
     'rideHash',
     'price'

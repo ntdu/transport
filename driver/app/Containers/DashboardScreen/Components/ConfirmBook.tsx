@@ -63,6 +63,13 @@ const ConfirmBook = () => {
   } = coordinates
   const { indexChooseBiker } = useSelector((state: RootState) => state.phase)
   const accessToken = useSelector((state: RootState) => state.auth.accessToken)
+  const token = useSelector((state: RootState) => state.auth.token)
+
+  useEffect(() => {
+    console.log("ConfirmBook")
+    console.log(token)
+  }, [])
+
   const { isChooseBikerRequest, errorEmitChooseBiker } = useSelector(
     (state: RootState) => state.socket
   )
@@ -82,21 +89,21 @@ const ConfirmBook = () => {
     if (service === SERVICE.DELIVERY) {
       dispatch(
         SocketActions.emitChooseBikerDeliveryRequest(
-          accessToken,
+          token,
           phoneNumber,
           rideHash,
           price
         )
       )
     } else {
-      dispatch(
-        SocketActions.emitChooseBikerRequest(
-          accessToken,
-          phoneNumber,
-          rideHash,
-          price
-        )
-      )
+      // dispatch(
+      //   SocketActions.emitChooseBikerRequest(
+      //     accessToken,
+      //     phoneNumber,
+      //     rideHash,
+      //     price
+      //   )
+      // )
     }
     isBook = true
   }

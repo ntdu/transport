@@ -2,9 +2,9 @@ import { put, select } from 'redux-saga/effects'
 
 // import Booking from '@/Socket/Events/Booking'
 // import ChooseBiker from '@/Socket/Events/ChooseBiker'
-// import ChooseBikerDelivery from '@/Socket/Events/ChooseBikerDelivery'
+import ChooseBikerDelivery from '@/Socket/Events/ChooseBikerDelivery'
 import Delivery from '@/Socket/Events/Delivery'
-// import { initSocket, wrapperEmitSocket } from '@/Socket/Socket'
+import { initSocket, wrapperEmitSocket } from '@/Socket/Socket'
 import { getUserAgent } from '@/Redux/UserRedux'
 
 // Redux
@@ -26,13 +26,13 @@ const selectUserAgent = (state: RootState) => getUserAgent(state.user)
 //   }
 // }
 
-// export function* InitSocket({ accessToken }: any) {
-//   try {
-//     yield initSocket(accessToken)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+export function* InitSocket() {
+  try {
+    yield initSocket()
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 // export function* emitChooseBiker({
 //   accessToken,
@@ -85,6 +85,23 @@ export function* emitDelivery({
       userAgent
     )
     yield put(SocketActions.emitDeliverySuccess())
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export function* emitChooseBikerDelivery({
+  token,
+  phoneNumber,
+  rideHash,
+  price
+}: any) {
+  try {
+    const userAgent: string = yield select(selectUserAgent)
+    yield wrapperEmitSocket(() =>
+      ChooseBikerDelivery(token, phoneNumber, rideHash, price, userAgent)
+    )
+    // yield put(SocketActions.emitChooseBikerDeliverySuccess())
   } catch (error) {
     console.log(error)
   }

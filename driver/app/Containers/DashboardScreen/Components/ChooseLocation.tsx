@@ -54,6 +54,7 @@ const ChooseLocation = (props: ChooseLocationProps) => {
     : null
 
   const confirm = () => {
+    dispatch(SocketActions.initSocket())
     if (service === SERVICE.DELIVERY && packageInformation) {
       const {
         senderProof,
