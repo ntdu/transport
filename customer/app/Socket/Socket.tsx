@@ -4,11 +4,16 @@ import { io, Socket } from 'socket.io-client'
 import { store } from '@/Containers/App'
 import SocketActions from '@/Redux/SocketRedux'
 import PhaseRiderActions from '@/Redux/PhaseRiderRedux'
+import RideInforActions from '@/Redux/RideInforRedux'
 import AuthActions from '@/Redux/AuthRedux'
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 // Functions
 import { requestUserPermissionAndGetToken } from '@/Functions/FCMToken'
+import {
+  mapDeliveryDataToFrontEnd,
+  // mapRideDataToFrontEnd
+} from '@/Functions/MapDataToFrontendFunctions'
 
 // Constants
 // import {
@@ -16,7 +21,7 @@ import { requestUserPermissionAndGetToken } from '@/Functions/FCMToken'
 //   TOKEN_EXPIRED_ERROR,
 //   TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER_ERROR
 // } from '@/Constants/SocketEventConstants'
-import { PhaseRider } from '@/Constants/PhaseRiderConstants'
+import { PhaseRider, SERVICE } from '@/Constants/PhaseRiderConstants'
 
 let socketIo: Socket
 let isInitSocketIo = false
@@ -29,31 +34,34 @@ export const accessToken = () => {
   return state.auth.accessToken
 }
 
-export const initSocket = async () => {
-  console.log("initSocket")
-  console.log("----------------------------------------")
-  // token = accessToken()
-  // isGetToken = true
+// export const initSocket = async () => {
+//   token = accessToken()
+//   isGetToken = true
 
-  // const fcmToken = await requestUserPermissionAndGetToken()
+//   const fcmToken = await requestUserPermissionAndGetToken()
 
-  // if (!!fcmToken) {
-  //   isInitSocketIo = true
-  //   socketIo = io(`https://waybox-realtime-staging.herokuapp.com/`, {
-  //     path: '/socket.io',
-  //     transports: ['websocket'],
-  //     auth: {
-  //       token
-  //     },
-  //     query: { fcmToken }
-  //   })
-  //   if (socketIo) {
-  //     store.dispatch(SocketActions.initSocketSuccess())
-  //     startListening()
-  //   } else {
-  //     store.dispatch(SocketActions.initSocketError())
-  //   }
-  // }
+//   if (!!fcmToken) {
+//     isInitSocketIo = true
+//     socketIo = io(`https://waybox-realtime-staging.herokuapp.com/`, {
+//       path: '/socket.io',
+//       transports: ['websocket'],
+//       auth: {
+//         token
+//       },
+//       query: { fcmToken }
+//     })
+//     if (socketIo) {
+//       store.dispatch(SocketActions.initSocketSuccess())
+//       startListening()
+//     } else {
+//       store.dispatch(SocketActions.initSocketError())
+//     }
+//   }
+// }
+let socket: any;
+export const initSocket = () => {
+  socket = new W3CWebSocket('wss://transport-server.herokuapp.com/ws/chat/abc/');
+  startListening()
 }
 
 export const getRideHash = () => {
@@ -61,28 +69,8 @@ export const getRideHash = () => {
   return state.socket.rideHash
 }
 
-// export const initSocket = () => {
-//   token = accessToken()
-//   isGetToken = true
-
-//   isInitSocketIo = true
-//   socketIo = io(`http://${IP_ADDRESS}:3000`, {
-//     path: '/socket.io',
-//     transports: ['websocket'],
-//     auth: {
-//       token
-//     }
-//   })
-// }
-
 export const getSocket = () => {
-  const client = new W3CWebSocket('wss://transport-server.herokuapp.com/ws/chat/abc/');
-  return client
-
-  // if (!isInitSocketIo) {
-  //   throw 'Socket is not ready'
-  // }
-  // return socketIo
+  return socket
 }
 
 export const getAccessToken = () => {
@@ -130,6 +118,52 @@ export const wrapperEmitSocket = (EmitFunction: () => void) => {
   // })
 }
 
+export const startListening = () => {
+  const Socket = getSocket()
+
+  Socket.onmessage = function(e: any) {
+    if (typeof e.data === 'string') {
+      const type = JSON.parse(e.data)['message']['type']
+      const data = JSON.parse(e.data)['message']['data']
+
+      if (type == 'DELIVERY_BOOKING') {
+        
+      }
+      switch (type) {
+        case 'ready':
+          console.log('ready')
+          break
+        
+        case 'BIKER_WAITING_SUCCESS':
+          console.log('BIKER_WAITING_SUCCESS')
+          // // const driverList = data['driverList']
+          // const rideHash = '123'
+          // const dataBikers = data.map((biker: any) => 
+          //   mapBikerFoundResultToFrontEnd(biker)
+          // )
+          // store.dispatch(PhaseActions.eventFoundBikerResult(dataBikers, rideHash))
+
+          break
+        
+        case 'DELIVERY_BIKER_CHOSEN_EVENT':
+          // const driverList = data['driverList']
+          console.log(data)
+          const deliveryData = mapDeliveryDataToFrontEnd(data)
+
+          console.log(deliveryData)
+
+          store.dispatch(RideInforActions.getInforDelivery(deliveryData))
+          store.dispatch(PhaseRiderActions.setService(SERVICE.DELIVERY))
+          store.dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GET_A_RIDE))
+          
+          break
+        
+        default:
+          console.log("don't match")
+      }
+    }
+  };
+}
 // export const startListening = () => {
 //   const socketIo = getSocket()
 //   socketIo.onAny(async (event, ...args) => {

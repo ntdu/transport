@@ -1,9 +1,37 @@
+import { AddressAndCoordinates, UserDetail } from './CommonTypes'
+
 type fetchingErrorType = null | undefined | string
 // type fetchingErrorType = null | string
 
 type Coordinates = {
     lng: number
     lat: number
+}
+
+export type PackageState = {
+  deliverySuccessProof: string | null
+  bikerReceivedPackageProof: string | null
+  senderProof: string | null
+  // category: number
+  weight: number
+  // owner: string
+}
+
+export type RideInforState = {
+  addressAndCoordinates: AddressAndCoordinates
+
+  // previousOriginalCoordinates: Coordinates
+
+  customer?: UserDetail
+  sender?: UserDetail
+  receiver?: {
+    phone: string
+    name: string
+  }
+  package?: PackageState
+
+  rideHash: string
+  price: number
 }
 
 export type AuthState = {
@@ -28,6 +56,7 @@ export type AuthState = {
 
 export type PhaseRiderState = {
   phaseRider: string
+  service: string
 }
 
 export type SocketState = {
@@ -60,4 +89,5 @@ export type SocketState = {
 export interface RootState {
   auth: AuthState
   phaseRider: PhaseRiderState
+  ride: RideInforState
 }

@@ -35,8 +35,8 @@ export default function* root() {
     // takeLatest(AuthTypes.REFRESH_TOKEN_REQUEST, refreshTokenSaga),
 
     // Sockets
-    takeLatest(SocketTypes.EMIT_HEART_BEAT, emitHeartBeat),
     takeLatest(SocketTypes.INIT_SOCKET, InitSocket),
+    takeLatest(SocketTypes.EMIT_HEART_BEAT, emitHeartBeat),
     // takeLatest(SocketTypes.EMIT_BOOKING_REQUEST, emitBooking),
     // takeLatest(SocketTypes.EMIT_CHOOSE_BIKER_REQUEST, emitChooseBiker),
 

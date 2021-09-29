@@ -12,7 +12,7 @@ import { AuthScreen } from '@/Containers/AuthScreen'
 
 // // MainStack Screen
 import { HomeScreen } from '@/Containers/HomeScreen'
-// import { RideScreen } from '@/Containers/RideScreen'
+import { RideScreen } from '@/Containers/RideScreen'
 // import { PhaseRideScreen } from '@/Containers/PhaseRideScreen'
 // import { PayScreen } from '@/Containers/PayScreen'
 
@@ -203,8 +203,6 @@ export const MainTab = () => {
 // }
 const Main = createStackNavigator<MainStackParams>()
 export const MainStack = () => {
-  console.log("------------------------------------------------------------------")
-  console.log("MainStack")
   return (
     <Main.Navigator 
       initialRouteName={'TabScreen'} 
@@ -213,8 +211,8 @@ export const MainStack = () => {
       }}
     >
       <Main.Screen name={'TabScreen'} component={MainTab} />
-      {/* <Main.Screen name={MainScreens.RideScreen} component={RideScreen} />
-      <Main.Screen
+      <Main.Screen name={MainScreens.RideScreen} component={RideScreen} />
+      {/* <Main.Screen
         name={MainScreens.PhaseRideScreen}
         component={PhaseRideScreen}
       />

@@ -1,21 +1,12 @@
 import { getSocket, getToken } from '../Socket'
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 export default (longitude: number, latitude: number) => {
-  let Socket = getSocket()
+  // let Socket = getSocket()
+  let Socket = new W3CWebSocket('wss://transport-server.herokuapp.com/ws/chat/abc/');
   const token = getToken()
   console.log("Heartbeat")
 
-  // Socket.emit('heartbeat', {
-  //   payload: {
-  //     token,
-  //     data: {
-  //       coordinates: [longitude, latitude]
-  //     }
-  //   }
-  // })
-  console.log(token)
-  console.log(longitude)
-  console.log(latitude)
   Socket.onopen = () => {
     console.log('WebSocket Client Connected');
     Socket.send(JSON.stringify({
@@ -33,10 +24,10 @@ export default (longitude: number, latitude: number) => {
     
   };
 
-  Socket.onmessage = function(e) {
-    console.log(e)
-    // if (typeof e.data === 'string') {
-    //     console.log("Received: '" + e.data + "'");
-    // }
-  };
+  // Socket.onmessage = function(e: any) {
+  //   console.log(e)
+  //   // if (typeof e.data === 'string') {
+  //   //     console.log("Received: '" + e.data + "'");
+  //   // }
+  // };
 }

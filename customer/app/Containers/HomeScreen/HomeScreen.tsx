@@ -58,7 +58,6 @@ const HomeScreen = () => {
   // const cancleReadyPhase = () => dispatchPhase({ type: Action.PHASE_0 })
 
   const findCoordinates = () => {
-    dispatch(SocketActions.initSocket())
     Geolocation.getCurrentPosition(
       (position) => {
         const { longitude, latitude } = position.coords
@@ -81,17 +80,17 @@ const HomeScreen = () => {
     )
   }
 
-  // const navigateToRideScreen = () => {
-  //   console.log("navigateToRideScreen");
-  //   // navigation.reset({
-  //   //   index: 0,
-  //   //   routes: [
-  //   //     {
-  //   //       name: 'RideScreen'
-  //   //     }
-  //   //   ]
-  //   // })
-  // }
+  const navigateToRideScreen = () => {
+    console.log("navigateToRideScreen");
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'RideScreen'
+        }
+      ]
+    })
+  }
 
   useEffect(() => {
     let findEver30Seconds: NodeJS.Timeout
@@ -104,11 +103,12 @@ const HomeScreen = () => {
     return () => clearInterval(findEver30Seconds)
   }, [isPower, isReady])
 
-  // useEffect(() => {
-  //   phaseRider === PhaseRider.GET_A_RIDE && navigateToRideScreen()
-  // }, [phaseRider])
+  useEffect(() => {
+    phaseRider === PhaseRider.GET_A_RIDE && navigateToRideScreen()
+  }, [phaseRider])
 
   useEffect(() => {
+    dispatch(SocketActions.initSocket())
     Platform.OS === 'android'
       ? checkDeviceLocationPermissionAndroid()
       : checkDeviceLocationPermissionIOS()
