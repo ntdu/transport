@@ -26,20 +26,25 @@ type RideInforProps = {
 const RideInfor = (props: RideInforProps) => {
   const dispatch = useDispatch()
 
-  const { rideHash, customer, addressAndCoordinates, sender } = useSelector(
+  const { rideHash, originAndDestiationInfo } = useSelector(
     (state: RootState) => state.ride
   )
+  console.log('RideInfor')
+  console.log(originAndDestiationInfo)
+  console.log('----------------------------')
 
   const service = useSelector((state: RootState) => state.phaseRider.service)
 
-  // const accessToken = useSelector((state: RootState) => state.auth.accessToken)
   const token = useSelector((state: RootState) => state.auth.token)
 
   const {
-    addressOriginalLocation,
-    addressDestination
-  } = addressAndCoordinates.address
+    sender,
+    address
+  } = originAndDestiationInfo.origin
 
+  const { list_destination } = originAndDestiationInfo
+
+  const addressDestination = '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
   const confirmRide = () => {
     if (service === SERVICE.RIDE) {
       // console.log('serviceride')
@@ -51,7 +56,6 @@ const RideInfor = (props: RideInforProps) => {
       //   )
       // )
     } else {
-      console.log('service delivery')
       dispatch(
         SocketActions.emitConfirmDelivery(
           token,
@@ -65,10 +69,10 @@ const RideInfor = (props: RideInforProps) => {
   }
   return (
     <View style={styles.mainContainer}>
-      {addressDestination && addressOriginalLocation && (
+      {addressDestination && address && (
         <Location
-          origin={addressOriginalLocation}
-          destination={addressDestination}
+          origin={address}
+          list_destination={list_destination}
         />
       )}
       <TouchableOpacity style={styles.confirmButton} onPress={confirmRide}>

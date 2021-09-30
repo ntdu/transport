@@ -7,7 +7,7 @@ export default StyleSheet.create({
   mainContainer: {
     flex: 0.6,
     backgroundColor: Colors.bahamaBlue,
-    paddingHorizontal: Normalize(40),
+    paddingHorizontal: Normalize(30),
     paddingTop: Normalize(10)
   },
   distance: {
@@ -48,6 +48,7 @@ export default StyleSheet.create({
     width: '100%',
     backgroundColor: Colors.screaminGreen,
     marginTop: Normalize(20),
+    marginBottom: Normalize(20),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: Normalize(10)

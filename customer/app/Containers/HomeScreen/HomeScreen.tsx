@@ -41,6 +41,16 @@ type HomeScreenNavigationProps = StackNavigationProp<
   'TabScreen'
 >
 
+
+import {
+  mapDeliveryDataToFrontEnd,
+  // mapRideDataToFrontEnd
+} from '@/Functions/MapDataToFrontendFunctions'
+import { store } from '@/Containers/App'
+import PhaseRiderActions from '@/Redux/PhaseRiderRedux'
+import RideInforActions from '@/Redux/RideInforRedux'
+import { SERVICE } from '@/Constants/PhaseRiderConstants'
+
 const HomeScreen = () => {
   console.log("HomeScreen");
   console.log("----------------------------");
@@ -53,7 +63,7 @@ const HomeScreen = () => {
 
   const [state, dispatchPhase] = useReducer(PhaseReducer, initialState)
 
-  const { isPower, isReady } = state
+  const { isReady } = state
 
   // const cancleReadyPhase = () => dispatchPhase({ type: Action.PHASE_0 })
 
@@ -80,8 +90,63 @@ const HomeScreen = () => {
     // )
 
     dispatch(SocketActions.emitHeartBeat('106.625305', '10.753171'))
-  }
 
+    temp()
+  }
+  const temp = () => {
+    let data = {
+      'originAndDestiationInfo': {
+        'origin': {
+          'sender': {
+            'accountUsername': '0354471333',
+            'address': '19/9 Trần Bình Trọng, Phường 5, Bình Thạnh, Thành phố Hồ Chí Minh',
+            'dateOfBirth': '24/11/1998',
+            'firstName': 'Dư',
+            'gender': 'false',
+            'lastName': 'Nguyễn',
+            'phoneNumber': '0354471333',
+            'createdDate': '30/9/2021'
+          },
+          'originalLng': '106.625305',
+          'originalLat': '10.753171',
+          'address': '19/9 Trần Bình Trọng, Phường 5, Bình Thạnh, Thành phố Hồ Chí Minh'
+        },
+        'list_destination': [
+          {
+            'phoneNumber': '0354471222',
+            'name': 'Khánh Vy',
+            'destinationLng': '106.625305',
+            'destinationlLat': '10.753171',
+            'address': '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+          },
+          {
+            'phoneNumber': '0354471223',
+            'name': 'Khánh Vy',
+            'destinationLng': '106.625305',
+            'destinationlLat': '10.753171',
+            'address': '250 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+          },
+          {
+            'phoneNumber': '0354471225',
+            'name': 'Khánh Vy',
+            'destinationLng': '106.625305',
+            'destinationlLat': '10.753171',
+            'address': '300 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+          }
+        ],
+      },
+      'price': '20000',
+      'rideHash': 'adfafdb',
+      'package': {
+        'weight': '3',
+      }
+    }
+    // const deliveryData = mapDeliveryDataToFrontEnd(data)
+    
+    store.dispatch(RideInforActions.getInforDelivery(data))
+    store.dispatch(PhaseRiderActions.setService(SERVICE.DELIVERY))
+    store.dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GET_A_RIDE))
+  }
   const navigateToRideScreen = () => {
     console.log("navigateToRideScreen");
     navigation.reset({
@@ -96,14 +161,12 @@ const HomeScreen = () => {
 
   useEffect(() => {
     let findEver30Seconds: NodeJS.Timeout
-    if (isPower && isReady) {
-      console.log("isPower && isReady");
-      console.log("--------------------------------");
+    if (isReady) {
       findCoordinates()
       // findEver30Seconds = setInterval(findCoordinates, 10000)
     }
     return () => clearInterval(findEver30Seconds)
-  }, [isPower, isReady])
+  }, [isReady])
 
   useEffect(() => {
     phaseRider === PhaseRider.GET_A_RIDE && navigateToRideScreen()

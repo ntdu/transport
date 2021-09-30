@@ -18,27 +18,12 @@ import { translate } from '@/Language'
 // Svgs
 import Customer from '@/Svgs/Icons/customer.svg'
 import Phone from '@/Svgs/Icons/phone.svg'
-import { SERVICE } from '@/Constants/PhaseRiderConstants'
 
 const CustomerInfor = () => {
-  // This data will need to depend on service
-  const service = useSelector((state: RootState) => state.phaseRider.service)
-  console.log(service)
-  console.log(useSelector((state: RootState) => state.ride.customer?.firstName))
-  const firstName =
-    service === SERVICE.RIDE
-      ? useSelector((state: RootState) => state.ride.customer?.firstName)
-      : useSelector((state: RootState) => state.ride.sender?.firstName)
-
-  const lastName =
-    service === SERVICE.RIDE
-      ? useSelector((state: RootState) => state.ride.customer?.lastName)
-      : useSelector((state: RootState) => state.ride.sender?.lastName)
-  const phoneNumber =
-    service === SERVICE.RIDE
-      ? useSelector((state: RootState) => state.ride.customer?.phoneNumber)
-      : useSelector((state: RootState) => state.ride.sender?.phoneNumber)
-
+  const firstName = useSelector((state: RootState) => state.ride.originAndDestiationInfo.origin.sender?.firstName)
+  const lastName = useSelector((state: RootState) => state.ride.originAndDestiationInfo.origin.sender?.lastName)
+  const phoneNumber = useSelector((state: RootState) => state.ride.originAndDestiationInfo.origin.sender?.phoneNumber)
+ 
   const callCustomer = (phoneNumber: string) => () => Call(phoneNumber)
 
   return (

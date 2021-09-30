@@ -5,6 +5,7 @@ import { Normalize, Colors } from '@/Themes'
 
 export default StyleSheet.create({
   infor: {
+    marginLeft: Normalize(10),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
@@ -12,7 +13,8 @@ export default StyleSheet.create({
   line: {
     borderLeftColor: 'white',
     borderLeftWidth: Normalize(1),
-    height: Normalize(40),
+    height: Normalize(10),
+    marginLeft: Normalize(10),
     marginTop: Normalize(10),
     marginBottom: Normalize(10)
   },
@@ -30,5 +32,9 @@ export default StyleSheet.create({
     color: Colors.white,
     fontSize: Normalize(20),
     paddingLeft: Normalize(10)
+  },
+  flatlist: {
+    padding: Normalize(0)
   }
+
 })

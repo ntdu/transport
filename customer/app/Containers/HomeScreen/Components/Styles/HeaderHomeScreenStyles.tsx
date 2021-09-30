@@ -11,7 +11,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.valhalla,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
   switchView: {
     width: Normalize(60),

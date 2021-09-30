@@ -1,23 +1,20 @@
 export const initialState: INITIAL_STATE_PHASE = {
   phase: 0,
-  isReady: false,
-  isPower: false
+  isReady: false
 }
 
 export enum Action {
-  PHASE_0 = 'PHASE_POWER_OFF',
-  PHASE_1 = 'PHASE_POWER_ON_NOT_READY',
-  PHASE_2 = 'PHASE_POWER_ON_READY'
+  PHASE_0 = 'PHASE_NOT_READY',
+  PHASE_1 = 'PHASE_ON_READY'
 }
 
 export type PhaseActions = {
-  type: Action.PHASE_0 | Action.PHASE_1 | Action.PHASE_2
+  type: Action.PHASE_0 | Action.PHASE_1
 }
 
 export type INITIAL_STATE_PHASE = {
   phase: number
   isReady: boolean
-  isPower: boolean
 }
 
 export default function PhaseReducer(
@@ -29,22 +26,13 @@ export default function PhaseReducer(
       return {
         ...state,
         phase: 0,
-        isReady: false,
-        isPower: false
+        isReady: false
       }
     case Action.PHASE_1:
       return {
         ...state,
         phase: 1,
-        isPower: true,
-        isReady: false
-      }
-    case Action.PHASE_2:
-      return {
-        ...state,
-        phase: 2,
-        isPower: true,
-        isReady: true
+        isReady: true,
       }
     default:
       return state

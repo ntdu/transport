@@ -134,7 +134,8 @@ import {
 //   }
 // }
 
-export const mapDeliveryDataToFrontEnd = (response: any): RideInforState => {
+// export const mapDeliveryDataToFrontEnd = (response: any): RideInforState => {
+  export const mapDeliveryDataToFrontEnd = (response: any): any => {
   const {
     coordinates,
     address,
@@ -156,31 +157,31 @@ export const mapDeliveryDataToFrontEnd = (response: any): RideInforState => {
   } = sender
 
   return {
-    addressAndCoordinates: {
-      address: {
-        addressOriginalLocation: address.origin,
-        addressDestination: address.destination
-      },
-      coordinates: {
-        originalLat: origin.lat,
-        originalLng: origin.lng,
-        destinationLat: destination.lat,
-        destinationLng: destination.lng
-      }
-    },
-    sender: {
-      phoneNumber: phone_number,
-      accountUsername: email,
-      firstName: first_name,
-      lastName: last_name,
-      gender: female,
-      dateOfBirth: date_of_birth,
-      createdDate: created_date,
-      address: sender.address
-    },
-    package: response.package,
-    receiver: receiver,
-    rideHash: deliveryHash,
-    price
+    // addressAndCoordinates: {
+    //   address: {
+    //     addressOriginalLocation: address.origin,
+    //     addressDestination: address.destination
+    //   },
+    //   coordinates: {
+    //     originalLat: origin.lat,
+    //     originalLng: origin.lng,
+    //     destinationLat: destination.lat,
+    //     destinationLng: destination.lng
+    //   }
+    // },
+    // sender: {
+    //   phoneNumber: phone_number,
+    //   accountUsername: email,
+    //   firstName: first_name,
+    //   lastName: last_name,
+    //   gender: female,
+    //   dateOfBirth: date_of_birth,
+    //   createdDate: created_date,
+    //   address: sender.address
+    // },
+    // package: response.package,
+    // receiver: receiver,
+    // rideHash: deliveryHash,
+    // price
   }
 }

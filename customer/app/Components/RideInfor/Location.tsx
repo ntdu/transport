@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ViewStyle, TextStyle } from 'react-native'
+import { View, Text, ViewStyle, TextStyle, FlatList } from 'react-native'
 
 // Styles
 import styles from './Styles/LocationStyles'
@@ -11,15 +11,24 @@ import Destination from '@/Svgs/Icons/destination.svg'
 
 type LocationProps = {
   origin: string
-  destination: string
+  list_destination: any
   inforStyle?: ViewStyle
   textStyle?: TextStyle
   lineStyle?: ViewStyle
 }
 
 const Location = (props: LocationProps) => {
-  const { origin, destination, inforStyle, textStyle, lineStyle } = props
+  const { origin, list_destination, inforStyle, textStyle, lineStyle } = props
 
+  const renderDestination = ({ item }: any) => (
+    <View style={[styles.infor, inforStyle]}>
+      <Destination
+        height={Metrics.defaultImageHeight}
+        width={Metrics.defaultImageWidth}
+      />
+      <Text style={[styles.addressText, textStyle]}>{item.address}</Text>
+    </View>
+  );
   return (
     <>
       <View style={[styles.infor, inforStyle]}>
@@ -30,13 +39,14 @@ const Location = (props: LocationProps) => {
         <Text style={[styles.addressText, textStyle]}>{origin}</Text>
       </View>
       <View style={[styles.line, lineStyle]} />
-      <View style={[styles.infor, inforStyle]}>
-        <Destination
-          height={Metrics.defaultImageHeight}
-          width={Metrics.defaultImageWidth}
-        />
-        <Text style={[styles.addressText, textStyle]}>{destination}</Text>
-      </View>
+
+      <FlatList
+        style={styles.flatlist}
+        data={list_destination}
+        renderItem={renderDestination}
+        keyExtractor={item => item.phoneNumber}
+      />
+     
     </>
   )
 }

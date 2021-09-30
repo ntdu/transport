@@ -1,6 +1,5 @@
 export enum PhaseRider {
   NOT_READY = 'NOT_READY',
-  READY_TO_RIDE = 'READY_TO_RIDE',
   NEED_A_RIDE = 'NEED_A_RIDE',
   GET_A_RIDE = 'GET_A_RIDE',
 

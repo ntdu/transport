@@ -37,23 +37,30 @@ const PhaseRideScreen = () => {
   const navigation = useNavigation<PhaseRideScreenNavigationProp>()
 
   const dispatch = useDispatch()
-  const service = useSelector((state: RootState) => state.phaseRider.service)
-
-  const accessToken = useSelector((state: RootState) => state.auth.accessToken)
   const token = useSelector((state: RootState) => state.auth.token)
   
   const { phaseRider } = useSelector((state: RootState) => state.phaseRider)
 
-  const { addressDestination, addressOriginalLocation } = useSelector(
-    (state: RootState) => state.ride.addressAndCoordinates.address
+  // const { addressDestination, addressOriginalLocation } = useSelector(
+  //   (state: RootState) => state.ride.originAndDestiationInfo.address
+  // )
+
+  const { address } = useSelector(
+    (state: RootState) => state.ride.originAndDestiationInfo.origin
   )
 
-  const coordinates = useSelector(
-    (state: RootState) => state.ride.addressAndCoordinates.coordinates
+  const { list_destination } = useSelector(
+    (state: RootState) => state.ride.originAndDestiationInfo
   )
+  console.log(list_destination)
+  const addressDestination = list_destination[0].address
+
+  // const coordinates = useSelector(
+  //   (state: RootState) => state.ride.addressAndCoordinates.coordinates
+  // )
 
   const phoneNumber = useSelector(
-    (state: RootState) => state.ride.customer?.phoneNumber
+    (state: RootState) => state.ride.originAndDestiationInfo.origin.sender?.phoneNumber
   )
 
   const rideHash = useSelector((state: RootState) => state.ride.rideHash)
@@ -81,15 +88,6 @@ const PhaseRideScreen = () => {
   }
 
   const dispatchStart = () => {
-    console.log("dispatchStart")
-    // Move from arrived state to start state
-
-    // Notify customer that rider arrived
-    if (service === SERVICE.RIDE) {
-      console.log('service ride')
-      dispatch(SocketActions.emitBikerWaiting(accessToken, rideHash))
-      dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GO_TO_DESTINATION))
-    } else {
       console.log('service delivery')
       console.log(token)
       console.log('----------------------------------------')
@@ -100,27 +98,12 @@ const PhaseRideScreen = () => {
 
       dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GET_PACKAGE))
       navigateToGetPackageProofScreen()
-    }
   }
   const dispatchFinish = () =>
     dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.FINISH_RIDE))
 
   const confirmComplete = () => {
-    if (service === SERVICE.RIDE) {
-      // dispatch(
-      //   SocketActions.emitCompleteRide(accessToken, phoneNumber, rideHash)
-      // )
-      // navigation.reset({
-      //   index: 0,
-      //   routes: [
-      //     {
-      //       name: 'PayScreen'
-      //     }
-      //   ]
-      // })
-    } else {
-      navigation.navigate('DeliverPackageProofScreen')
-    }
+    navigation.navigate('DeliverPackageProofScreen')
   }
 
   const renderFooter = () => {
@@ -158,12 +141,12 @@ const PhaseRideScreen = () => {
     switch (phaseRider) {
       case PhaseRider.PICK_UP_CUSTOMER:
         return (
-          <RenderDestination destination={addressOriginalLocation} type={1} />
+          <RenderDestination list_destination={address} type={1} />
         )
       case PhaseRider.GO_TO_DESTINATION:
-        return <RenderDestination destination={addressDestination} type={2} />
+        return <RenderDestination list_destination={list_destination} type={2} />
       case PhaseRider.FINISH_RIDE:
-        return <RenderDestination destination={addressDestination} type={2} />
+        return <RenderDestination list_destination={list_destination} type={2} />
       default:
         return
     }

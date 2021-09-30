@@ -33,3 +33,22 @@ export type AddressAndCoordinates = {
     destinationLng: number | undefined
   }
 }
+
+export type originAndDestiationInfo = {
+  origin: {
+    sender?: UserDetail
+    originalLat: number
+    originalLng: number
+    address: string
+  }
+  list_destination: any
+  // [
+  //   {
+  //     phone: string
+  //     name: string
+  //     destinationLat: number | undefined
+  //     destinationLng: number | undefined
+  //     address: string
+  //   }
+  // ]
+}

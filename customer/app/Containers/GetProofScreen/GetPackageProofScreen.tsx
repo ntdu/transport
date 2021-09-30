@@ -50,7 +50,6 @@ const GetPackageProofScreen = () => {
   const getImage = (image: string) => setImage(image)
 
   const confirmGetPackage = () => {
-    console.log("confirmGetPackage")
     dispatch(
       SocketActions.emitBikerReceivedPackage(token, rideHash, image)
     )

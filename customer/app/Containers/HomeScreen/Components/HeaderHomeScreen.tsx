@@ -23,27 +23,17 @@ import Power from '@/Svgs/Icons/power.svg'
 const HeaderHomeScreen = () => {
   const dispatch = useDispatch()
 
-  const isPower = useContext(HomeScreenContext)?.state.isPower
   const isReady = useContext(HomeScreenContext)?.state.isReady
 
   const dispatchPhase = useContext(HomeScreenContext)?.dispatchPhase
 
-  const tooglePower = () => {
-    if (isPower) {
-      dispatchPhase && dispatchPhase({ type: Action.PHASE_0 })
-      dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.NEED_A_RIDE))
-    } else {
-      dispatchPhase && dispatchPhase({ type: Action.PHASE_1 })
-    }
-  }
-
   const toogleReady = () => {
-    if (isPower) {
-      if (!isReady) {
-        dispatchPhase && dispatchPhase({ type: Action.PHASE_2 })
-      } else {
-        dispatchPhase && dispatchPhase({ type: Action.PHASE_1 })
-      }
+    if (isReady) {
+      dispatchPhase && dispatchPhase({ type: Action.PHASE_0 })
+    }
+    else {
+      dispatchPhase && dispatchPhase({ type: Action.PHASE_1 })
+      dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.NEED_A_RIDE))
     }
   }
 
@@ -54,26 +44,12 @@ const HeaderHomeScreen = () => {
         translucent={false}
         barStyle='light-content'
       />
-      <View style={styles.blankView} />
-
       <TouchableOpacity
-        style={[styles.powerButton, !isPower && styles.powerOn]}
-        onPress={tooglePower}
-      >
-        {/* <Power width={20} height={20} /> */}
-      </TouchableOpacity>
-
-      <SwitchToggle
-        containerStyle={styles.switchView}
-        circleStyle={styles.circle}
-        switchOn={isReady}
+        style={[styles.powerButton, !isReady && styles.powerOn]}
         onPress={toogleReady}
-        circleColorOff={Colors.whisper}
-        circleColorOn={Colors.whisper}
-        backgroundColorOn={Colors.screaminGreen}
-        backgroundColorOff={Colors.silver}
-        duration={400}
-      />
+      >
+        <Power width={20} height={20} />
+      </TouchableOpacity>
     </View>
   )
 }

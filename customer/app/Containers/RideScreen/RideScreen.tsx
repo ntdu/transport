@@ -12,6 +12,9 @@ import { Price, CustomerInfor, RideInfor } from './Components'
 // Styles
 import styles from './Styles/RideScreenStyles'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/Types'
+
 type RideScreenNavigationProp = StackNavigationProp<
   MainStackParams,
   'RideScreen'
@@ -19,6 +22,8 @@ type RideScreenNavigationProp = StackNavigationProp<
 
 const RideScreen = () => {
   console.log("RideScreen")
+  // console.log(useSelector((state: RootState) => state.ride.originAndDestiationInfo))
+
   const navigation = useNavigation<RideScreenNavigationProp>()
 
   const navigateToHome = () =>

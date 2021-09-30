@@ -24,7 +24,9 @@ export default StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
 
-    elevation: 5
+    elevation: 5,
+
+    maxHeight: Normalize(150)
   },
   imageView: {
     height: Normalize(40),
@@ -43,5 +45,8 @@ export default StyleSheet.create({
     fontSize: Normalize(16),
     paddingHorizontal: Normalize(10),
     width: '90%'
+  },
+  itemDestination: {
+    flexDirection: 'row',
   }
 })

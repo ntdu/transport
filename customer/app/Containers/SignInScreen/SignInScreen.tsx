@@ -137,8 +137,8 @@ const SignInScreen = () => {
       >
         <ScrollView showsVerticalScrollIndicator={false}>
           <BBackButton wrapperStyle={styles.bBackButton} />
-          {/* <Text style={styles.signInText}>{translate('signIn')}</Text> */}
-          <Text style={styles.signInText}>signIn</Text>
+          <Text style={styles.signInText}>{translate('signIn')}</Text>
+          {/* <Text style={styles.signInText}>signIn</Text> */}
           <Formik
             initialValues={{
               userName: '0354471332',
@@ -152,8 +152,8 @@ const SignInScreen = () => {
               <>
                 <BLabelTextInput
                   value={values.userName}
-                  // label={translate('userName')}
-                  label={'userName'}
+                  label={translate('userName')}
+                  // label={'userName'}
                   wrapperStyle={styles.textInput}
                   errorMessage={errors.userName}
                   isRequired
@@ -165,8 +165,8 @@ const SignInScreen = () => {
                 <BLabelTextInput
                   ref={passwordRef}
                   value={values.password}
-                  // label={translate('password')}
-                  label={'password'}
+                  label={translate('password')}
+                  // label={'password'}
                   wrapperStyle={styles.textInput}
                   errorMessage={errors.password}
                   isRequired
@@ -175,8 +175,8 @@ const SignInScreen = () => {
                   onChangeText={handleChange('password')}
                 />
                 <BButton
-                  // content={translate('SignIn')}
-                  content={'SignIn'}
+                  content={translate('SignIn')}
+                  // content={'SignIn'}
                   buttonStyle={styles.buttonStyle}
                   onPressButton={handleSubmit}
                 />
@@ -185,8 +185,7 @@ const SignInScreen = () => {
                   style={styles.forgotPasswordButton}
                 >
                   <Text style={styles.forgotPassword}>
-                    {/* {translate('forgotPassword').toUpperCase()} */}
-                    forgotPassword
+                    {translate('forgotPassword').toUpperCase()}
                   </Text>
                 </TouchableOpacity>
               </>

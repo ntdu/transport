@@ -15,8 +15,6 @@ const RenderPhaseHomeScreen = () => {
       return <OfflineMode />
     case 1:
       return <Notification />
-    case 2:
-      return <Notification />
     default:
       return <></>
   }

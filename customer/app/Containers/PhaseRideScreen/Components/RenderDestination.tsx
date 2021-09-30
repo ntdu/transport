@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 
 // Styles
 import styles from './Styles/RenderDestinationStyles'
@@ -10,25 +10,56 @@ import PersonRaiseHand from '@/Svgs/Icons/personRaiseHandWhite.svg'
 import Destination from '@/Svgs/Icons/destination.svg'
 
 type RenderDestinationProps = {
-  destination?: string
+  list_destination: any
   type: number
 }
 
 const RenderDestination = (props: RenderDestinationProps) => {
-  return (
-    <View style={styles.container}>
+  console.log(props.list_destination)
+  const renderDestination = ({ item }: any) => (
+    <View style={styles.itemDestination}>
       <View style={styles.imageView}>
-        {props.type === 1 ? (
+        {/* {props.type === 1 ? (
           <PersonRaiseHand
             width={Metrics.defaultImageWidth}
             height={Metrics.defaultImageHeight}
           />
         ) : (
           <Destination width={Normalize(20)} height={Normalize(20)} />
-        )}
+        )} */}
+        <Destination width={Normalize(20)} height={Normalize(20)} />
       </View>
+      <Text style={styles.destinationText}>{item.address}</Text>
+    </View>
+  );
 
-      <Text style={styles.destinationText}>{props.destination}</Text>
+  return (
+    <View style={styles.container}>
+        {/* <View style={styles.imageView}>
+          <PersonRaiseHand
+            width={Metrics.defaultImageWidth}
+            height={Metrics.defaultImageHeight}
+          />
+          
+        </View>
+        <Text style={styles.destinationText}>{props.list_destination}</Text> */}
+      {props.type === 1 ? (
+        <>
+          <View style={styles.imageView}>
+            <PersonRaiseHand
+              width={Metrics.defaultImageWidth}
+              height={Metrics.defaultImageHeight}
+            />
+          </View>
+          <Text style={styles.destinationText}>{props.list_destination}</Text>
+        </>
+      ) : (
+          <FlatList
+            data={props.list_destination}
+            renderItem={renderDestination}
+            keyExtractor={item => item.phoneNumber}
+          />
+      )}
     </View>
   )
 }

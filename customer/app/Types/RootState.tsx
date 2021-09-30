@@ -1,4 +1,4 @@
-import { AddressAndCoordinates, UserDetail } from './CommonTypes'
+import { AddressAndCoordinates, UserDetail, originAndDestiationInfo } from './CommonTypes'
 
 type fetchingErrorType = null | undefined | string
 // type fetchingErrorType = null | string
@@ -18,18 +18,8 @@ export type PackageState = {
 }
 
 export type RideInforState = {
-  addressAndCoordinates: AddressAndCoordinates
-
-  // previousOriginalCoordinates: Coordinates
-
-  customer?: UserDetail
-  sender?: UserDetail
-  receiver?: {
-    phone: string
-    name: string
-  }
+  originAndDestiationInfo: originAndDestiationInfo
   package?: PackageState
-
   rideHash: string
   price: number
 }
