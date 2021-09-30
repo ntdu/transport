@@ -10,7 +10,10 @@ export enum AuthScreens {
 export enum MainScreens {
   HomeScreen = 'HomeScreen',
   RideScreen = 'RideScreen',
-  PhaseRideScreen = 'PhaseRideScreen'
+  PhaseRideScreen = 'PhaseRideScreen',
+  GetPackageProofScreen = 'GetPackageProofScreen',
+  DeliverPackageProofScreen = 'DeliverPackageProofScreen',
+  PayScreen = 'PayScreen'
 }
 
 export enum AppStacks {

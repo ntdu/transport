@@ -15,7 +15,15 @@ import {
   // refreshTokenSaga
 } from './AuthSagas'
 // import { InitSocket, emitBooking, emitChooseBiker } from './SocketSagas'
-import { InitSocket, emitHeartBeat } from './SocketSagas'
+import { 
+  InitSocket, 
+  emitHeartBeat,
+  emitConfirmDelivery,
+  emitDeliveryBikerWaiting,
+  emitBikerReceivedPackage,
+  emitCompleteDelivery
+} from './SocketSagas'
+
 // import { refreshDataWithRideHashSaga } from './NotificationSagas'
 
 // import { getUserDetailSaga } from './UserSagas'
@@ -37,6 +45,10 @@ export default function* root() {
     // Sockets
     takeLatest(SocketTypes.INIT_SOCKET, InitSocket),
     takeLatest(SocketTypes.EMIT_HEART_BEAT, emitHeartBeat),
+    takeLatest(SocketTypes.EMIT_CONFIRM_DELIVERY, emitConfirmDelivery),
+    takeLatest(SocketTypes.EMIT_DELIVERY_BIKER_WAITING, emitDeliveryBikerWaiting),
+    takeLatest(SocketTypes.EMIT_BIKER_RECEIVED_PACKAGE, emitBikerReceivedPackage),
+    takeLatest(SocketTypes.EMIT_COMPLETE_DELIVERY, emitCompleteDelivery),
     // takeLatest(SocketTypes.EMIT_BOOKING_REQUEST, emitBooking),
     // takeLatest(SocketTypes.EMIT_CHOOSE_BIKER_REQUEST, emitChooseBiker),
 

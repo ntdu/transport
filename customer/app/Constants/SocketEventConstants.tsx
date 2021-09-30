@@ -6,8 +6,12 @@ export type SocketEventType =
   | 'ride_complete'
   | 'ride_in_progress'
   | 'biker_waiting'
-
-export type ErrorType = 'TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER' | 'TOKEN_EXPIRED'
+  | 'delivery_biker_chosen'
+  | 'delivery_confirmed'
+  | 'delivery_biker_waiting'
+  | 'biker_received_package'
+  | 'delivery_complete'
+  | 'disconnect'
 
 export const HEARTBEAT_EVENT: SocketEventType = 'heartbeat'
 export const RIDE_CONFIRMED_EVENT: SocketEventType = 'ride_confirmed'
@@ -16,6 +20,15 @@ export const BIKER_CHOSEN_EVENT: SocketEventType = 'biker_chosen'
 export const RIDE_COMPLETE_EVENT: SocketEventType = 'ride_complete'
 export const RIDE_IN_PROGRESS_EVENT: SocketEventType = 'ride_in_progress'
 export const BIKER_WAITING: SocketEventType = 'biker_waiting'
+export const DELIVERY_BIKER_CHOSEN_EVENT: SocketEventType =
+  'delivery_biker_chosen'
+export const DELIVERY_CONFIRMED_EVENT: SocketEventType = 'delivery_confirmed'
+export const DELIVERY_BIKER_WAITING: SocketEventType = 'delivery_biker_waiting'
+export const BIKER_RECEIVED_PACKAGE: SocketEventType = 'biker_received_package'
+export const DELIVERY_COMPLETE_EVENT: SocketEventType = 'delivery_complete'
+export const DISCONNECT_EVENT: SocketEventType = 'disconnect'
+
+export type ErrorType = 'TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER' | 'TOKEN_EXPIRED'
 
 export const TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER_ERROR: ErrorType =
   'TOKEN_IS_NOT_AUTHENTICATED_BY_SERVER'

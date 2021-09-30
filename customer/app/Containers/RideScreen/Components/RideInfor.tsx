@@ -32,7 +32,8 @@ const RideInfor = (props: RideInforProps) => {
 
   const service = useSelector((state: RootState) => state.phaseRider.service)
 
-  const accessToken = useSelector((state: RootState) => state.auth.accessToken)
+  // const accessToken = useSelector((state: RootState) => state.auth.accessToken)
+  const token = useSelector((state: RootState) => state.auth.token)
 
   const {
     addressOriginalLocation,
@@ -41,19 +42,19 @@ const RideInfor = (props: RideInforProps) => {
 
   const confirmRide = () => {
     if (service === SERVICE.RIDE) {
-      console.log('serviceride')
-      dispatch(
-        SocketActions.emitConfirmRide(
-          accessToken,
-          customer?.phoneNumber,
-          rideHash
-        )
-      )
+      // console.log('serviceride')
+      // dispatch(
+      //   SocketActions.emitConfirmRide(
+      //     accessToken,
+      //     customer?.phoneNumber,
+      //     rideHash
+      //   )
+      // )
     } else {
       console.log('service delivery')
       dispatch(
         SocketActions.emitConfirmDelivery(
-          accessToken,
+          token,
           sender?.phoneNumber,
           rideHash
         )

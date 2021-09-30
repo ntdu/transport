@@ -13,8 +13,12 @@ import { AuthScreen } from '@/Containers/AuthScreen'
 // // MainStack Screen
 import { HomeScreen } from '@/Containers/HomeScreen'
 import { RideScreen } from '@/Containers/RideScreen'
-// import { PhaseRideScreen } from '@/Containers/PhaseRideScreen'
-// import { PayScreen } from '@/Containers/PayScreen'
+import { PhaseRideScreen } from '@/Containers/PhaseRideScreen'
+import {
+  GetPackageProofScreen,
+  DeliverPackageProofScreen
+} from '@/Containers/GetProofScreen'
+import { PayScreen } from '@/Containers/PayScreen'
 
 // // History Stack Screen
 // import {
@@ -204,7 +208,7 @@ export const MainTab = () => {
 const Main = createStackNavigator<MainStackParams>()
 export const MainStack = () => {
   return (
-    <Main.Navigator 
+    <Main.Navigator
       initialRouteName={'TabScreen'} 
       screenOptions={{
         headerShown: false
@@ -212,11 +216,19 @@ export const MainStack = () => {
     >
       <Main.Screen name={'TabScreen'} component={MainTab} />
       <Main.Screen name={MainScreens.RideScreen} component={RideScreen} />
-      {/* <Main.Screen
+      <Main.Screen
         name={MainScreens.PhaseRideScreen}
         component={PhaseRideScreen}
       />
-      <Main.Screen name={'PayScreen'} component={PayScreen} /> */}
+      <Main.Screen
+        name={MainScreens.GetPackageProofScreen}
+        component={GetPackageProofScreen}
+      />
+      <Main.Screen
+        name={MainScreens.DeliverPackageProofScreen}
+        component={DeliverPackageProofScreen}
+      />
+      <Main.Screen name={MainScreens.PayScreen} component={PayScreen} />
     </Main.Navigator>
   )
 }

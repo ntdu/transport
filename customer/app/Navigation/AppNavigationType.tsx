@@ -52,6 +52,10 @@ export type TabParams = {
 export type MainStackParams = {
   TabScreen: TabParams
   RideScreen: undefined
+  PhaseRideScreen: undefined
+  GetPackageProofScreen: undefined
+  DeliverPackageProofScreen: undefined
+  PayScreen: undefined
 }
 
 export type RootStackParams = {

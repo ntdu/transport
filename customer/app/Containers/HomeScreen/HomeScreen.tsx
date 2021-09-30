@@ -58,26 +58,28 @@ const HomeScreen = () => {
   // const cancleReadyPhase = () => dispatchPhase({ type: Action.PHASE_0 })
 
   const findCoordinates = () => {
-    Geolocation.getCurrentPosition(
-      (position) => {
-        const { longitude, latitude } = position.coords
-        console.log(longitude);
-        console.log(latitude);
-        dispatch(SocketActions.emitHeartBeat(longitude, latitude))
-      },
-      () => {
-        console.log("RAlert")
-        // RAlert({
-        //   title: translate('errorLocation'),
-        //   content: translate('errorLocationContent'),
-        //   onPressOK: cancleReadyPhase,
-        //   onPressCancel: cancleReadyPhase
-        // })
-      },
-      {
-        enableHighAccuracy: true
-      }
-    )
+    // Geolocation.getCurrentPosition(
+    //   (position) => {
+    //     const { longitude, latitude } = position.coords
+    //     console.log(longitude);
+    //     console.log(latitude);
+    //     dispatch(SocketActions.emitHeartBeat(longitude, latitude))
+    //   },
+    //   () => {
+    //     console.log("RAlert")
+    //     // RAlert({
+    //     //   title: translate('errorLocation'),
+    //     //   content: translate('errorLocationContent'),
+    //     //   onPressOK: cancleReadyPhase,
+    //     //   onPressCancel: cancleReadyPhase
+    //     // })
+    //   },
+    //   {
+    //     enableHighAccuracy: true
+    //   }
+    // )
+
+    dispatch(SocketActions.emitHeartBeat('106.625305', '10.753171'))
   }
 
   const navigateToRideScreen = () => {

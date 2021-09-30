@@ -32,19 +32,18 @@ const RideScreen = () => {
     })
 
   const navigateToPhaseRideScreen = () => {
-    console.log("navigateToPhaseRideScreen")
-    // navigation.reset({
-    //   index: 1,
-    //   routeNames: ['TabScreen', 'PhaseRideScreen'],
-    //   routes: [
-    //     {
-    //       name: 'TabScreen'
-    //     },
-    //     {
-    //       name: 'PhaseRideScreen'
-    //     }
-    //   ]
-    // })
+    navigation.reset({
+      index: 1,
+      routeNames: ['TabScreen', 'PhaseRideScreen'],
+      routes: [
+        {
+          name: 'TabScreen'
+        },
+        {
+          name: 'PhaseRideScreen'
+        }
+      ]
+    })
   }
     
 

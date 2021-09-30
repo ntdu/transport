@@ -83,7 +83,7 @@
   "eletronics": "eletronics",
   "fragile": "fragile",
   "confirmGetPackage": "Confirm get package",
-  "somethingRontWithPackage": "Something ron't with package",
+  "somethingWrongWithPackage": "Something wrong with package",
   "confirmSend": "Confirm send package",
   "confirmSendQuestion": "You are about to send this package",
   "reImage": "Take picture again",

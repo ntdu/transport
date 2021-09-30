@@ -146,18 +146,20 @@ export const startListening = () => {
           break
         
         case 'DELIVERY_BIKER_CHOSEN_EVENT':
-          // const driverList = data['driverList']
           console.log(data)
           const deliveryData = mapDeliveryDataToFrontEnd(data)
-
-          console.log(deliveryData)
 
           store.dispatch(RideInforActions.getInforDelivery(deliveryData))
           store.dispatch(PhaseRiderActions.setService(SERVICE.DELIVERY))
           store.dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GET_A_RIDE))
           
           break
-        
+
+        case 'DELIVERY_CONFIRMED_EVENT':
+          console.log('DELIVERY_CONFIRMED_EVENT')
+          console.log(data)
+            
+          break
         default:
           console.log("don't match")
       }

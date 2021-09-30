@@ -4,8 +4,8 @@ type fetchingErrorType = null | undefined | string
 // type fetchingErrorType = null | string
 
 type Coordinates = {
-    lng: number
-    lat: number
+  lng: number
+  lat: number
 }
 
 export type PackageState = {
@@ -60,31 +60,13 @@ export type PhaseRiderState = {
 }
 
 export type SocketState = {
-    isInitSocket: boolean
-    genericError: fetchingErrorType
-  
-    currentLocation: Coordinates
-  
-    // Ride data
-    coordinates: {
-      origin: Coordinates
-      destination: Coordinates
-    }
-    _id: string
-    address: {
-      destination: string
-      origin: string
-    }
-    customer: {
-      id: number
-      account__username: string
-      phone_number: string
-    }
-    biker: number
-    rideHash: string
-    price: number
-    // End ride data
-  }
+  isInitSocket: boolean
+  genericError: fetchingErrorType
+
+  isEmitHeartbeat: boolean
+
+  currentLocation: Coordinates
+}
 
 export interface RootState {
   auth: AuthState
