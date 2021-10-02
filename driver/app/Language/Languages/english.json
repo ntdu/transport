@@ -76,6 +76,7 @@
   "additionalInfor": "Additional information",
   "tracking": "Tracking",
   "itemDetailts": "Item detailts",
+  "details": "Details",
   "type": "Type",
   "food": "Food",
   "clothing": "Clothing",
@@ -87,5 +88,11 @@
   "parcelImage": "Image of parcel",
   "myProfile": "My profile",
   "editProfile": "Edit profile",
-  "personalInfor": "Personal Infor"
+  "personalInfor": "Personal Infor",
+
+  "destinationNumber": "Number of destination",
+  "firstDestination": "Your first destination",
+  "secondDestination": "Your second destination",
+  "thirdDestination": "Your third destination"
+
 }

@@ -27,6 +27,8 @@ import { SearchPlacesScreen } from '@/Containers/SearchPlaceScreen'
 // } from '@/Containers/PhaseRenderScreen'
 import { InforPackageScreen } from '@/Containers/InforPackageScreen'
 
+import { DestinationScreen } from '@/Containers/DestinationScreen'
+
 // Navigation Type
 import {
   AuthStackParams,
@@ -76,7 +78,7 @@ const Booking = createStackNavigator<BookingStackParams>()
 export const BookingStack = () => {
   return (
     <Booking.Navigator
-      initialRouteName={BookingScreens.DashboardScreen}
+      initialRouteName={BookingScreens.InforPackageScreen}
       screenOptions={{
         headerShown: false
       }}
@@ -88,6 +90,10 @@ export const BookingStack = () => {
       <Booking.Screen
         name={BookingScreens.InforPackageScreen}
         component={InforPackageScreen}
+      />
+      <Booking.Screen
+        name={BookingScreens.DestinationScreen}
+        component={DestinationScreen}
       />
       <Booking.Screen
         name={BookingScreens.SearchPlacesScreen}

@@ -11,6 +11,7 @@ export type AuthStackParams = {
 
 export type BookingStackParams = {
   InforPackageScreen: undefined
+  DestinationScreen: undefined
   DashboardScreen: undefined
   SearchPlacesScreen: undefined
   RideScreen: undefined

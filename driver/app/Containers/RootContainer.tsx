@@ -12,7 +12,7 @@ import { RootState } from '@/Types'
 import { BNetWork, RateStarModal } from '@/Components'
 
 // // Constants
-import { PhaseRider } from '@/Constants/PhaseReduxConstants'
+// import { PhaseRider } from '@/Constants/PhaseReduxConstants'
 
 const RootContainer = () => {
   console.log("RootContainer")

@@ -22,6 +22,7 @@ import { Metrics } from '@/Themes'
 import Phone from '@/Svgs/Icons/phone.svg'
 
 type HeaderProps = {
+  hasBackButton: boolean
   title: string
   canCall: boolean
   phoneNumber?: string
@@ -32,6 +33,7 @@ type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
   const {
+    hasBackButton,
     title,
     wrapperStyle,
     buttonStyle,
@@ -48,10 +50,12 @@ const Header = (props: HeaderProps) => {
     <>
       <View style={[styles.mainContainer, wrapperStyle]}>
         <View style={styles.blankView}>
-          <BBackButton
+          {hasBackButton ? (<BBackButton
             wrapperStyle={styles.wrapperStyle}
             imageStyle={buttonStyle}
-          />
+          />): (
+            <></>
+          )}
         </View>
         <Text style={[styles.title, titleStyle]}>{title}</Text>
         {canCall ? (

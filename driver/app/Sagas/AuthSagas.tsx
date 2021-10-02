@@ -20,8 +20,6 @@ export function* signInSaga(signInPayload: any) {
       userName,
       password
     )
-    console.log(response.data)
-    console.log("---------------------------")
     if (response.ok && response.status === 200) {
       yield put(AuthAction.signInSuccess(response.data?.token))
     } else {

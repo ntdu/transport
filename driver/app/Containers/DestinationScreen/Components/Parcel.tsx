@@ -21,12 +21,6 @@ import styles from './Styles/ParcelStyles'
 
 // Language
 import { translate } from '@/Language'
-import { Colors, Metrics, Normalize } from '@/Themes'
-import { useDispatch, useSelector } from 'react-redux'
-
-// Navigation
-import { useNavigation } from '@react-navigation/native'
-import { RootState } from '@/Types'
 
 const keyExtractorCategory = (item: OptionCategoryType) =>
   'optionCategory' + item.value
@@ -37,8 +31,6 @@ type ParcelProps = {
   weight: number
   numberOfDestinations: number
 }
-import { BookingScreens } from '@/Constants/AppNavigationConstants'
-
 
 const Parcel = (props: ParcelProps) => {
   const { setnumberOfDestinations, selectWeight, weight, numberOfDestinations } = props
@@ -52,18 +44,34 @@ const Parcel = (props: ParcelProps) => {
     console.log(value)
     selectWeight(value)
   }
+  // const onValueChange = (value: number) => setnumberOfDestinations(value)
 
-  const navigation = useNavigation()
-
-  const { address } = useSelector(
-    (state: RootState) => state.map.originAndDestiationInfo.origin
-  )
-
-  const navigateListBikersScreen = () => navigation.navigate(BookingScreens.SearchPlacesScreen, {type: 'Origin'})
+  // const renderCategory = ({
+  //   item,
+  //   index
+  // }: ListRenderItemInfo<OptionCategoryType>) => {
+  //   return (
+  //     <TouchableOpacity
+  //       key={index}
+  //       style={[styles.category, index === category && styles.selectedCategory]}
+  //       onPress={selectType(index)}
+  //     >
+  //       <Text style={styles.categoryText}>{translate(item.label)}</Text>
+  //     </TouchableOpacity>
+  //   )
+  // }
 
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>{translate('details')}</Text>
+      {/* <Text style={styles.typeText}>{translate('type')}</Text>
+      <FlatList
+        data={optionCategory}
+        renderItem={renderCategory}
+        keyExtractor={keyExtractorCategory}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      /> */}
       <View style={styles.weight}>
         <Text style={styles.weightText}>{translate('weight')} (Kg)</Text>
         <Picker
@@ -100,35 +108,6 @@ const Parcel = (props: ParcelProps) => {
             />
           ))}
         </Picker>
-      </View>
-
-      <View style={{justifyContent: 'center',alignItems: 'flex-start', marginTop: 15}}>
-        <View style={{flexDirection: 'row'}}>
-          <Text style={{fontSize: 14, color: Colors.black}}>Location</Text>
-          <Text style={{fontSize: Normalize(14), color: Colors.red}}>*</Text>
-        </View>
-
-        <TouchableOpacity
-          onPress={navigateListBikersScreen}
-          activeOpacity={0.9}
-          style={{
-            width: '100%',
-            height: Normalize(120),
-            borderRadius: 5,
-            borderColor: Colors.black,
-            borderWidth: Normalize(1),
-          }}
-        >
-          <Text 
-            style={{
-              padding: Normalize(10),
-              fontSize: Normalize(22),
-              width: '90%',
-            }}
-          >
-           { address }
-          </Text>
-        </TouchableOpacity>
       </View>
     </View>
   )

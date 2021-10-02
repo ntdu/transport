@@ -4,6 +4,8 @@ import Immutable, { asMutable } from 'seamless-immutable'
 // Constants
 import {
   PhaseBookingBeforeRide,
+  PhaseGiveDestinationInfo,
+  NumberOfDestinations,
   SERVICE
 } from '@/Constants/PhaseReduxConstants'
 
@@ -12,6 +14,9 @@ import { PhaseState } from '@/Types'
 
 const { Types, Creators } = createActions({
   setPhase: ['phase'],
+  setPhaseDestination: ['phaseDestination'],
+  setnumberOfDestinations: ['numberOfDestinations'],
+
   chooseService: ['service'],
 
   eventFoundBikerResult: ['bikers', 'rideHash'],
@@ -30,7 +35,9 @@ export default Creators
 
 /* ------------- Initial State ------------- */
 export const INITIAL_STATE: Immutable.ImmutableObject<PhaseState> = Immutable({
-  phase: PhaseBookingBeforeRide.CHOOSE_SERVICE,
+  phase: PhaseBookingBeforeRide.CHOOSE_LOCATION,
+  phaseDestination: PhaseGiveDestinationInfo.DES_1,
+  numberOfDestinations: NumberOfDestinations.NUM_1,
   service: '',
   resultFoundBikers: {
     bikers: [
@@ -61,6 +68,12 @@ export const INITIAL_STATE: Immutable.ImmutableObject<PhaseState> = Immutable({
 /* ------------- Reducers ------------- */
 export const setPhase = (state = INITIAL_STATE, { phase }: any) =>
   state.merge({ phase })
+
+export const setPhaseDestination = (state = INITIAL_STATE, { phaseDestination }: any) =>
+  state.merge({ phaseDestination })
+
+export const setnumberOfDestinations = (state = INITIAL_STATE, { numberOfDestinations }: any) =>
+  state.merge({ numberOfDestinations })
 
 export const chooseService = (state = INITIAL_STATE, { service }: any) =>
   state.merge({ service })
@@ -103,9 +116,11 @@ export const findRideAfterQuitError = (state = INITIAL_STATE, { error }: any) =>
     fetchingRequestFindBikerAfterQuit: false
   })
 
-/* ------------- Hookup Reducers To Types ------------- */
+  /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_PHASE]: setPhase,
+  [Types.SET_PHASE_DESTINATION]: setPhaseDestination,
+  [Types.SETNUMBER_OF_DESTINATIONS]: setnumberOfDestinations,
   [Types.CHOOSE_SERVICE]: chooseService,
   [Types.EVENT_FOUND_BIKER_RESULT]: eventFoundBikerResult,
 

@@ -13,7 +13,7 @@ import RNFS from 'react-native-fs'
 import Toast from 'react-native-easy-toast'
 
 // Redux
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import PackageInforActions from '@/Redux/PackageInfor'
 import PhaseActions from '@/Redux/PhaseRedux'
 
@@ -33,8 +33,9 @@ import ValidateRecipientSchema from '@/Functions/Validates/ValidateRecipient'
 import { PhaseBookingBeforeRide } from '@/Constants/PhaseReduxConstants'
 
 // Styles
-import styles from './Styles/InforPackageScreenStyles'
+import styles from './Styles/InforDestinationScreenStyles'
 import { Colors, Metrics } from '@/Themes'
+import { RootState } from '@/Types'
 
 // Language
 import { translate } from '@/Language'
@@ -48,14 +49,15 @@ type InforPackageScreenNavigationProps = StackNavigationProp<
   'InforPackageScreen'
 >
 
-const InforPackageScreen = () => {
+const DestinationScreen = () => {
   const navigation = useNavigation<InforPackageScreenNavigationProps>()
   const dispatch = useDispatch()
 
   const [weight, setWeight] = useState<number>(-1)
-  const [numberOfDestinations, setnumberOfDestinations] = useState<number>(-1)
   const [image, setImage] = useState('')
   const [imgUri, setimgUri] = useState('')
+  const [phone, setPhone] = useState('')
+  const [name, setName] = useState('')
 
   const selectWeight = (value: number) => setWeight(value)
 
@@ -66,21 +68,68 @@ const InforPackageScreen = () => {
     formikRef.current?.handleSubmit()
   }
 
+  const { phaseDestination, numberOfDestinations } = useSelector(
+    (state: RootState) => state.phase
+  )
+  const { list_destination } = useSelector(
+    (state: RootState) => state.map.originAndDestiationInfo
+  )
+  const { originAndDestiationInfo } = useSelector(
+    (state: RootState) => state.package
+  )
+
+  let header = ''
+  if (phaseDestination === '1') {
+    header = 'firstDestination'
+  }
+  else if (phaseDestination === '2') {
+    header = 'secondDestination'
+  }
+  else if (phaseDestination === '3') {
+    header = 'thirdDestination'
+  }
+
   const onSubmit = (values: FormikValues) => {
-    const packageInfor = {
-      weight: weight,
-      receiverInfor: {
-        name: values.recipientName,
-        phoneNumber: values.phoneNumber
-      },
-      image: image
+    console.log(originAndDestiationInfo)
+    console.log(phaseDestination)
+    console.log(numberOfDestinations)
+    const { address, destinationLat, destinationLng } = list_destination[list_destination.length - 1]
+
+    console.log("onSubmit")
+    const destinationInfor = {
+      phone: values.phoneNumber,
+      name: values.recipientName,
+      destinationLat: destinationLat,
+      destinationLng: destinationLng,
+      address: address
     }
+    console.log(destinationInfor)
+    dispatch(PackageInforActions.setDestination(destinationInfor))
+
+    if(parseInt(phaseDestination) < parseInt(numberOfDestinations)) {
+      setImage('')
+      setimgUri('')
+      setName('')
+      setPhone('')
+      dispatch(PhaseActions.setPhaseDestination(String(parseInt(phaseDestination) + 1)))
+      navigation.navigate('DestinationScreen')
+    }
+    console.log("----------------------------------------------------------------")
+    
+
+    // const packageInfor = {
+    //   weight: weight,
+    //   numberOfDestinations: numberOfDestinations,
+    //   receiverInfor: {
+    //     name: values.recipientName,
+    //     phoneNumber: values.phoneNumber
+    //   },
+    //   image: image
+    // }
 
     // dispatch(PackageInforActions.setPackageInfor(packageInfor))
-    dispatch(PhaseActions.setnumberOfDestinations(numberOfDestinations))
     // dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.CHOOSE_LOCATION))
     // navigation.navigate('DashboardScreen')
-    navigation.navigate('DestinationScreen')
   }
 
   const launchImage = () => {
@@ -115,31 +164,22 @@ const InforPackageScreen = () => {
           />
           <Header
             hasBackButton={false}
-            title={translate('packageInfor').toUpperCase()}
+            title={translate(header).toUpperCase()}
             canCall={false}
             titleStyle={styles.titleStyle}
-          />
-          <Parcel
-            setnumberOfDestinations={setnumberOfDestinations}
-            selectWeight={selectWeight}
-            numberOfDestinations={numberOfDestinations}
-            weight={weight}
           />
           <Formik
             innerRef={formikRef}
             initialValues={{
-              recipientName: 'Trong Du',
-              phoneNumber: '0354471333'
+              recipientName: name,
+              phoneNumber: phone
             }}
             onSubmit={onSubmit}
-            validationSchema={ValidateRecipientSchema}
+            // validationSchema={ValidateRecipientSchema}
           >
             {({ values }) => (
-              <>
-                {/* <Recipient /> */}
-
-
-                
+              <> 
+                <Recipient name={name} setName={setName} phone={phone} setPhone={setPhone}/>
                 {
                   !!image ? (
                     <View style={styles.imgView}>
@@ -179,11 +219,8 @@ const InforPackageScreen = () => {
                 <BNextButton
                   enable={
                     !!image &&
-                    !!values.phoneNumber &&
-                    !!values.recipientName &&
-                    weight !== -1 
-                    // &&
-                    // category !== -1
+                    !!phone &&
+                    !!name
                   }
                   navigateFunc={handleSubmit}
                   wrapperStyle={styles.buttonStyle}
@@ -197,4 +234,4 @@ const InforPackageScreen = () => {
   )
 }
 
-export default InforPackageScreen
+export default DestinationScreen

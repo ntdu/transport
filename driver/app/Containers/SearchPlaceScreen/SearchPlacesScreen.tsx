@@ -40,19 +40,25 @@ import LeftArrow from '@/Svgs/Icons/leftArrowBlack.svg'
 //   geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }
 // }
 
-const SearchPlacesScreen = () => {
+const SearchPlacesScreen = ({ route }: any) => {
+  const { type } = route.params;
+  console.log(type)
   console.log('SearchPlacesScreen')
-  console.log(Config.GOOGLE_MAPS_API_KEY);
+  // console.log(Config.GOOGLE_MAPS_API_KEY);
   console.log("-------------------------------");
 
 
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
-  const { addressOriginalLocation, addressDestination } = useSelector(
-    (state: RootState) => state.map.addressAndCoordinates.address
-  )
+  // const { addressOriginalLocation, addressDestination } = useSelector(
+  //   (state: RootState) => state.map.addressAndCoordinates.address
+  // )
+  // const { addressAndCoordinates } = useSelector(
+  //   (state: RootState) => state.map
+  // )
 
+  
   const refDestinationLocation = useRef<GooglePlacesAutocompleteRef>(null)
   const refOriginalLocation = useRef<GooglePlacesAutocompleteRef>(null)
 
@@ -70,6 +76,23 @@ const SearchPlacesScreen = () => {
       dispatch(MapActions.setOriginalLocation(lat, lng, address))
     }
   }
+  const { phaseDestination, numberOfDestinations } = useSelector(
+    (state: RootState) => state.phase
+  )
+  
+  const addressOrigin = '19/9 Trần Bình Trọng, Bình Thạnh, Hồ Chí Minh'
+  let addressDestination = ''
+
+  if (phaseDestination === '1') {
+    addressDestination = '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+  }
+  else if(phaseDestination === '2') {
+    addressDestination = '200 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+  }
+  else {
+    addressDestination = '300 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+  }
+
 
   const onPressYourDestination = (
     data: GooglePlaceData,
@@ -117,13 +140,26 @@ const SearchPlacesScreen = () => {
     )
   }
 
-  useEffect(() => {
-    addressOriginalLocation &&
-      refOriginalLocation.current?.setAddressText(addressOriginalLocation)
-    addressDestination &&
-      refDestinationLocation.current?.setAddressText(addressDestination)
-  }, [addressDestination, addressOriginalLocation])
+  // useEffect(() => {
+  //   // dispatch(MapActions.setOriginalLocation(107.122123, 106.123123, '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'))
+  //   dispatch(MapActions.setDestination(107.122123, 106.123123, '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'))
+  //   // console.log(addressAndCoordinates);
+  //   // addressOriginalLocation &&
+  //   //   refOriginalLocation.current?.setAddressText(addressOriginalLocation)
+  //   addressDestination &&
+  //     refDestinationLocation.current?.setAddressText(addressDestination)
+  // }, [addressDestination])
 
+  useEffect(() => {
+    // dispatch(MapActions.setOriginalLocation(107.122123, 106.123123, '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'))
+    if (type === 'Origin') {
+      dispatch(MapActions.setOriginalMap(107.122123, 106.123123, addressOrigin))
+    }
+    else if (type === 'Destination') {
+      dispatch(MapActions.setDestinationMap(107.122123, 106.123123, addressDestination))
+    }
+    // console.log(addressAndCoordinates);
+  }, [])
   return (
     <SafeAreaView>
       <View style={styles.mainContainer}>
@@ -135,7 +171,7 @@ const SearchPlacesScreen = () => {
           />
         </TouchableOpacity>
         
-        <GooglePlacesAutocomplete
+        {/* <GooglePlacesAutocomplete
           ref={refOriginalLocation}
           placeholder={translate('originalLocation')}
           fetchDetails={true}
@@ -161,14 +197,16 @@ const SearchPlacesScreen = () => {
           renderRow={renderRow}
           renderLeftButton={renderLeftButtonYourLocaition}
           debounce={2000}
-        />
-        <GooglePlacesAutocomplete
+        /> */}
+
+        {/* <GooglePlacesAutocomplete
           ref={refDestinationLocation}
           placeholder={translate('whereTo')}
           fetchDetails={true}
           query={{
             // key: Config.GOOGLE_MAPS_API_KEY,
-            key: 'AIzaSyAcIPg4KEuiSe6uucNEO18PABpoO6Ymu5I',
+            // key: 'AIzaSyAcIPg4KEuiSe6uucNEO18PABpoO6Ymu5I',
+            key: 'a',
             language: 'vi',
             components: 'country:vn'
           }}
@@ -188,7 +226,7 @@ const SearchPlacesScreen = () => {
           onPress={onPressYourDestination}
           renderLeftButton={renderLeftButtonDestination}
           debounce={2000}
-        />
+        /> */}
       </View>
     </SafeAreaView>
   )

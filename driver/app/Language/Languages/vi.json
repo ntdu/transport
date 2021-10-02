@@ -76,6 +76,7 @@
   "additionalInfor": "Thông tin khác",
   "tracking": "Theo dõi",
   "itemDetailts": "Thông tin gói hàng",
+  "details": "Chi tiết gói hàng",
   "type": "Phân loại",
   "food": "Đồ ăn",
   "clothing": "Quần áo",
@@ -87,5 +88,7 @@
   "parcelImage": "Ảnh đơn hàng",
   "myProfile": "Thông tin của tôi",
   "editProfile": "Chỉnh sửa thông tin",
-  "personalInfor": "Thông tin cá nhân"
+  "personalInfor": "Thông tin cá nhân",
+
+  "destinationNumber": "Số điểm đến"
 }

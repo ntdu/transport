@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   backIcon: {
     marginLeft: Normalize(5),
-    marginTop: Normalize(-10)
+    // marginTop: Normalize(-10)
   },
   container: {
     padding: Normalize(10),

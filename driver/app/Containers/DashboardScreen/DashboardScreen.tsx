@@ -143,13 +143,13 @@ const DashboardScreen = () => {
   // render region
   const renderFooter = () => {
     switch (phase) {
-      case PhaseBookingBeforeRide.CHOOSE_SERVICE:
-        return (
-          <>
-            <TrackingNumberOrder />
-            <ChooseService />
-          </>
-        )
+      // case PhaseBookingBeforeRide.CHOOSE_SERVICE:
+      //   return (
+      //     <>
+      //       <TrackingNumberOrder />
+      //       <ChooseService />
+      //     </>
+      //   )
       case PhaseBookingBeforeRide.CHOOSE_LOCATION:
         return <ChooseLocation onPress={navigateSearchScreen} />
       case PhaseBookingBeforeRide.CONFIRM_BOOK:
@@ -165,12 +165,10 @@ const DashboardScreen = () => {
 
   const backFunc = () => {
     switch (phase) {
-      case PhaseBookingBeforeRide.CHOOSE_SERVICE:
-        return <></>
+      // case PhaseBookingBeforeRide.CHOOSE_SERVICE:
+      //   return <></>
       case PhaseBookingBeforeRide.CHOOSE_LOCATION:
-        return dispatch(
-          PhaseActions.setPhase(PhaseBookingBeforeRide.CHOOSE_SERVICE)
-        )
+        return <></>
       case PhaseBookingBeforeRide.CONFIRM_BOOK:
         return dispatch(
           PhaseActions.setPhase(PhaseBookingBeforeRide.CHOOSE_LOCATION)
@@ -225,8 +223,12 @@ const DashboardScreen = () => {
     <View style={styles.mainContainer}>
       {/* <BMap /> */}
       <StatusBar hidden />
-
-      {phase !== PhaseBookingBeforeRide.CHOOSE_SERVICE ? (
+      <BBackButton
+          wrapperStyle={styles.backContainer}
+          imageStyle={styles.imageBack}
+          backFunc={backFunc}
+        />
+      {/* {phase !== PhaseBookingBeforeRide.CHOOSE_SERVICE ? (
         <BBackButton
           wrapperStyle={styles.backContainer}
           imageStyle={styles.imageBack}
@@ -238,7 +240,7 @@ const DashboardScreen = () => {
           wrapperStyle={styles.imageWrapper}
           navigateFunction={navigateToSetting}
         />
-      )}
+      )} */}
 
       {renderFooter()}
       <BToast ref={toastRef} />

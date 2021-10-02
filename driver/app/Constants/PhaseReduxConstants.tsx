@@ -33,12 +33,30 @@ export const SERVICE = {
 }
 
 export enum PhaseBookingBeforeRide {
-  CHOOSE_SERVICE = 'CHOOSE_SERVICE',
+  // CHOOSE_SERVICE = 'CHOOSE_SERVICE',
   SET_INFOR_PACKAGE = 'SET_INFOR_PACKAGE',
   CHOOSE_LOCATION = 'CHOOSE_LOCATION',
   CONFIRM_BOOK = 'CONFIRM_BOOK',
   GET_BIKER = 'GET_BIKER',
   CHOOSE_BIKER = 'CHOOSE_BIKER'
+}
+
+export enum PhaseGiveDestinationInfo {
+  DES_1 = '1',
+  DES_2 = '2',
+  DES_3 = '3',
+  DES_4 = '4',
+  DES_5 = '5',
+  DES_6 = '6'
+}
+
+export enum NumberOfDestinations {
+  NUM_1 = '1',
+  NUM_2 = '2',
+  NUM_3 = '3',
+  NUM_4 = '4',
+  NUM_5 = '5',
+  NUM_6 = '6'
 }
 
 export enum PhaseBookingInRide {

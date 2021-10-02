@@ -1,5 +1,6 @@
 import {
   AddressAndCoordinates,
+  OriginAndDestiationInfo,
   Coordinates,
   UserDetail,
   ReceiverInfor
@@ -43,6 +44,8 @@ export type AuthState = {
 
 export type PhaseState = {
   phase: string
+  phaseDestination: any
+  numberOfDestinations: any
   service: string
   resultFoundBikers: ResultFoundBikers
 
@@ -55,25 +58,39 @@ export type PhaseState = {
 }
 
 export type MapState = {
-  addressAndCoordinates: AddressAndCoordinates
+  // addressAndCoordinates: AddressAndCoordinates
+  originAndDestiationInfo: OriginAndDestiationInfo
   distance: number
 }
 
+// export type PackageInfor = {
+//   phaseBooking: string
+//   time: number
+//   price?: string | undefined
+
+//   category: number
+//   weight: number
+//   receiverInfor: ReceiverInfor
+//   senderProof: Buffer | null
+
+  // biker?: PayloadFoundBikers
+//   rideHash?: string
+//   bikerLocationUpdate?: Coordinates | undefined
+
+//   addressAndCoordinates?: AddressAndCoordinates
+// }
+
+export type PayloadFoundDrivers = {
+  phone: string
+  distance: number
+  userDetail: UserDetail
+}
+
 export type PackageInfor = {
-  phaseBooking: string
-  time: number
-  price?: string | undefined
-
-  category: number
   weight: number
-  receiverInfor: ReceiverInfor
   senderProof: Buffer | null
-
-  biker?: PayloadFoundBikers
-  rideHash?: string
-  bikerLocationUpdate?: Coordinates | undefined
-
-  addressAndCoordinates?: AddressAndCoordinates
+  originAndDestiationInfo: OriginAndDestiationInfo
+  driver?: PayloadFoundDrivers
 }
 
 export type RideInforState = {
@@ -176,7 +193,8 @@ export interface RootState {
   socket: SocketState
   notification: NotificationState
   user: UserState
-  map: MapState
-  package: PackageState
+  map: MapState 
+  // package: PackageState
+  package: PackageInfor
   history: HistoryState
 }

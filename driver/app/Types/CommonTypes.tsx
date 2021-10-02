@@ -34,6 +34,23 @@ export type AddressAndCoordinates = {
   }
 }
 
+export type Destination = {
+  phone: string | undefined
+  name: string | undefined
+  destinationLat: number | undefined
+  destinationLng: number | undefined
+  address: string | undefined
+}
+
+export type OriginAndDestiationInfo = {
+  origin: {
+    originalLat: number | undefined
+    originalLng: number | undefined
+    address: string | undefined
+  }
+  list_destination: Destination[]
+}
+
 export type ReceiverInfor = {
   phoneNumber: string
   name: string

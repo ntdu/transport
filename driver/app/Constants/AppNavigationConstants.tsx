@@ -9,6 +9,7 @@ export enum AuthScreens {
 
 export enum BookingScreens {
   InforPackageScreen = 'InforPackageScreen',
+  DestinationScreen = 'DestinationScreen',
   DashboardScreen = 'DashboardScreen',
   SearchPlacesScreen = 'SearchPlacesScreen',
   ListBikersScreen = 'ListBikersScreen',

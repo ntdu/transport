@@ -129,7 +129,8 @@ const SignInScreen = () => {
       routes: [
         {
           name: AppStacks.MainStack,
-          params: { screen: MainScreens.HomeScreen }
+          // params: { screen: MainScreens.HomeScreen }
+          // params: { screen: 'àdafds' }
         }
       ]
     })
