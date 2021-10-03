@@ -23,6 +23,7 @@ export default StyleSheet.create({
     fontSize: Normalize(24)
   },
   phone: {
+    // paddingRight: Normalize(0),
     marginRight: Normalize(-25),
     tintColor: Colors.white
   },

@@ -37,7 +37,7 @@ export const INITIAL_STATE: Immutable.ImmutableObject<MapState> = Immutable({
     },
     list_destination: []
   },
-  distance: 0
+  distance: 2
 })
 
 /* ------------- Reducers ------------- */

@@ -94,13 +94,13 @@ const DashboardScreen = () => {
   }
 
   const getOriginalLocation = () => {
-    dispatch(
-      MapActions.setOriginalLocation(
-        106.6353054,
-        10.7731708,
-        '262/13/6 Lũy Bán Bích, Phú Trung, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam'
-      )
-    )
+    // dispatch(
+    //   MapActions.setOriginalLocation(
+    //     106.6353054,
+    //     10.7731708,
+    //     '262/13/6 Lũy Bán Bích, Phú Trung, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam'
+    //   )
+    // )
     // Geolocation.getCurrentPosition(
     //   async (location) => {
     //     const { latitude, longitude } = location.coords

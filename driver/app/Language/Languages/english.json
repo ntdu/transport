@@ -93,6 +93,18 @@
   "destinationNumber": "Number of destination",
   "firstDestination": "Your first destination",
   "secondDestination": "Your second destination",
-  "thirdDestination": "Your third destination"
+  "thirdDestination": "Your third destination",
 
+  "serviceRide": "Ride",
+  "serviceDriver": "Driver",
+  "serviceDelivery": "Delivery",
+  "orderNumber": "Order",
+  "tripDetails": "Trip Details",
+  "pickup": "Pick up location",
+  "destinationPlace": "Destination",
+  "status": "Status",
+  "tripFare": "Trip Fare",
+  "platformFare": "Platform Fare",
+  "summary": "Summary",
+  "orderSent":"Your order is sent"
 }

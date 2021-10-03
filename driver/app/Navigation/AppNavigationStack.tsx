@@ -28,6 +28,7 @@ import { SearchPlacesScreen } from '@/Containers/SearchPlaceScreen'
 import { InforPackageScreen } from '@/Containers/InforPackageScreen'
 
 import { DestinationScreen } from '@/Containers/DestinationScreen'
+import { OrderTrackingScreen } from '@/Containers/OrderTrackingScreen'
 
 // Navigation Type
 import {
@@ -98,6 +99,10 @@ export const BookingStack = () => {
       <Booking.Screen
         name={BookingScreens.SearchPlacesScreen}
         component={SearchPlacesScreen}
+      />
+      <Booking.Screen
+        name={'OrderTrackingScreen'}
+        component={OrderTrackingScreen}
       />
       {/* <Booking.Screen
         name={BookingScreens.PhaseRenderScreen}

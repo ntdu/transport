@@ -55,19 +55,21 @@ export const setPackageInfor = (
   state = INITIAL_STATE,
   { packageInfor }: any
 ) => {
-  const { category, weight, receiverInfor, image } = packageInfor
-  // return state.merge({
-  //   package: state.package.concat({
-  //     category,
-  //     weight,
-  //     receiverInfor,
-  //     senderProof: image,
-  //     phaseBooking: '',
-  //     time: 0,
-  //     price: '0'
-  //   })
-  // })
-  return state
+  const { weight, image, originalLat, originalLng, address } = packageInfor
+  
+  return state.merge({
+    ...state,
+    weight: weight,
+    // senderProof: image,
+    originAndDestiationInfo: {
+      ...state.originAndDestiationInfo,
+      origin: {
+        originalLat: originalLat,
+        originalLng: originalLng,
+        address: address,
+      }
+    }
+  })
 }
 
 export const setDestination = (
@@ -77,25 +79,14 @@ export const setDestination = (
   console.log(destinationInfor)
   console.log("destinationInfordestinationInfordestinationInfordestinationInfordestinationInfor")
   console.log("------------------------")
-  const { phone, name, destinationLat, destinationLng, address } = destinationInfor
-  // return state.merge({
-  //   package: state.package.concat({
-  //     category,
-  //     weight,
-  //     receiverInfor,
-  //     senderProof: image,
-  //     phaseBooking: '',
-  //     time: 0,
-  //     price: '0'
-  //   })
-  // })
+  const { phoneNumber, name, destinationLat, destinationLng, address } = destinationInfor
   return state.merge({
     originAndDestiationInfo: {
       ...state.originAndDestiationInfo,
       list_destination: [
         ...state.originAndDestiationInfo.list_destination,
         {
-          phone: phone,
+          phoneNumber: phoneNumber,
           name: name,
           destinationLat: destinationLat,
           destinationLng: destinationLng,

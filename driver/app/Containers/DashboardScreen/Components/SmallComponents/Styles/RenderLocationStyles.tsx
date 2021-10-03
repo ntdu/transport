@@ -9,6 +9,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.white,
     padding: Normalize(20),
     marginHorizontal: Normalize(30),
+    marginBottom: Normalize(2),
     flexDirection: 'row',
     ...ApplicationStyles.screen.defaultElevation,
     width: Metrics.screenWidth - Normalize(20),

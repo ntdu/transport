@@ -15,6 +15,7 @@ export type BookingStackParams = {
   DashboardScreen: undefined
   SearchPlacesScreen: undefined
   RideScreen: undefined
+  OrderTrackingScreen: undefined
   PhaseRenderScreen: undefined
   SimpleMapScreen: undefined
 }

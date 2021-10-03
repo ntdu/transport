@@ -30,7 +30,7 @@ type Recipient = {
 }
 
 const Recipient = ( props: any) => {
-  const { name, setName, phone, setPhone } = props
+  const { name, setName, phoneNumber, setPhoneNumber } = props
   console.log("Recipient--------------------------------")
   console.log(name)
   const navigation = useNavigation()
@@ -63,7 +63,7 @@ const Recipient = ( props: any) => {
     setName(value);
   }
   const handleChangePhone = (value: any) => {
-    setPhone(value);
+    setPhoneNumber(value);
   }
   return (
     <>
@@ -86,7 +86,7 @@ const Recipient = ( props: any) => {
           />
           <BLabelTextInput
             label={translate('phoneNumber')}
-            value={phone}
+            value={phoneNumber}
             onChangeText={handleChangePhone}
             ref={phoneNumberRef}
             errorMessage={errors.phoneNumber}

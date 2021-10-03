@@ -90,5 +90,16 @@
   "editProfile": "Chỉnh sửa thông tin",
   "personalInfor": "Thông tin cá nhân",
 
-  "destinationNumber": "Số điểm đến"
+  "destinationNumber": "Số điểm đến",
+
+  "serviceRide": "Di chuyển",
+  "serviceDelivery": "Giao hàng",
+  "orderNumber": "Đơn",
+  "tripDetails": "Thông tin chuyến",
+  "pickup": "Nơi đón",
+  "destinationPlace": "Đích",
+  "status": "Trạng thái",
+  "tripFare": "Giá chuyến đi",
+  "platformFare": "Phí nền tảng",
+  "summary": "Tổng cộng"
 }

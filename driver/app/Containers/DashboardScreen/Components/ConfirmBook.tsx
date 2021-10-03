@@ -44,23 +44,20 @@ const ConfirmBook = () => {
 
   const dispatch = useDispatch()
 
-  const addressAndCoordinates = useSelector(
-    (state: RootState) => state.map.addressAndCoordinates
+  const { origin, list_destination } = useSelector(
+    (state: RootState) => state.map.originAndDestiationInfo
   )
+
+  const { originalLat, originalLng } = origin
+  const addressOriginalLocation = origin.address
+
+  const { destinationLat, destinationLng } = list_destination[0]
+  const addressDestination = list_destination[0].address
 
   const toastRef = useRef<Toast>(null)
 
   const [price, setPrice] = useState('')
 
-  const { coordinates, address } = addressAndCoordinates
-
-  const { addressDestination, addressOriginalLocation } = address
-  const {
-    originalLat,
-    originalLng,
-    destinationLng,
-    destinationLat
-  } = coordinates
   const { indexChooseBiker } = useSelector((state: RootState) => state.phase)
   const accessToken = useSelector((state: RootState) => state.auth.accessToken)
   const token = useSelector((state: RootState) => state.auth.token)
@@ -80,31 +77,22 @@ const ConfirmBook = () => {
 
   const service = useSelector((state: RootState) => state.phase.service)
 
-  const packageInfor = useSelector((state: RootState) => state.package.package)
+  // const packageInfor = useSelector((state: RootState) => state.package.package)
 
   const phoneNumber = bikers[indexChooseBiker].userDetail?.phoneNumber
 
   const orderBiker = (price: string) => {
     setPrice(price)
-    if (service === SERVICE.DELIVERY) {
-      dispatch(
-        SocketActions.emitChooseBikerDeliveryRequest(
-          token,
-          phoneNumber,
-          rideHash,
-          price
-        )
+    
+    dispatch(
+      SocketActions.emitChooseBikerDeliveryRequest(
+        token,
+        phoneNumber,
+        rideHash,
+        price
       )
-    } else {
-      // dispatch(
-      //   SocketActions.emitChooseBikerRequest(
-      //     accessToken,
-      //     phoneNumber,
-      //     rideHash,
-      //     price
-      //   )
-      // )
-    }
+    )
+    
     isBook = true
   }
 
@@ -186,7 +174,8 @@ const ConfirmBook = () => {
           serviceWhenRide()
         }
 
-        // navigation.navigate('OrderTrackingScreen')
+        navigation.navigate('OrderTrackingScreen')
+        // navigation.navigate(BookingScreens.DashboardScreen)1
 
         dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.CHOOSE_SERVICE))
       }

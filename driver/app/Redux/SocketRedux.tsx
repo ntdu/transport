@@ -20,8 +20,6 @@ const { Types, Creators } = createActions({
 
   emitDeliveryRequest: [
     'token',
-    'addressAndCoordinates',
-    'receiverInfor',
     'packageInfor'
   ],
   emitDeliverySuccess: [''],

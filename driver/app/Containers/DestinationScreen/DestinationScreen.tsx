@@ -56,7 +56,7 @@ const DestinationScreen = () => {
   const [weight, setWeight] = useState<number>(-1)
   const [image, setImage] = useState('')
   const [imgUri, setimgUri] = useState('')
-  const [phone, setPhone] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [name, setName] = useState('')
 
   const selectWeight = (value: number) => setWeight(value)
@@ -97,8 +97,8 @@ const DestinationScreen = () => {
 
     console.log("onSubmit")
     const destinationInfor = {
-      phone: values.phoneNumber,
-      name: values.recipientName,
+      phoneNumber: phoneNumber,
+      name: name,
       destinationLat: destinationLat,
       destinationLng: destinationLng,
       address: address
@@ -110,12 +110,14 @@ const DestinationScreen = () => {
       setImage('')
       setimgUri('')
       setName('')
-      setPhone('')
+      setPhoneNumber('')
       dispatch(PhaseActions.setPhaseDestination(String(parseInt(phaseDestination) + 1)))
       navigation.navigate('DestinationScreen')
     }
-    console.log("----------------------------------------------------------------")
-    
+    else {
+      dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.CHOOSE_LOCATION))
+      navigation.navigate('DashboardScreen')
+    }
 
     // const packageInfor = {
     //   weight: weight,
@@ -172,14 +174,14 @@ const DestinationScreen = () => {
             innerRef={formikRef}
             initialValues={{
               recipientName: name,
-              phoneNumber: phone
+              phoneNumber: phoneNumber
             }}
             onSubmit={onSubmit}
             // validationSchema={ValidateRecipientSchema}
           >
             {({ values }) => (
               <> 
-                <Recipient name={name} setName={setName} phone={phone} setPhone={setPhone}/>
+                <Recipient name={name} setName={setName} phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber}/>
                 {
                   !!image ? (
                     <View style={styles.imgView}>
@@ -219,7 +221,7 @@ const DestinationScreen = () => {
                 <BNextButton
                   enable={
                     !!image &&
-                    !!phone &&
+                    !!phoneNumber &&
                     !!name
                   }
                   navigateFunc={handleSubmit}

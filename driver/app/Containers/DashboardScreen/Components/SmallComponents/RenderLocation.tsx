@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { View, Text, TouchableOpacity, ViewStyle } from 'react-native'
+import { View, Text, TouchableOpacity, ViewStyle, FlatList } from 'react-native'
 
 // Redux
 import { useSelector } from 'react-redux'
@@ -29,18 +29,33 @@ const RenderLocation = (props: RenderLocationProps) => {
 
   const { wrapperStyle } = props
 
-  const { addressDestination, addressOriginalLocation } = useSelector(
-    (state: RootState) => state.map.addressAndCoordinates.address
-  )
-
+  const addressOriginalLocation = useSelector((state: RootState) => state.map.originAndDestiationInfo.origin.address)
+  const { list_destination } = useSelector((state: RootState) => state.package.originAndDestiationInfo)
+  console.log(list_destination)
   const navigateListBikersScreen = () =>
     navigation.navigate(BookingScreens.SearchPlacesScreen)
+
+  const renderDestination = ({ item }: any) => (
+    <TouchableOpacity
+      style={[styles.chooseLocationButton, styles.border]}
+      // onPress={navigateListBikersScreen}
+      activeOpacity={0.9}
+    >
+      <Destination
+        width={Metrics.defaultImageWidth}
+        height={Metrics.defaultImageHeight}
+      />
+      <Text style={styles.locationText} numberOfLines={1}>
+        {item.address}
+      </Text>
+    </TouchableOpacity>
+  );
 
   return (
     <View style={[styles.chooseLocationView, wrapperStyle]}>
       <TouchableOpacity
         style={[styles.chooseLocationButton, styles.seperate]}
-        onPress={navigateListBikersScreen}
+        // onPress={navigateListBikersScreen}
         activeOpacity={0.9}
       >
         <Location
@@ -52,7 +67,14 @@ const RenderLocation = (props: RenderLocationProps) => {
           {addressOriginalLocation}
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity
+
+      <FlatList
+        data={list_destination}
+        renderItem={renderDestination}
+        keyExtractor={item => item.phoneNumber}
+      />
+
+      {/* <TouchableOpacity
         style={[styles.chooseLocationButton, styles.border]}
         onPress={navigateListBikersScreen}
         activeOpacity={0.9}
@@ -68,7 +90,7 @@ const RenderLocation = (props: RenderLocationProps) => {
         ) : (
           <Text style={styles.whereToText}>{translate('whereTo')}</Text>
         )}
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   )
 }

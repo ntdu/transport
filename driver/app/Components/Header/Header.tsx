@@ -58,6 +58,7 @@ const Header = (props: HeaderProps) => {
           )}
         </View>
         <Text style={[styles.title, titleStyle]}>{title}</Text>
+        {/* <View style={styles.blankView} /> */}
         {canCall ? (
           <TouchableOpacity onPress={callBiker} style={styles.phone}>
             <Phone

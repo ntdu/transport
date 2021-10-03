@@ -38,50 +38,50 @@ const ListBikers = () => {
 
   const { resultFoundBikers } = useSelector((state: RootState) => state.phase)
 
-  const { address, coordinates } = useSelector(
-    (state: RootState) => state.map.addressAndCoordinates
-  )
+  // const { address, coordinates } = useSelector(
+  //   (state: RootState) => state.map.originAndDestiationInfo
+  // )
 
   const addressAndCoordinates = useSelector(
-    (state: RootState) => state.map.addressAndCoordinates
+    (state: RootState) => state.map.originAndDestiationInfo
   )
 
   const service = useSelector((state: RootState) => state.phase.service)
 
-  const packageInfor = useSelector((state: RootState) => {
-    if (service === SERVICE.DELIVERY) return state.package.package
-  })
+  // const packageInfor = useSelector((state: RootState) => {
+  //   if (service === SERVICE.DELIVERY) return state.package.package
+  // })
 
-  const packageInformation = packageInfor
-    ? packageInfor[packageInfor.length - 1]
-    : null
+  // const packageInformation = packageInfor
+  //   ? packageInfor[packageInfor.length - 1]
+  //   : null
 
   const retryFinding = () => {
-    if (service === SERVICE.DELIVERY && packageInformation) {
-      const {
-        senderProof,
-        receiverInfor,
-        weight,
-        category
-      } = packageInformation
-      dispatch(
-        SocketActions.emitDeliveryRequest(
-          accessToken,
-          addressAndCoordinates,
-          receiverInfor,
-          {
-            senderProof,
-            weight,
-            category
-          }
-        )
-      )
-    } else {
-      dispatch(
-        SocketActions.emitBookingRequest(accessToken, addressAndCoordinates)
-      )
-    }
-    dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.GET_BIKER))
+    // if (service === SERVICE.DELIVERY && packageInformation) {
+    //   const {
+    //     senderProof,
+    //     receiverInfor,
+    //     weight,
+    //     category
+    //   } = packageInformation
+    //   dispatch(
+    //     SocketActions.emitDeliveryRequest(
+    //       accessToken,
+    //       addressAndCoordinates,
+    //       receiverInfor,
+    //       {
+    //         senderProof,
+    //         weight,
+    //         category
+    //       }
+    //     )
+    //   )
+    // } else {
+    //   dispatch(
+    //     SocketActions.emitBookingRequest(accessToken, addressAndCoordinates)
+    //   )
+    // }
+    // dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.GET_BIKER))
   }
   const renderRegion = () => {
     if (isFindingBikers) {

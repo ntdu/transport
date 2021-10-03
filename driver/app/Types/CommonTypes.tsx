@@ -35,8 +35,8 @@ export type AddressAndCoordinates = {
 }
 
 export type Destination = {
-  phone: string | undefined
-  name: string | undefined
+  phoneNumber: string
+  name: string
   destinationLat: number | undefined
   destinationLng: number | undefined
   address: string | undefined

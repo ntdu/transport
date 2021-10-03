@@ -71,18 +71,13 @@ export function* InitSocket() {
 
 export function* emitDelivery({
   token,
-  addressAndCoordinates,
-  receiverInfor,
   packageInfor
 }: any) {
   try {
     const userAgent: string = yield select(selectUserAgent)
     yield Delivery(
       token,
-      addressAndCoordinates,
-      receiverInfor,
-      packageInfor,
-      userAgent
+      packageInfor
     )
     yield put(SocketActions.emitDeliverySuccess())
   } catch (error) {
@@ -101,7 +96,7 @@ export function* emitChooseBikerDelivery({
     yield wrapperEmitSocket(() =>
       ChooseBikerDelivery(token, phoneNumber, rideHash, price, userAgent)
     )
-    // yield put(SocketActions.emitChooseBikerDeliverySuccess())
+    yield put(SocketActions.emitChooseBikerDeliverySuccess())
   } catch (error) {
     console.log(error)
   }

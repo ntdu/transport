@@ -13,7 +13,7 @@ import RNFS from 'react-native-fs'
 import Toast from 'react-native-easy-toast'
 
 // Redux
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import PackageInforActions from '@/Redux/PackageInfor'
 import PhaseActions from '@/Redux/PhaseRedux'
 
@@ -42,6 +42,7 @@ import { translate } from '@/Language'
 // Svgs
 import Camera from '@/Svgs/Icons/camera.svg'
 import ImageSVG from '@/Svgs/Icons/image.svg'
+import { RootState } from '@/Types'
 
 type InforPackageScreenNavigationProps = StackNavigationProp<
   BookingStackParams,
@@ -66,17 +67,20 @@ const InforPackageScreen = () => {
     formikRef.current?.handleSubmit()
   }
 
+  const { originalLat, originalLng, address } = useSelector(
+    (state: RootState) => state.map.originAndDestiationInfo.origin
+  )
+
   const onSubmit = (values: FormikValues) => {
     const packageInfor = {
       weight: weight,
-      receiverInfor: {
-        name: values.recipientName,
-        phoneNumber: values.phoneNumber
-      },
-      image: image
+      image: image,
+      originalLat: originalLat,
+      originalLng: originalLng,
+      address: address
     }
 
-    // dispatch(PackageInforActions.setPackageInfor(packageInfor))
+    dispatch(PackageInforActions.setPackageInfor(packageInfor))
     dispatch(PhaseActions.setnumberOfDestinations(numberOfDestinations))
     // dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.CHOOSE_LOCATION))
     // navigation.navigate('DashboardScreen')

@@ -34,9 +34,9 @@ const ChooseLocation = (props: ChooseLocationProps) => {
   const { onPress } = props
 
   const dispatch = useDispatch()
-  const addressAndCoordinates = useSelector(
-    (state: RootState) => state.map.addressAndCoordinates
-  )
+  // const addressAndCoordinates = useSelector(
+  //   (state: RootState) => state.map.addressAndCoordinates
+  // )
 
   const service = useSelector((state: RootState) => state.phase.service)
 
@@ -44,44 +44,24 @@ const ChooseLocation = (props: ChooseLocationProps) => {
   //   service === SERVICE.DELIVERY &&
   //   useSelector((state: RootState) => state.package.package)
   const packageInfor = useSelector((state: RootState) => {
-    if (service === SERVICE.DELIVERY) {
-      return state.package.package
-    }
+    return state.package
   })
 
-  const packageInformation = packageInfor
-    ? packageInfor[packageInfor.length - 1]
-    : null
+  console.log(packageInfor)
+
+  // const packageInformation = packageInfor
+  //   ? packageInfor[packageInfor.length - 1]
+  //   : null
 
   const confirm = () => {
     dispatch(SocketActions.initSocket())
-    if (service === SERVICE.DELIVERY && packageInformation) {
-      const {
-        senderProof,
-        receiverInfor,
-        weight,
-        category
-      } = packageInformation
-      console.log("emitDeliveryRequest")
-      console.log(token)
+    if (packageInfor) {
       dispatch(
         SocketActions.emitDeliveryRequest(
           token,
-          addressAndCoordinates,
-          receiverInfor,
-          {
-            senderProof,
-            weight,
-            category
-          }
+          packageInfor
         )
       )
-    } else {
-      console.log("emitBookingRequest")
-
-      // dispatch(
-      //   SocketActions.emitBookingRequest(accessToken, addressAndCoordinates)
-      // )
     }
     console.log("GET_BIKER")
     dispatch(PhaseActions.setPhase(PhaseBookingBeforeRide.GET_BIKER))
