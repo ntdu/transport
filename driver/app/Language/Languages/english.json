@@ -106,5 +106,7 @@
   "tripFare": "Trip Fare",
   "platformFare": "Platform Fare",
   "summary": "Summary",
-  "orderSent":"Your order is sent"
+  "orderSent":"Your order is sent",
+  "codeShipment":"Code of shipment",
+  "qr":"QR Code"
 }

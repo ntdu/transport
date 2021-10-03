@@ -10,6 +10,8 @@ import {
 
 // Components
 import { BBackButton } from '../Button'
+import { useNavigation } from '@react-navigation/native'
+import { BookingScreens } from '@/Constants/AppNavigationConstants'
 
 // Functions
 import Call from '@/Functions/CallBikerFunctions'
@@ -20,11 +22,13 @@ import { Metrics } from '@/Themes'
 
 // Svgs
 import Phone from '@/Svgs/Icons/phone.svg'
+import Email from '@/Svgs/Icons/email.svg'
 
 type HeaderProps = {
   hasBackButton: boolean
   title: string
   canCall: boolean
+  hasEmail?: boolean
   phoneNumber?: string
   wrapperStyle?: ViewStyle
   titleStyle?: TextStyle
@@ -32,6 +36,8 @@ type HeaderProps = {
 }
 
 const Header = (props: HeaderProps) => {
+  const navigation = useNavigation()
+
   const {
     hasBackButton,
     title,
@@ -39,11 +45,17 @@ const Header = (props: HeaderProps) => {
     buttonStyle,
     titleStyle,
     canCall,
+    hasEmail,
     phoneNumber
   } = props
 
   const callBiker = () => {
+    console.log("Call")
     phoneNumber && Call(phoneNumber)
+  }
+
+  const callEmail = () => {
+    navigation.navigate(BookingScreens.QRScreen)
   }
 
   return (
@@ -67,7 +79,18 @@ const Header = (props: HeaderProps) => {
             />
           </TouchableOpacity>
         ) : (
-          <View style={styles.blankView} />
+          <></>
+        )}
+
+        {hasEmail ? (
+          <TouchableOpacity onPress={callEmail} style={styles.email}>
+            <Email
+              width={Metrics.defaultImageWidth}
+              height={Metrics.defaultImageHeight}
+            />
+          </TouchableOpacity>
+        ) : (
+          <></>
         )}
       </View>
     </>

@@ -38,6 +38,7 @@
     "react-native-maps-directions": "^1.8.0",
     "react-native-modal": "^13.0.0",
     "react-native-permissions": "^3.0.5",
+    "react-native-qrcode-svg": "^6.1.1",
     "react-native-ratings": "^8.1.0",
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-safe-area-context": "^3.3.2",

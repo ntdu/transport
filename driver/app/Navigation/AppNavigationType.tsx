@@ -18,6 +18,7 @@ export type BookingStackParams = {
   OrderTrackingScreen: undefined
   PhaseRenderScreen: undefined
   SimpleMapScreen: undefined
+  QRScreen: undefined
 }
 
 export type SettingStackParams = {

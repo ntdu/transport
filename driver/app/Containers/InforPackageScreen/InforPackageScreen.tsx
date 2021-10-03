@@ -119,7 +119,9 @@ const InforPackageScreen = () => {
           />
           <Header
             hasBackButton={false}
+            hasEmail={true}
             title={translate('packageInfor').toUpperCase()}
+            // title={'a'.toUpperCase()}
             canCall={false}
             titleStyle={styles.titleStyle}
           />
@@ -140,10 +142,6 @@ const InforPackageScreen = () => {
           >
             {({ values }) => (
               <>
-                {/* <Recipient /> */}
-
-
-                
                 {
                   !!image ? (
                     <View style={styles.imgView}>

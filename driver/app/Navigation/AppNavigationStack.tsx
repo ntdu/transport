@@ -29,6 +29,7 @@ import { InforPackageScreen } from '@/Containers/InforPackageScreen'
 
 import { DestinationScreen } from '@/Containers/DestinationScreen'
 import { OrderTrackingScreen } from '@/Containers/OrderTrackingScreen'
+import { QRScreen } from '@/Containers/QRScreen'
 
 // Navigation Type
 import {
@@ -103,6 +104,10 @@ export const BookingStack = () => {
       <Booking.Screen
         name={'OrderTrackingScreen'}
         component={OrderTrackingScreen}
+      />
+      <Booking.Screen
+        name={BookingScreens.QRScreen}
+        component={QRScreen}
       />
       {/* <Booking.Screen
         name={BookingScreens.PhaseRenderScreen}

@@ -14,7 +14,8 @@ export enum BookingScreens {
   SearchPlacesScreen = 'SearchPlacesScreen',
   ListBikersScreen = 'ListBikersScreen',
   PhaseRenderScreen = 'PhaseRenderScreen',
-  SimpleMapScreen = 'SimpleMapScreen'
+  SimpleMapScreen = 'SimpleMapScreen',
+  QRScreen = 'QRScreen'
 }
 
 export enum MainScreens {

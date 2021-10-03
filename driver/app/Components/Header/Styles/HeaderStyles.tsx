@@ -27,6 +27,12 @@ export default StyleSheet.create({
     marginRight: Normalize(-25),
     tintColor: Colors.white
   },
+  email: {
+    // paddingRight: Normalize(0),
+    // marginRight: Normalize(-25),
+    marginLeft: Normalize(5),
+    tintColor: Colors.white
+  },
   blankView: {
     flex: 0.5,
     alignContent: 'center'
