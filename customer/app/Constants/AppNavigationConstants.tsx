@@ -13,6 +13,7 @@ export enum MainScreens {
   PhaseRideScreen = 'PhaseRideScreen',
   GetPackageProofScreen = 'GetPackageProofScreen',
   DeliverPackageProofScreen = 'DeliverPackageProofScreen',
+  ScanQRCode = 'ScanQRCode',
   PayScreen = 'PayScreen'
 }
 

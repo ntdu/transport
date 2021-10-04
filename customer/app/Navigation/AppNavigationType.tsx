@@ -55,6 +55,7 @@ export type MainStackParams = {
   PhaseRideScreen: undefined
   GetPackageProofScreen: undefined
   DeliverPackageProofScreen: undefined
+  ScanQRCode: undefined
   PayScreen: undefined
 }
 

@@ -16,7 +16,8 @@ import { RideScreen } from '@/Containers/RideScreen'
 import { PhaseRideScreen } from '@/Containers/PhaseRideScreen'
 import {
   GetPackageProofScreen,
-  DeliverPackageProofScreen
+  DeliverPackageProofScreen,
+  ScanQRCode
 } from '@/Containers/GetProofScreen'
 import { PayScreen } from '@/Containers/PayScreen'
 
@@ -227,6 +228,10 @@ export const MainStack = () => {
       <Main.Screen
         name={MainScreens.DeliverPackageProofScreen}
         component={DeliverPackageProofScreen}
+      />
+      <Main.Screen
+        name={MainScreens.ScanQRCode}
+        component={ScanQRCode}
       />
       <Main.Screen name={MainScreens.PayScreen} component={PayScreen} />
     </Main.Navigator>

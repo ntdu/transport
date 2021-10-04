@@ -147,9 +147,9 @@ export const startListening = () => {
         
         case 'DELIVERY_BIKER_CHOSEN_EVENT':
           console.log(data)
-          const deliveryData = mapDeliveryDataToFrontEnd(data)
+          // const deliveryData = mapDeliveryDataToFrontEnd(data)
 
-          store.dispatch(RideInforActions.getInforDelivery(deliveryData))
+          store.dispatch(RideInforActions.getInforDelivery(data))
           store.dispatch(PhaseRiderActions.setService(SERVICE.DELIVERY))
           store.dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GET_A_RIDE))
           

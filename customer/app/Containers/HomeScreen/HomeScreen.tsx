@@ -91,7 +91,7 @@ const HomeScreen = () => {
 
     dispatch(SocketActions.emitHeartBeat('106.625305', '10.753171'))
 
-    temp()
+    // temp()
   }
   const temp = () => {
     let data = {

@@ -5,7 +5,7 @@ import { Normalize, Colors, Metrics } from '@/Themes'
 
 export default StyleSheet.create({
   container: {
-    marginTop: Metrics.statusBarHeight,
+    // marginTop: Metrics.statusBarHeight,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: Normalize(20),

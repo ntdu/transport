@@ -119,6 +119,7 @@ const PhaseRideScreen = () => {
       case PhaseRider.GO_TO_DESTINATION:
         return (
           <RenderFooter
+            hasScan = {true}
             order={'Arrived destination'}
             button={'start'}
             onPressFunction={dispatchFinish}

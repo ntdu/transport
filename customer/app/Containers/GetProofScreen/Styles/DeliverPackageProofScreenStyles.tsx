@@ -19,7 +19,7 @@ export default StyleSheet.create({
     marginTop: Normalize(20),
     width: Metrics.screenWidth - 40,
     height: Metrics.screenHeight / 2.5,
-    backgroundColor: Colors.ebony,
+    // backgroundColor: Colors.ebony,
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center'
