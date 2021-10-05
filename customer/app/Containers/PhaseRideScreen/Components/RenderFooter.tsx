@@ -51,8 +51,6 @@ const RenderFooter = (props: RenderFooterProps) => {
   }
 
   const scanQR = () => {
-    console.log("QRRRRR")
-    
     navigation.navigate('ScanQRCode')
   }
 

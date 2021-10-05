@@ -103,7 +103,16 @@ const PhaseRideScreen = () => {
     dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.FINISH_RIDE))
 
   const confirmComplete = () => {
-    navigation.navigate('DeliverPackageProofScreen')
+    // dispatch(SocketActions.emitCompleteDelivery(token, rideHash, image))
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'PayScreen'
+        }
+      ]
+    })
+    // navigation.navigate('DeliverPackageProofScreen')
   }
 
   const renderFooter = () => {
@@ -119,7 +128,6 @@ const PhaseRideScreen = () => {
       case PhaseRider.GO_TO_DESTINATION:
         return (
           <RenderFooter
-            hasScan = {true}
             order={'Arrived destination'}
             button={'start'}
             onPressFunction={dispatchFinish}
@@ -128,6 +136,7 @@ const PhaseRideScreen = () => {
       case PhaseRider.FINISH_RIDE:
         return (
           <RenderFooter
+            hasScan = {true}
             order={'Arrived destination'}
             button={'finish'}
             onPressFunction={confirmComplete}
