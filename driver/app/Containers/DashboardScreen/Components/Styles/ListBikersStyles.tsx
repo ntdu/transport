@@ -33,7 +33,8 @@ export default StyleSheet.create({
     left: Normalize(-20)
   },
   listContainer: {
-    height: Metrics.screenHeight / 3.5
+    height: Metrics.screenHeight / 3.5,
+    marginBottom: Normalize(20)
   },
   retryButtonStyle: {
     width: Metrics.screenWidth - Normalize(20),

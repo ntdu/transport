@@ -68,26 +68,52 @@ const SearchPlacesScreen = ({ route }: any) => {
     data: GooglePlaceData,
     details: GooglePlaceDetail | null
   ) => {
+    console.log("onPressYourOriginalLocation")
     if (details) {
       const lat = details.geometry.location.lat
       const lng = details.geometry.location.lng
       const address = data.description
 
-      dispatch(MapActions.setOriginalLocation(lat, lng, address))
+      console.log(lat)
+      console.log(lng)
+      console.log(address)
+      console.log("-------------------------------------")
+      //   lat: 10.800972
+      //   lng: 106.706469
+      //   address: 195/10 Điện Biên Phủ, Phường 15, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam
+
+      // LOG  10.8094057
+      // LOG  106.6710919
+      // LOG  119 Phổ Quang, Phường 9 (Phú Nhuận), Phú Nhuận, Thành phố Hồ Chí Minh, Việt Nam
+
+      //     10.7731708,
+      //     106.6353054,
+      //     '262/13/6 Lũy Bán Bích, Phú Trung, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam'
+      
+      dispatch(MapActions.setOriginalMap(lat, lng, address))
     }
   }
   const { phaseDestination, numberOfDestinations } = useSelector(
     (state: RootState) => state.phase
   )
   
-  const addressOrigin = '19/9 Trần Bình Trọng, Bình Thạnh, Hồ Chí Minh'
+  const addressOrigin = '119 Phổ Quang, Phường 9 (Phú Nhuận), Phú Nhuận, Thành phố Hồ Chí Minh, Việt Nam'
+  let ori_lat = 10.8094057
+  let ori_lng = 106.6710919
+  
   let addressDestination = ''
+  let des_lat = 0
+  let des_lng = 0
 
   if (phaseDestination === '1') {
-    addressDestination = '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+    addressDestination = '262/13/6 Lũy Bán Bích, Phú Trung, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam'
+    des_lat = 10.7731708
+    des_lng = 106.6353054
   }
   else if(phaseDestination === '2') {
-    addressDestination = '200 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+    addressDestination = '195/10 Điện Biên Phủ, Phường 15, Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam'
+    des_lat = 10.800972
+    des_lng = 106.706469
   }
   else {
     addressDestination = '300 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
@@ -153,10 +179,10 @@ const SearchPlacesScreen = ({ route }: any) => {
   useEffect(() => {
     // dispatch(MapActions.setOriginalLocation(107.122123, 106.123123, '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'))
     if (type === 'Origin') {
-      dispatch(MapActions.setOriginalMap(107.122123, 106.123123, addressOrigin))
+      dispatch(MapActions.setOriginalMap(ori_lng, ori_lat, addressOrigin))
     }
     else if (type === 'Destination') {
-      dispatch(MapActions.setDestinationMap(107.122123, 106.123123, addressDestination))
+      dispatch(MapActions.setDestinationMap(des_lng, des_lat, addressDestination))
     }
     // console.log(addressAndCoordinates);
   }, [])
@@ -197,6 +223,7 @@ const SearchPlacesScreen = ({ route }: any) => {
           renderRow={renderRow}
           renderLeftButton={renderLeftButtonYourLocaition}
           debounce={2000}
+          onFail={error => console.error(error)}
         /> */}
 
         {/* <GooglePlacesAutocomplete

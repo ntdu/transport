@@ -90,12 +90,8 @@ const DestinationScreen = () => {
   }
 
   const onSubmit = (values: FormikValues) => {
-    console.log(originAndDestiationInfo)
-    console.log(phaseDestination)
-    console.log(numberOfDestinations)
     const { address, destinationLat, destinationLng } = list_destination[list_destination.length - 1]
 
-    console.log("onSubmit")
     const destinationInfor = {
       phoneNumber: phoneNumber,
       name: name,
@@ -103,7 +99,6 @@ const DestinationScreen = () => {
       destinationLng: destinationLng,
       address: address
     }
-    console.log(destinationInfor)
     dispatch(PackageInforActions.setDestination(destinationInfor))
 
     if(parseInt(phaseDestination) < parseInt(numberOfDestinations)) {

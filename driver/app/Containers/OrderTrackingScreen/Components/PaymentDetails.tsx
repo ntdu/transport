@@ -10,13 +10,15 @@ const Payment = () => {
   const indexOfPhaseRide = useSelector(
     (state: RootState) => state.phase.indexOfPhaseRide
   )
-
+  const { bikers } = useSelector(
+    (state: RootState) => state.phase.resultFoundBikers
+  )
   const price = useSelector((state: RootState) => {
-    if (indexOfPhaseRide === 0) {
-      return state.rideInfor.price
-    }
+    // if (indexOfPhaseRide === 0) {
+    //   return state.rideInfor.price
+    // }
     // return state.package.package[indexOfPhaseRide - 1].price
-    return '20000'
+    return bikers[0].price.toString()
   })
 
   return <PaymentDetails price={price} />

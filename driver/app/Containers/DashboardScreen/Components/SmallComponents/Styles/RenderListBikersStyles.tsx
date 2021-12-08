@@ -7,6 +7,7 @@ export default StyleSheet.create({
   container: {
     borderRadius: Normalize(5),
     marginTop: Normalize(10),
+    marginBottom: Normalize(10),
     alignItems: 'center',
     paddingTop: Normalize(10),
     paddingBottom: Normalize(10),
@@ -23,6 +24,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.black,
     flex: 0.6,
+    marginLeft: Normalize(10)
+  },
+  price: {
+    fontSize: Normalize(18),
+    fontWeight: 'bold',
+    color: Colors.black,
+    flex: 0.9,
     marginLeft: Normalize(10)
   },
   starView: {

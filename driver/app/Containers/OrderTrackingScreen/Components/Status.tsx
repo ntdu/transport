@@ -36,20 +36,8 @@ const Status = () => {
     (state: RootState) => state.phase.indexOfPhaseRide
   )
 
-  // const phase =
-  //   indexOfPhaseRide === 0
-  //     ? useSelector((state: RootState) => state.rideInfor.phaseBooking)
-  //     : useSelector(
-  //         (state: RootState) =>
-  //           state.package.package[indexOfPhaseRide - 1].phaseBooking
-  //       )
-
   const phase = useSelector((state: RootState) => {
-    if (indexOfPhaseRide === 0) {
-      return state.rideInfor.phaseBooking
-    }
-    // return state.package.package[indexOfPhaseRide - 1].phaseBooking
-    return PhaseBookingBeforeRide.CONFIRM_BOOK
+    return state.rideInfor.phaseBooking
   })
 
   // const time =

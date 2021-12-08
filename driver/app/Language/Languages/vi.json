@@ -91,8 +91,13 @@
   "personalInfor": "Thông tin cá nhân",
 
   "destinationNumber": "Số điểm đến",
+  "firstDestination": "Điểm giao thứ nhất",
+  "secondDestination": "Điểm giao thứ hai",
+  "thirdDestination": "Điểm giao thứ ba",
 
   "serviceRide": "Di chuyển",
+  "serviceDriver": "Đang giao",
+
   "serviceDelivery": "Giao hàng",
   "orderNumber": "Đơn",
   "tripDetails": "Thông tin chuyến",
@@ -101,5 +106,8 @@
   "status": "Trạng thái",
   "tripFare": "Giá chuyến đi",
   "platformFare": "Phí nền tảng",
-  "summary": "Tổng cộng"
+  "summary": "Tổng cộng",
+  "orderSent":"Đã gửi yêu cầu",
+  "codeShipment":"Mã vận chuyển",
+  "qr":"Mã QR"
 }

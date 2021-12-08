@@ -101,11 +101,15 @@ const DashboardScreen = () => {
     //     '262/13/6 Lũy Bán Bích, Phú Trung, Tân Phú, Thành phố Hồ Chí Minh, Việt Nam'
     //   )
     // )
+    console.log("getOriginalLocation")
     // Geolocation.getCurrentPosition(
     //   async (location) => {
     //     const { latitude, longitude } = location.coords
     //     const address = await getCurrentAddress(latitude, longitude)
     //     console.log(address)
+    //     console.log(location.coords.longitude)
+    //     console.log(location.coords.latitude)
+
     //     dispatch(
     //       MapActions.setOriginalLocation(
     //         location.coords.longitude,

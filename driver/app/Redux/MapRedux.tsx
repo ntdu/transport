@@ -94,8 +94,8 @@ export const setDestinationMap = (
       list_destination: [
         ...state.originAndDestiationInfo.list_destination,
         {
-          destinationLat: lng,
-          destinationLng: lat,
+          destinationLat: lat,
+          destinationLng: lng,
           address:  address
         }
       ]

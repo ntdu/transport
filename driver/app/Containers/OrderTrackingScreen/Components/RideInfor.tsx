@@ -35,7 +35,7 @@ const RideInfor = () => {
   //           state.package.package[indexOfPhaseRide - 1].rideHash
   //       )
   
-  const rideHash = 'ABC'
+  const rideHash = 'N9TT-9G0A-B7FQ-RANC'
 
   const renderService = () => {
     return (

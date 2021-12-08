@@ -13,6 +13,15 @@ import { store } from '@/Containers/App'
 // import PhaseActions from '@/Redux/PhaseRedux'
 // import AuthActions from '@/Redux/AuthRedux'
 // import UserActions from '@/Redux/UserRedux'
+import { useSelector, useDispatch } from 'react-redux'
+import RideInforActions from '@/Redux/RideInforRedux'
+
+import {
+  PhaseBookingBeforeRide,
+  PhaseBookingInRide,
+  PhaseBookingAfterRide,
+  SERVICE
+} from '@/Constants/PhaseReduxConstants'
 
 // // Constants
 // import {
@@ -76,12 +85,14 @@ export const wrapperEmitSocket = (EmitFunction: () => void) => {
 
 export const startListening = () => {
   const Socket = getSocket()
+  
 
   Socket.onmessage = function(e: any) {
     if (typeof e.data === 'string') {
       const type = JSON.parse(e.data)['message']['type']
       const data = JSON.parse(e.data)['message']['data']
-
+      console.log(type)
+      const time = Date.now()
       switch (type) {
         case 'ready':
           console.log('ready')
@@ -101,6 +112,22 @@ export const startListening = () => {
           console.log(data)
           break
         
+        case 'DELIVERY_CONFIRMED_EVENT':
+          store.dispatch(RideInforActions.setPhaseRide(PhaseBookingInRide.CONFIRM_RIDE, time))
+          break
+
+        case 'DELIVERY_BIKER_WAITING':
+          store.dispatch(RideInforActions.setPhaseRide(PhaseBookingInRide.BIKER_WAITING, time))
+          break
+
+        case 'BIKER_RECEIVED_PACKAGE':
+          store.dispatch(RideInforActions.setPhaseRide(PhaseBookingInRide.BIKER_RECEIVED_PACKAGE, time))
+          break
+
+        case 'DELIVERY_COMPLETE_EVENT':
+          store.dispatch(RideInforActions.setPhaseRide(PhaseBookingAfterRide.RIDE_COMPLETE_EVENT, time))
+          break
+
         default:
           console.log("don't match")
       }

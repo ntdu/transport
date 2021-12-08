@@ -15,6 +15,7 @@ export type ResultFoundBikers = {
 export type PayloadFoundBikers = {
   phone: string
   distance: number
+  price: number
   userDetail: UserDetail
 }
 
@@ -96,13 +97,13 @@ export type PackageInfor = {
 export type RideInforState = {
   phaseBooking: string
   time: number
-  price: string
+  // price: string
 
-  biker: PayloadFoundBikers
-  rideHash: string
+  // biker: PayloadFoundBikers
+  // rideHash: string
   bikerLocationUpdate: Coordinates | undefined
 
-  addressAndCoordinates?: AddressAndCoordinates
+  // addressAndCoordinates?: AddressAndCoordinates
 }
 
 export type SocketState = {

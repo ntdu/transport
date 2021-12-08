@@ -26,14 +26,14 @@ const OrderTrackingScreen = () => {
 
   const phoneNumber = useSelector((state: RootState) => {
     if (indexOfPhaseRide === 0) {
-      return state.rideInfor.biker.userDetail.phoneNumber
+      return state.phase.resultFoundBikers.bikers[0].phone
     }
     return state.package.driver?.userDetail
       .phoneNumber
   })
 
   return (
-    <ScrollView>
+    <>
       <StatusBar
         backgroundColor={Colors.royalBlue}
         hidden={false}
@@ -53,7 +53,7 @@ const OrderTrackingScreen = () => {
       <TripDetails indexOfPhaseRide={indexOfPhaseRide} />
       <Status />
       <PaymentDetails />
-    </ScrollView>
+    </>
   )
 }
 

@@ -38,7 +38,7 @@ export const mapUserDetailToFrontEnd = (response: any): UserDetail => {
 export const mapBikerFoundResultToFrontEnd = (
   response: any
 ): PayloadFoundBikers => {
-  const { phone, userDetail, distance } = response
+  const { phone, userDetail, distance, price } = response
   const {
     phone_number,
     email,
@@ -61,7 +61,8 @@ export const mapBikerFoundResultToFrontEnd = (
       phoneNumber: phone_number,
       createdDate: created_date
     },
-    distance
+    distance,
+    price
   }
 }
 export const mapHistoryToFrontEnd = (response: any): HistoryByDate => {

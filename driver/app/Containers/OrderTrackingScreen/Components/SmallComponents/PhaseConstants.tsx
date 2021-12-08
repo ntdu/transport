@@ -5,6 +5,7 @@ import { Metrics } from '@/Themes'
 import WaitConfirm from '@/Svgs/Icons/waitingConfirm.svg'
 import Confirm from '@/Svgs/Icons/confirm.svg'
 import Destination from '@/Svgs/Icons/destination.svg'
+import Original from '@/Svgs/Icons/location.svg'
 import Completed from '@/Svgs/Icons/completed.svg'
 import Rejected from '@/Svgs/Icons/rejected.svg'
 import BikerReceived from '@/Svgs/Icons/bikerReceived.svg'
@@ -31,7 +32,7 @@ export const PhaseConfirmRide: Phase = {
 
 export const PhaseBikerWait: Phase = {
   image: (
-    <Destination
+    <Original
       height={Metrics.defaultImageWidth}
       width={Metrics.defaultImageWidth}
     />

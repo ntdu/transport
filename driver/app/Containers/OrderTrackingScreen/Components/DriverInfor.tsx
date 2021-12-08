@@ -31,12 +31,17 @@ const DriverInfor = () => {
   //           state.package.package[indexOfPhaseRide - 1].biker?.userDetail
   // )
 
-  const userDetail = useSelector((state: RootState) => {
-    if (indexOfPhaseRide === 0) {
-      return state.rideInfor.biker.userDetail
-    }
-    return state.package.driver?.userDetail
-  })
+  // const userDetail = useSelector((state: RootState) => {
+  //   if (indexOfPhaseRide === 0) {
+  //     return state.rideInfor.biker.userDetail
+  //   }
+  //   return state.package.driver?.userDetail
+  // })
+  const { bikers } = useSelector(
+    (state: RootState) => state.phase.resultFoundBikers
+  )
+
+  const { userDetail } = bikers[0]
 
   return (
     <View style={styles.container}>
@@ -50,7 +55,7 @@ const DriverInfor = () => {
               {userDetail.firstName + ' ' + userDetail.lastName}
             </Text>
           )}
-          {userDetail && <Text style={styles.name}>59V3 - 18675</Text>}
+          {userDetail && <Text style={styles.name}>49D1 - 37338</Text>}
         </View>
       </View>
       <TouchableOpacity style={styles.map}>

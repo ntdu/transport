@@ -34,7 +34,7 @@ const StatusDetail = (props: StatusDetailProps) => {
         {image}
         <Text style={styles.title}>{translate(title)}</Text>
       </View>
-      {renderTime()}
+      {/* {renderTime()} */}
     </View>
   )
 }

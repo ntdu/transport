@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ViewStyle, FlatList, SafeAreaView } from 'react-native'
+import { View, Text, ViewStyle, FlatList, SafeAreaView, ScrollView } from 'react-native'
 
 // Redux
 import { useSelector } from 'react-redux'
@@ -97,13 +97,20 @@ const TripDetails = (props: TripDetailsProps) => {
           {/* <Text style={styles.lineText}>|</Text>
           <Text style={styles.lineText}>|</Text> */}
         </View>
-        <SafeAreaView style={{flex: 1}}>
+
+        <FlatList
+          data={list_destination}
+          renderItem={renderDestination}
+          keyExtractor={item => item.phoneNumber}
+        />
+        
+        {/* <SafeAreaView style={{flex: 1}}>
           <FlatList
             data={list_destination}
             renderItem={renderDestination}
             keyExtractor={item => item.phoneNumber}
           />
-        </SafeAreaView>
+        </SafeAreaView> */}
         
       </View>
     </View>

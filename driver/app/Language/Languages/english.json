@@ -96,7 +96,7 @@
   "thirdDestination": "Your third destination",
 
   "serviceRide": "Ride",
-  "serviceDriver": "Driver",
+  "serviceDriver": "Delivering",
   "serviceDelivery": "Delivery",
   "orderNumber": "Order",
   "tripDetails": "Trip Details",
@@ -107,6 +107,13 @@
   "platformFare": "Platform Fare",
   "summary": "Summary",
   "orderSent":"Your order is sent",
+  "orderConfirm":"Your order is confirmed",
+  "bikerCame":"Driver came",
+  "bikerReceivedPackage":"Driver received package",
+  "rideComplete":"Driver completed",
+  "orderReject":"Driver rejected",
+
+
   "codeShipment":"Code of shipment",
   "qr":"QR Code"
 }

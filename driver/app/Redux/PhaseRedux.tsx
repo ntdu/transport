@@ -53,7 +53,8 @@ export const INITIAL_STATE: Immutable.ImmutableObject<PhaseState> = Immutable({
           phoneNumber: '',
           createdDate: ''
         },
-        distance: 0
+        distance: 0,
+        price: 0
       }
     ],
     rideHash: ''
