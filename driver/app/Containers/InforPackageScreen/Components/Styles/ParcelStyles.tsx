@@ -8,7 +8,7 @@ export default StyleSheet.create({
     padding: Normalize(10),
     backgroundColor: Colors.white,
     marginHorizontal: Normalize(10),
-    marginTop: Normalize(100),
+    marginTop: Normalize(50),
     borderRadius: Normalize(10),
     ...ApplicationStyles.screen.defaultElevation
   },
