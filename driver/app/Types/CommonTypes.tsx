@@ -44,8 +44,8 @@ export type Destination = {
 
 export type OriginAndDestiationInfo = {
   origin: {
-    originalLat: number | undefined
-    originalLng: number | undefined
+    originalLat: number
+    originalLng: number
     address: string | undefined
   }
   list_destination: Destination[]

@@ -31,7 +31,7 @@ const RenderLocation = (props: RenderLocationProps) => {
 
   const addressOriginalLocation = useSelector((state: RootState) => state.map.originAndDestiationInfo.origin.address)
   const { list_destination } = useSelector((state: RootState) => state.package.originAndDestiationInfo)
-  console.log(list_destination)
+  // console.log(list_destination)
   // const navigateListBikersScreen = () =>
   //   navigation.navigate(BookingScreens.SearchPlacesScreen)
 

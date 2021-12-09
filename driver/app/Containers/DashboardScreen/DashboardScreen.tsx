@@ -225,7 +225,7 @@ const DashboardScreen = () => {
 
   return (
     <View style={styles.mainContainer}>
-      {/* <BMap /> */}
+      <BMap />
       <StatusBar hidden />
       <BBackButton
           wrapperStyle={styles.backContainer}

@@ -21,16 +21,41 @@ import PlaceOrgin from '@/Svgs/Icons/location.svg'
 import Destination from '@/Svgs/Icons/destination.svg'
 const BMap = () => {
   const dispatch = useDispatch()
+  
+  const { list_destination } = useSelector((state: RootState) => state.package.originAndDestiationInfo)
 
+  console.log(list_destination)
+  console.log("------------------------------BMap")
+  // const {
+  //   originalLat,
+  //   originalLng,
+  //   destinationLat,
+  //   destinationLng
+  // } = useSelector(
+  //   (state: RootState) => state.map.addressAndCoordinates.coordinates,
+  //   shallowEqual
+  // )
   const {
     originalLat,
-    originalLng,
-    destinationLat,
-    destinationLng
+    originalLng
   } = useSelector(
-    (state: RootState) => state.map.addressAndCoordinates.coordinates,
+    (state: RootState) => state.package.originAndDestiationInfo.origin,
     shallowEqual
   )
+
+  let destinationLat = originalLat
+  let destinationLng = originalLng
+
+  let destinationLat1 = 10.811074
+  let destinationLng1 = 106.625305
+
+  if (list_destination.length > 0) {
+    destinationLat = parseFloat(list_destination[0].destinationLat)
+    destinationLng = parseFloat(list_destination[0].destinationLng)
+
+    destinationLat1 = parseFloat(list_destination[1].destinationLat)
+    destinationLng1 = parseFloat(list_destination[1].destinationLng)
+  }
 
   const region: Region = {
     latitude: originalLat,
@@ -71,9 +96,13 @@ const BMap = () => {
               latitude: originalLat,
               longitude: originalLng
             }}
-            destination={{
+            waypoints={[{
               latitude: destinationLat,
               longitude: destinationLng
+            }]}
+            destination={{
+              latitude: destinationLat1,
+              longitude: destinationLng1
             }}
             // apikey={Config.GOOGLE_MAPS_API_KEY}
             apikey={'AIzaSyAcIPg4KEuiSe6uucNEO18PABpoO6Ymu5I'}
@@ -84,6 +113,16 @@ const BMap = () => {
           <BMarker
             latitude={destinationLat}
             longitude={destinationLng}
+            image={
+              <Destination
+                width={Metrics.defaultImageWidth}
+                height={Metrics.defaultImageHeight}
+              />
+            }
+          />
+          <BMarker
+            latitude={destinationLat1}
+            longitude={destinationLng1}
             image={
               <Destination
                 width={Metrics.defaultImageWidth}
