@@ -11,6 +11,7 @@ import { MainStackParams } from '@/Navigation/AppNavigationType'
 import { useDispatch, useSelector } from 'react-redux'
 import SocketActions from '@/Redux/SocketRedux'
 import { RootState } from '@/Types'
+import { BMap } from '@/Components'
 
 // Context
 import HomeScreenContext from './HomeScreenContext'
@@ -32,6 +33,7 @@ import { PhaseRider } from '@/Constants/PhaseRiderConstants'
 
 // Styles
 import { RAlert } from '@/Functions/AlertFunctions'
+import styles from './Styles/HomeScreenStyles'
 
 // Language
 import { translate } from '@/Language'
@@ -43,7 +45,7 @@ type HomeScreenNavigationProps = StackNavigationProp<
 
 
 import {
-  mapDeliveryDataToFrontEnd,
+  // mapDeliveryDataToFrontEnd,
   // mapRideDataToFrontEnd
 } from '@/Functions/MapDataToFrontendFunctions'
 import { store } from '@/Containers/App'
@@ -68,11 +70,12 @@ const HomeScreen = () => {
   // const cancleReadyPhase = () => dispatchPhase({ type: Action.PHASE_0 })
 
   const findCoordinates = () => {
+    console.log("findCoordinates")
     // Geolocation.getCurrentPosition(
     //   (position) => {
     //     const { longitude, latitude } = position.coords
-    //     console.log(longitude);
-    //     console.log(latitude);
+    //     console.log(longitude); // 106.6884409
+    //     console.log(latitude); // 10.8110441
     //     dispatch(SocketActions.emitHeartBeat(longitude, latitude))
     //   },
     //   () => {
@@ -93,60 +96,60 @@ const HomeScreen = () => {
 
     // temp()
   }
-  const temp = () => {
-    let data = {
-      'originAndDestiationInfo': {
-        'origin': {
-          'sender': {
-            'accountUsername': '0354471333',
-            'address': '19/9 Trần Bình Trọng, Phường 5, Bình Thạnh, Thành phố Hồ Chí Minh',
-            'dateOfBirth': '24/11/1998',
-            'firstName': 'Dư',
-            'gender': 'false',
-            'lastName': 'Nguyễn',
-            'phoneNumber': '0354471333',
-            'createdDate': '30/9/2021'
-          },
-          'originalLng': '106.625305',
-          'originalLat': '10.753171',
-          'address': '19/9 Trần Bình Trọng, Phường 5, Bình Thạnh, Thành phố Hồ Chí Minh'
-        },
-        'list_destination': [
-          {
-            'phoneNumber': '0354471222',
-            'name': 'Khánh Vy',
-            'destinationLng': '106.625305',
-            'destinationlLat': '10.753171',
-            'address': '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
-          },
-          {
-            'phoneNumber': '0354471223',
-            'name': 'Khánh Vy',
-            'destinationLng': '106.625305',
-            'destinationlLat': '10.753171',
-            'address': '250 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
-          },
-          {
-            'phoneNumber': '0354471225',
-            'name': 'Khánh Vy',
-            'destinationLng': '106.625305',
-            'destinationlLat': '10.753171',
-            'address': '300 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
-          }
-        ],
-      },
-      'price': '20000',
-      'rideHash': 'adfafdb',
-      'package': {
-        'weight': '3',
-      }
-    }
-    // const deliveryData = mapDeliveryDataToFrontEnd(data)
+  // const temp = () => {
+  //   let data = {
+  //     'originAndDestiationInfo': {
+  //       'origin': {
+  //         'sender': {
+  //           'accountUsername': '0354471333',
+  //           'address': '19/9 Trần Bình Trọng, Phường 5, Bình Thạnh, Thành phố Hồ Chí Minh',
+  //           'dateOfBirth': '24/11/1998',
+  //           'firstName': 'Dư',
+  //           'gender': 'false',
+  //           'lastName': 'Nguyễn',
+  //           'phoneNumber': '0354471333',
+  //           'createdDate': '30/9/2021'
+  //         },
+  //         'originalLng': '106.625305',
+  //         'originalLat': '10.753171',
+  //         'address': '19/9 Trần Bình Trọng, Phường 5, Bình Thạnh, Thành phố Hồ Chí Minh'
+  //       },
+  //       'list_destination': [
+  //         {
+  //           'phoneNumber': '0354471222',
+  //           'name': 'Khánh Vy',
+  //           'destinationLng': '106.625305',
+  //           'destinationlLat': '10.753171',
+  //           'address': '109 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+  //         },
+  //         {
+  //           'phoneNumber': '0354471223',
+  //           'name': 'Khánh Vy',
+  //           'destinationLng': '106.625305',
+  //           'destinationlLat': '10.753171',
+  //           'address': '250 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+  //         },
+  //         {
+  //           'phoneNumber': '0354471225',
+  //           'name': 'Khánh Vy',
+  //           'destinationLng': '106.625305',
+  //           'destinationlLat': '10.753171',
+  //           'address': '300 Lý thường kiệt, phường 3, Quận 10, Thành phố Hồ Chí Minh'
+  //         }
+  //       ],
+  //     },
+  //     'price': '20000',
+  //     'rideHash': 'adfafdb',
+  //     'package': {
+  //       'weight': '3',
+  //     }
+  //   }
+  //   // const deliveryData = mapDeliveryDataToFrontEnd(data)
     
-    store.dispatch(RideInforActions.getInforDelivery(data))
-    store.dispatch(PhaseRiderActions.setService(SERVICE.DELIVERY))
-    store.dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GET_A_RIDE))
-  }
+  //   store.dispatch(RideInforActions.getInforDelivery(data))
+  //   // store.dispatch(PhaseRiderActions.setService(SERVICE.DELIVERY))
+  //   // store.dispatch(PhaseRiderActions.setPhaseRider(PhaseRider.GET_A_RIDE))
+  // }
   const navigateToRideScreen = () => {
     console.log("navigateToRideScreen");
     navigation.reset({
@@ -173,6 +176,7 @@ const HomeScreen = () => {
   }, [phaseRider])
 
   useEffect(() => {
+    findCoordinates()
     dispatch(SocketActions.initSocket())
     Platform.OS === 'android'
       ? checkDeviceLocationPermissionAndroid()
@@ -183,6 +187,7 @@ const HomeScreen = () => {
     <HomeScreenContext.Provider value={{ state, dispatchPhase }}>
       <RenderPhaseHomeScreen />
       <HeaderHomeScreen />
+      <BMap wrapperStyle={styles.wrapperStyle} type={0} />
     </HomeScreenContext.Provider>
   )
 }

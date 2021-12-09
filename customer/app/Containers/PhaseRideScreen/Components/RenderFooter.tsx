@@ -76,12 +76,12 @@ const RenderFooter = (props: RenderFooterProps) => {
         <View />
         <View>
           <View style={styles.content}>
-            <Text style={styles.distanceText}>2 min</Text>
+            <Text style={styles.distanceText}>5 min</Text>
             <PersonRaiseHand
               width={Metrics.defaultImageWidth}
               height={Metrics.defaultImageHeight}
             />
-            <Text style={styles.distanceText}>0.5 Km</Text>
+            <Text style={styles.distanceText}>1 Km</Text>
           </View>
           <Text style={styles.order}>{order}</Text>
         </View>

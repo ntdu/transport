@@ -10,7 +10,7 @@ import { translate } from '@/Language'
 const OfflineMode = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translate('lostConnect')}</Text>
+      <Text style={styles.text}>{translate('disconnection')}</Text>
     </View>
   )
 }

@@ -29,16 +29,36 @@ const BMap = (props: BMapProps) => {
   const { wrapperStyle, type } = props
 
   const coordinates = useSelector(
-    (state: RootState) => state.ride.addressAndCoordinates.coordinates,
-    shallowEqual
+    (state: RootState) => state.ride.originAndDestiationInfo.origin
+  )
+  const { list_destination } = useSelector(
+    (state: RootState) => state.ride.originAndDestiationInfo
   )
 
-  const {
-    originalLat,
-    originalLng,
-    destinationLat,
-    destinationLng
-  } = coordinates
+  let originalLat = 10.811074
+  let originalLng = 106.625305
+
+  let destinationLat2 = 10.811074
+  let destinationLng2 = 106.625305
+
+  let destinationLat = 10.811074
+  let destinationLng = 106.625305
+
+  let destinationLat1 = 10.811074
+  let destinationLng1 = 106.625305
+
+  console.log(list_destination)
+  if (list_destination.length > 0) {
+    destinationLat2 = parseFloat(list_destination[0].destinationlLat)
+    destinationLng2 = parseFloat(list_destination[0].destinationLng)
+    
+    destinationLat = parseFloat(list_destination[1].destinationlLat)
+    destinationLng = parseFloat(list_destination[1].destinationLng)
+
+    destinationLat1 = parseFloat(coordinates.originalLat)
+    destinationLng1 = parseFloat(coordinates.originalLng)
+  }
+  
 
   const region: Region = {
     latitude: originalLat,
@@ -75,6 +95,14 @@ const BMap = (props: BMapProps) => {
               latitude: originalLat,
               longitude: originalLng
             }}
+            waypoints={[{
+              latitude: destinationLat1,
+              longitude: destinationLng1
+            },
+            {
+              latitude: destinationLat2,
+              longitude: destinationLng2
+            }]}
             destination={{
               latitude: destinationLat,
               longitude: destinationLng
@@ -87,6 +115,28 @@ const BMap = (props: BMapProps) => {
           <BMarker
             latitude={destinationLat}
             longitude={destinationLng}
+            image={
+              <Destination
+                width={Metrics.defaultImageWidth}
+                height={Metrics.defaultImageHeight}
+              />
+            }
+          />
+
+          <BMarker
+            latitude={destinationLat1}
+            longitude={destinationLng1}
+            image={
+              <Destination
+                width={Metrics.defaultImageWidth}
+                height={Metrics.defaultImageHeight}
+              />
+            }
+          />
+
+          <BMarker
+            latitude={destinationLat2}
+            longitude={destinationLng2}
             image={
               <Destination
                 width={Metrics.defaultImageWidth}

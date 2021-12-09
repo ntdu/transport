@@ -1,4 +1,4 @@
-import { Normalize } from '@/Themes'
+import { Metrics, Normalize } from '@/Themes'
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
@@ -8,5 +8,9 @@ export default StyleSheet.create({
   notificationView: {
     width: Normalize(100),
     height: Normalize(20)
+  },
+  wrapperStyle: {
+    width: Metrics.screenWidth,
+    height: Metrics.screenHeight
   }
 })

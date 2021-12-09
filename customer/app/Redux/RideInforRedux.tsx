@@ -52,7 +52,6 @@ export const getInforDelivery = (
     rideHash,
     price
   } = deliveryData
-
   return state.merge({
     originAndDestiationInfo,
     package: deliveryData.package,

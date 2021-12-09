@@ -146,7 +146,9 @@ export const startListening = () => {
           break
         
         case 'DELIVERY_BIKER_CHOSEN_EVENT':
+          console.log('DELIVERY_BIKER_CHOSEN_EVENT')
           console.log(data)
+          console.log("----------------------------------------")
           // const deliveryData = mapDeliveryDataToFrontEnd(data)
 
           store.dispatch(RideInforActions.getInforDelivery(data))

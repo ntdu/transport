@@ -119,6 +119,7 @@
   "platformFare": "Platform Fare",
   "receipt": "Receipt",
   "orders": "orders",
+  "disconnection": "Disconnection",
   "youGotARide": "You got a ride. Please confirm it.",
   "youAreInRide": "You are in ride"
 }

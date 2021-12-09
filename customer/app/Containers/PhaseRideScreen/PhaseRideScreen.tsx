@@ -49,6 +49,7 @@ const PhaseRideScreen = () => {
     (state: RootState) => state.ride.originAndDestiationInfo.origin
   )
 
+  console.log(address)
   const { list_destination } = useSelector(
     (state: RootState) => state.ride.originAndDestiationInfo
   )
@@ -120,7 +121,7 @@ const PhaseRideScreen = () => {
       case PhaseRider.PICK_UP_CUSTOMER:
         return (
           <RenderFooter
-            order={'Picking up James Smith'}
+            order={'Picking package up'}
             button={'arrived'}
             onPressFunction={dispatchStart}
           />
@@ -169,7 +170,7 @@ const PhaseRideScreen = () => {
         <Navigation width={Normalize(20)} height={Normalize(20)} />
         <Text style={styles.navigateText}>Navigate</Text>
       </TouchableOpacity>
-      {/* <BMap type={1} /> */}
+      <BMap type={1} />
       {renderFooter()}
     </View>
   )
