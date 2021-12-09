@@ -26,13 +26,13 @@ const QRScreen = () => {
     (state: RootState) => state.phase.indexOfPhaseRide
   )
 
-  const phoneNumber = useSelector((state: RootState) => {
-    if (indexOfPhaseRide === 0) {
-      return state.rideInfor.biker.userDetail.phoneNumber
-    }
-    return state.package.driver?.userDetail
-      .phoneNumber
-  })
+  // const phoneNumber = useSelector((state: RootState) => {
+  //   if (indexOfPhaseRide === 0) {
+  //     return state.rideInfor.biker.userDetail.phoneNumber
+  //   }
+  //   return state.package.driver?.userDetail
+  //     .phoneNumber
+  // })
 
   return (
     <ScrollView>
@@ -46,7 +46,8 @@ const QRScreen = () => {
         title={'PARCEL'}
         titleStyle={styles.headerTitle}
         canCall={false}
-        phoneNumber={phoneNumber}
+        phoneNumber={'0354471111'}
+        // phoneNumber={phoneNumber}
         // wrapperStyle={styles.wrapperStyle}
       />
       <View style={styles.codeView}>
